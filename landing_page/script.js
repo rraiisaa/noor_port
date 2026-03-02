@@ -1,6 +1,4 @@
-/* ══════════════════════════════
-   I18N DATA
-══════════════════════════════ */
+/* Data Timer */
 const i18n = {
   id: {
     subtitle: '1446 H · Bulan Penuh Berkah · 2026 M',
@@ -24,9 +22,7 @@ const i18n = {
   }
 };
 
-/* ══════════════════════════════
-   DOA DATA (bilingual)
-══════════════════════════════ */
+/* Data Doa */
 const doas = [
   {
     title:    {id:'Doa Berbuka Puasa',         en:'Breaking Fast Prayer'},
@@ -84,15 +80,11 @@ const doas = [
 //   }
 ];
 
-/* ══════════════════════════════
-   STATE
-══════════════════════════════ */
+/* State */
 let currentLang = 'id';
 let currentTheme = 'dark';
 
-/* ══════════════════════════════
-   LANG
-══════════════════════════════ */
+/* Language */
 function setLang(lang) {
   currentLang = lang;
   document.documentElement.setAttribute('data-lang', lang);
@@ -174,18 +166,14 @@ document.getElementById('doaModal').onclick = e => {
   if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
 };
 
-/* ══════════════════════════════
-   THEME
-══════════════════════════════ */
+/* Theme Setting Toogle */
 function toggleTheme() {
   currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', currentTheme);
   document.getElementById('themeBtn').textContent = currentTheme === 'dark' ? '🌙' : '☀️';
 }
 
-/* ══════════════════════════════
-   STARS
-══════════════════════════════ */
+/* Start Effect═ */
 const starsEl = document.getElementById('starsLayer');
 for (let i=0;i<120;i++){
   const s=document.createElement('div'); s.className='star';
@@ -194,9 +182,7 @@ for (let i=0;i<120;i++){
   starsEl.appendChild(s);
 }
 
-/* ══════════════════════════════
-   PARTICLES
-══════════════════════════════ */
+/* Particles Backhroundnya */
 const pEl=document.getElementById('particles');
 for (let i=0;i<18;i++){
   const p=document.createElement('div'); p.className='particle';
@@ -205,9 +191,7 @@ for (let i=0;i<18;i++){
   pEl.appendChild(p);
 }
 
-/* ══════════════════════════════
-   COUNTDOWN
-══════════════════════════════ */
+/* Countdown Setting */
 function tick(){
   const target=new Date('2026-03-20T00:00:00');
   const now=new Date(); let diff=target-now;
@@ -225,3 +209,4 @@ tick(); setInterval(tick,1000);
 
 /* Init */
 rebuildCards();
+

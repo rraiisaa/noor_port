@@ -48,7 +48,6 @@
 
 
 body {
-    background: var(--bg-body);
     font-family: 'Lato', sans-serif;
     min-height: 100vh;
     transition: background .4s;
@@ -192,73 +191,56 @@ header {
     transform: rotate(20deg);
 }
 
-/* ornamen geometrik */
-.geo-left,
-.geo-right {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 180px;
-    pointer-events: none;
-    z-index: 1;
+/* Geometric */
+/* wrapper */
+.geo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 180px;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .geo-left {
-    left: 0;
+  left: 0;
 }
 
 .geo-right {
-    right: 0;
-    transform: scaleX(-1);
+  right: 0;
+  transform: scaleX(-1);
 }
 
-.geo-left svg,
+/* biar kanan pakai svg yang sama */
 .geo-right svg {
-    width: 100%;
-    height: 100%;
+  display: none;
 }
 
-
-/* ornamem bar */
-.ornament-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 18px 0 0;
-    position: relative;
-    z-index: 5;
+.geo svg {
+  width: 100%;
+  height: 100%;
 }
 
-.ornament-bar--top {
-    margin-top: 80px;
+/* styling svg (lebih clean, tidak terlalu banyak decimal) */
+.geo path {
+  fill: rgba(201,168,76,0.05);
+  stroke: rgba(201,168,76,0.15);
+  stroke-width: 0.6;
 }
 
-.ornament-bar .line {
-    flex: 1;
-    max-width: 180px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+.geo line {
+  stroke: rgba(201,168,76,0.08);
+  stroke-width: 0.6;
 }
 
-.ornament-bar .line--reverse {
-    background: linear-gradient(90deg, var(--gold), transparent);
+.geo circle {
+  fill: rgba(201,168,76,0.35);
 }
 
-.ornament-bar .diamond {
-    width: 8px;
-    height: 8px;
-    background: var(--gold);
-    transform: rotate(45deg);
-    box-shadow: 0 0 10px var(--gold-glow);
+.geo circle:nth-of-type(2) {
+  opacity: 0.6;
 }
-
-.ornament-star {
-    color: var(--gold);
-    font-size: 14px;
-    letter-spacing: 3px;
-}
-
+/* End Gemo Effect */
 
 /* bulan */
 .moon-wrap {
@@ -402,9 +384,7 @@ header {
 }
 
 
-/* ────────────────────────────────────────────────────────
-   DIVIDER
-──────────────────────────────────────────────────────── */
+/* Divider Bintang */
 .divider {
     position: relative;
     z-index: 5;
@@ -434,9 +414,7 @@ header {
 }
 
 
-/* ────────────────────────────────────────────────────────
-   COUNTDOWN
-──────────────────────────────────────────────────────── */
+/* Countdown Waktu */
 .countdown {
     position: relative;
     z-index: 5;
@@ -485,9 +463,7 @@ header {
 }
 
 
-/* ────────────────────────────────────────────────────────
-   NAVIGATION
-──────────────────────────────────────────────────────── */
+/* Navigation */
 nav {
     position: relative;
     z-index: 5;
@@ -543,51 +519,70 @@ nav a.active {
 
 /* Lantern */
 .lantern-row {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .lantern {
-    animation: float 4s ease-in-out infinite;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+  /* ini buat bikin animasi lanternnya goyang goyang */
+  animation: lanternSwing 4s ease-in-out infinite;
+  transform-origin: top center;
 }
 
-.lantern.large {
-    width: 28px;
-    height: 70px;
-    background-image: url("assets/lantern-large.svg");
+.lantern:nth-child(2) { animation-delay: .7s; }
+.lantern:nth-child(3) { animation-delay: 1.4s; }
+.lantern:nth-child(4) { animation-delay: 2.1s; }
+
+/* Size control */
+.lantern.large svg {
+  width: 28px;
+  height: 70px;
 }
 
 .lantern.small {
-    width: 22px;
-    height: 55px;
-    background-image: url("assets/lantern-small.svg");
+  width: 22px;
+  height: 55px;
 }
 
-/* animation delay dipindah ke CSS biar ga inline */
-.lantern-row .lantern:nth-child(2) {
-    animation-delay: 1.2s;
+/* Reuse large SVG but scaled */
+.lantern.small::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 28 70' xmlns='http://www.w3.org/2000/svg'><line x1='14' y1='0' x2='14' y2='10' stroke='rgba(201,168,76,.6)' stroke-width='1.5'/><ellipse cx='14' cy='13' rx='7' ry='3' fill='rgba(201,168,76,.4)'/><rect x='7' y='13' width='14' height='36' rx='5' fill='rgba(201,168,76,.18)' stroke='rgba(201,168,76,.5)' stroke-width='1'/><rect x='10' y='16' width='8' height='30' rx='3' fill='rgba(255,220,100,.15)'/><ellipse cx='14' cy='49' rx='7' ry='3' fill='rgba(201,168,76,.4)'/><line x1='14' y1='52' x2='11' y2='62' stroke='rgba(201,168,76,.5)' stroke-width='1'/><line x1='14' y1='52' x2='17' y2='62' stroke='rgba(201,168,76,.5)' stroke-width='1'/><ellipse cx='14' cy='28' rx='5' ry='5' fill='rgba(255,200,50,.2)'/></svg>") no-repeat center/contain;
 }
 
-.lantern-row .lantern:nth-child(3) {
-    animation-delay: 0.5s;
+/* SVG Styling (Large Only) */
+.lantern svg {
+  width: 100%;
+  height: 100%;
 }
 
-@keyframes float {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(8px);
-    }
-    100% {
-        transform: translateY(0);
-    }
+.string { stroke: rgba(201,168,76,.6); stroke-width: 1.5; }
+.cap { fill: rgba(201,168,76,.4); }
+.body {
+  fill: rgba(201,168,76,.18);
+  stroke: rgba(201,168,76,.5);
+  stroke-width: 1;
 }
+.inner { fill: rgba(255,220,100,.15); }
+.tail { stroke: rgba(201,168,76,.5); stroke-width: 1; }
+.glow { fill: rgba(255,200,50,.2); }
+
+/* Animation */
+@keyframes lanternSwing {
+  0%,100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+/* End Lantern */
 
 /* Efek partikel */
 #particles {
@@ -988,6 +983,9 @@ nav a.active {
     padding-left: 14px;
 }
 
+/* Zikir Section */
+
+/* End Dzikir Section */
 
 /* Responsive Tabs */
 @media (max-width: 768px) {
@@ -1200,9 +1198,7 @@ nav a.active {
 }
 
 
-/* ════════════════════════════════════════════════════════
-   RESPONSIVE — DOA SECTION
-════════════════════════════════════════════════════════ */
+/* Responsice Setting - Doa Section */
 @media (max-width: 900px) {
 
     .doa-grid {

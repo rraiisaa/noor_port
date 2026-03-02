@@ -32,46 +32,62 @@
             </div>
         </div>
 
-        <!-- Geometric side ornaments -->
-        <div class="geo-left">
-            <svg viewBox="0 0 180 600" preserveAspectRatio="none" fill="none">
-                <path d="M0 0 L180 50 L0 100 Z" fill="rgba(201,168,76,.04)" stroke="rgba(201,168,76,.12)"
-                    stroke-width=".5" />
-                <path d="M0 120 L140 180 L0 240 Z" fill="rgba(201,168,76,.04)" stroke="rgba(201,168,76,.10)"
-                    stroke-width=".5" />
-                <path d="M0 260 L100 310 L0 360 Z" fill="rgba(201,168,76,.03)" stroke="rgba(201,168,76,.08)"
-                    stroke-width=".5" />
-                <line x1="0" y1="0" x2="180" y2="600" stroke="rgba(201,168,76,.06)" stroke-width=".5" />
-                <line x1="40" y1="0" x2="40" y2="600" stroke="rgba(201,168,76,.04)" stroke-width=".5" />
-                <circle cx="10" cy="80" r="3" fill="rgba(201,168,76,.3)" />
-                <circle cx="10" cy="200" r="2" fill="rgba(201,168,76,.2)" />
-                <circle cx="10" cy="320" r="3" fill="rgba(201,168,76,.3)" />
-            </svg>
-        </div>
-        <div class="geo-right">
-            <svg viewBox="0 0 180 600" preserveAspectRatio="none" fill="none">
-                <path d="M0 0 L180 50 L0 100 Z" fill="rgba(201,168,76,.04)" stroke="rgba(201,168,76,.12)"
-                    stroke-width=".5" />
-                <path d="M0 120 L140 180 L0 240 Z" fill="rgba(201,168,76,.04)" stroke="rgba(201,168,76,.10)"
-                    stroke-width=".5" />
-                <path d="M0 260 L100 310 L0 360 Z" fill="rgba(201,168,76,.03)" stroke="rgba(201,168,76,.08)"
-                    stroke-width=".5" />
-                <line x1="0" y1="0" x2="180" y2="600" stroke="rgba(201,168,76,.06)" stroke-width=".5" />
-                <line x1="40" y1="0" x2="40" y2="600" stroke="rgba(201,168,76,.04)" stroke-width=".5" />
-                <circle cx="10" cy="80" r="3" fill="rgba(201,168,76,.3)" />
-                <circle cx="10" cy="200" r="2" fill="rgba(201,168,76,.2)" />
-                <circle cx="10" cy="320" r="3" fill="rgba(201,168,76,.3)" />
-            </svg>
-        </div>
+        <!-- Geometric Ornament -->
+        <div class="geo geo-left">
+            <svg viewBox="0 0 180 600" preserveAspectRatio="none">
+                <!-- bentuk segitiga -->
+                 <!-- ini dibantuin AI buat bikin ornament nya dengan sedikit modif hehe -->
+                <path d="M0 0 L170 60 L0 120 Z" />
+                <path d="M0 150 L130 210 L0 260 Z" />
+                <path d="M0 300 L90 350 L0 400 Z" />
 
+                <!-- garis dekoratif -->
+                <line x1="0" y1="0" x2="180" y2="600" />
+                <line x1="35" y1="0" x2="35" y2="600" />
+
+                <!-- titik kecil -->
+                <circle cx="12" cy="90" r="3" />
+                <circle cx="12" cy="230" r="2" />
+                <circle cx="12" cy="360" r="3" />
+            </svg>
+        </div>
+        <div class="geo geo-right">
+            <!-- kosong, nanti pakai pseudo element -->
+        </div>
+        <!-- End Geometric -->
 
         <!-- Lantern -->
         <div class="lantern-row">
-            <div class="lantern large"></div>
+            <!-- Large -->
+            <div class="lantern large">
+                <svg viewBox="0 0 28 70">
+                    <!-- ini fungsinya untuk bikin tali lampion -->
+                    <line class="string" x1="14" y1="0" x2="14" y2="10" />
+                    <!-- ini tutup atas lampion -->
+                    <ellipse class="cap" cx="14" cy="13" rx="7" ry="3" />
+                    <!-- ini buat badan lampion -->
+                    <rect class="body" x="7" y="13" width="14" height="36" rx="5" />
+                    <!-- ini bagian dalam lampionya (efek shimmer) -->
+                    <rect class="inner" x="10" y="16" width="8" height="30" rx="3" />
+                    <!-- ini bagian bawah lampion -->
+                    <ellipse class="cap" cx="14" cy="49" rx="7" ry="3" />
+                    <!-- ini tali bagian bawahnya -->
+                    <line class="tail" x1="14" y1="52" x2="11" y2="62" />
+                    <line class="tail" x1="14" y1="52" x2="17" y2="62" />
+                    <!-- ini efek glow di dalam lampion -->
+                    <ellipse class="glow" cx="14" cy="28" rx="5" ry="5" />
+                </svg>
+            </div>
+
+            <!-- Small -->
             <div class="lantern small"></div>
             <div class="lantern small"></div>
+
+            <!-- Large -->
             <div class="lantern large"></div>
+
         </div>
+        <!-- End Lantern -->
 
         <!-- Ornament bar -->
         <div class="ornament-bar" style="margin-top:80px;">
@@ -152,6 +168,9 @@
             <div class="modal-arti" id="mArti"></div>
         </div>
     </div>
+
+    <!-- Zikir Count -->
+    <!-- End Zikir -->
 
     <script src="/landing_page/script.js"></script>
 </body>
