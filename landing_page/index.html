@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark" data-lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noor Port+ | Ramadhan</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700&family=Lato:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/landing_page/style.css">
+</head>
+
+<body>
+    <div class="stars-layer" id="starsLayer"></div>
+
+    <header>
+        <div id="particles"></div>
+        <div class="horizon"></div>
+
+        <!-- LOGO + CONTROLS -->
+        <div class="top-bar">
+            <div class="logo-wrap">
+                <img id="logoImg" src="/assets/noor_port_logo.png"
+                    alt="Noor Port+" />
+            </div>
+            <div class="controls">
+                <div class="lang-toggle">
+                    <button class="lang-btn active" data-lang="id" onclick="setLang('id')">ID</button>
+                    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+                </div>
+                <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+            </div>
+        </div>
+
+        <!-- Geometric side ornaments -->
+        <div class="geo-left">
+            <svg viewBox="0 0 180 600" preserveAspectRatio="none" fill="none">
+                <path d="M0 0 L180 50 L0 100 Z" fill="rgba(201,168,76,.04)" stroke="rgba(201,168,76,.12)"
+                    stroke-width=".5" />
+                <path d="M0 120 L140 180 L0 240 Z" fill="rgba(201,168,76,.04)" stroke="rgba(201,168,76,.10)"
+                    stroke-width=".5" />
+                <path d="M0 260 L100 310 L0 360 Z" fill="rgba(201,168,76,.03)" stroke="rgba(201,168,76,.08)"
+                    stroke-width=".5" />
+                <line x1="0" y1="0" x2="180" y2="600" stroke="rgba(201,168,76,.06)" stroke-width=".5" />
+                <line x1="40" y1="0" x2="40" y2="600" stroke="rgba(201,168,76,.04)" stroke-width=".5" />
+                <circle cx="10" cy="80" r="3" fill="rgba(201,168,76,.3)" />
+                <circle cx="10" cy="200" r="2" fill="rgba(201,168,76,.2)" />
+                <circle cx="10" cy="320" r="3" fill="rgba(201,168,76,.3)" />
+            </svg>
+        </div>
+        <div class="geo-right">
+            <svg viewBox="0 0 180 600" preserveAspectRatio="none" fill="none">
+                <path d="M0 0 L180 50 L0 100 Z" fill="rgba(201,168,76,.04)" stroke="rgba(201,168,76,.12)"
+                    stroke-width=".5" />
+                <path d="M0 120 L140 180 L0 240 Z" fill="rgba(201,168,76,.04)" stroke="rgba(201,168,76,.10)"
+                    stroke-width=".5" />
+                <path d="M0 260 L100 310 L0 360 Z" fill="rgba(201,168,76,.03)" stroke="rgba(201,168,76,.08)"
+                    stroke-width=".5" />
+                <line x1="0" y1="0" x2="180" y2="600" stroke="rgba(201,168,76,.06)" stroke-width=".5" />
+                <line x1="40" y1="0" x2="40" y2="600" stroke="rgba(201,168,76,.04)" stroke-width=".5" />
+                <circle cx="10" cy="80" r="3" fill="rgba(201,168,76,.3)" />
+                <circle cx="10" cy="200" r="2" fill="rgba(201,168,76,.2)" />
+                <circle cx="10" cy="320" r="3" fill="rgba(201,168,76,.3)" />
+            </svg>
+        </div>
+
+
+        <!-- Ornament bar -->
+        <div class="ornament-bar" style="margin-top:80px;">
+            <div class="line"></div>
+            <div class="diamond"></div>
+            <span style="color:var(--gold);font-size:14px;letter-spacing:3px;">✦</span>
+            <div class="diamond"></div>
+            <div class="line" style="background:linear-gradient(90deg,var(--gold),transparent)"></div>
+        </div>
+
+        <!-- Moon -->
+        <div class="moon-wrap">
+            <div class="moon">
+                <div class="moon-outer">
+                    <div class="moon-crater c1"></div>
+                    <div class="moon-crater c2"></div>
+                    <div class="moon-crater c3"></div>
+                </div>
+                <span class="moon-star">★</span>
+            </div>
+        </div>
+
+        <div class="arabic-text">رَمَضَان كَرِيم</div>
+        <div class="main-title">Ramadhan</div>
+        <div class="subtitle" id="headerSubtitle">1446 H · Bulan Penuh Berkah · 2026 M</div>
+
+        <div class="divider">
+            <div class="line"></div><span class="orn">❖</span>
+            <div class="line r"></div>
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown">
+            <div class="cd-box">
+                <div class="cd-num" id="cdDays">00</div>
+                <div class="cd-label" id="lblDays">Hari</div>
+            </div>
+            <div class="cd-box">
+                <div class="cd-num" id="cdHours">00</div>
+                <div class="cd-label" id="lblHours">Jam</div>
+            </div>
+            <div class="cd-box">
+                <div class="cd-num" id="cdMins">00</div>
+                <div class="cd-label" id="lblMins">Menit</div>
+            </div>
+            <div class="cd-box">
+                <div class="cd-num" id="cdSecs">00</div>
+                <div class="cd-label" id="lblSecs">Detik</div>
+            </div>
+        </div>
+
+        <!-- Nav -->
+        <nav id="mainNav">
+            <a href="#" class="active" data-id="home">Beranda</a>
+            <a href="#" data-id="prayer">Jadwal Sholat</a>
+            <a href="#" data-id="kultum">Kultum</a>
+            <a href="#" data-id="recipe">Resep Sahur</a>
+            <a href="#" data-id="donate">Donasi</a>
+        </nav>
+    </header>
+
+    <!-- DOA SECTION -->
+    <section class="doa-section">
+        <div class="doa-eyebrow" id="doaEyebrow">Doa</div>
+        <div class="doa-title" id="doaTitle">Kumpulan Doa Ramadhan</div>
+        <div class="doa-subtitle" id="doaSubtitle">Kata-kata penuh cahaya untuk setiap momen di bulan suci.</div>
+        <div class="doa-grid" id="doaGrid"></div>
+    </section>
+
+    <!-- Modal -->
+    <div class="doa-modal-bg" id="doaModal">
+        <div class="doa-modal">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div class="modal-tag" id="mTag">Doa</div>
+            <div class="modal-title" id="mTitle"></div>
+            <div class="modal-arabic" id="mArabic"></div>
+            <div class="modal-latin" id="mLatin"></div>
+            <div class="modal-arti" id="mArti"></div>
+        </div>
+    </div>
+
+    <script src="/landing_page/script.js"></script>
+</body>
+
+</html>
