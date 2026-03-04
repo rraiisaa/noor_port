@@ -1,0 +1,84 @@
+<div class="stars-layer" id="starsLayer"></div>
+
+<header>
+
+    <div id="particles"></div>
+    <div class="horizon"></div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="logo-wrap">
+            <img id="logoImg" src="/assets/noor_port_logo.png" alt="Noor Port+">
+        </div>
+
+        <div class="controls">
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="id" onclick="setLang('id')">ID</button>
+                <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
+            <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
+        </div>
+    </div>
+
+    <!-- Geometric Ornament -->
+    <div class="geo geo-left">
+        <svg viewBox="0 0 180 600" preserveAspectRatio="none">
+            <path d="M0 0 L170 60 L0 120 Z" />
+            <path d="M0 150 L130 210 L0 260 Z" />
+            <path d="M0 300 L90 350 L0 400 Z" />
+            <line x1="0" y1="0" x2="180" y2="600" />
+            <line x1="35" y1="0" x2="35" y2="600" />
+            <circle cx="12" cy="90" r="3" />
+            <circle cx="12" cy="230" r="2" />
+            <circle cx="12" cy="360" r="3" />
+        </svg>
+    </div>
+    <div class="geo geo-right"></div>
+
+    <!-- Title Section -->
+    <div class="moon-wrap">
+        <div class="moon">
+            <div class="moon-outer">
+                <div class="moon-crater c1"></div>
+                <div class="moon-crater c2"></div>
+                <div class="moon-crater c3"></div>
+            </div>
+            <span class="moon-star">★</span>
+        </div>
+    </div>
+
+    <div class="arabic-text">رَمَضَان كَرِيم</div>
+    <div class="main-title">Ramadhan</div>
+    <div class="subtitle" id="headerSubtitle">
+        1446 H · Bulan Penuh Berkah · 2026 M
+    </div>
+
+     <!-- Countdown -->
+        <!-- Ini countdown menuju lebaran -->
+        <div class="countdown">
+            <div class="cd-box">
+                <div class="cd-num" id="cdDays">00</div>
+                <div class="cd-label" id="lblDays">Hari</div>
+            </div>
+            <div class="cd-box">
+                <div class="cd-num" id="cdHours">00</div>
+                <div class="cd-label" id="lblHours">Jam</div>
+            </div>
+            <div class="cd-box">
+                <div class="cd-num" id="cdMins">00</div>
+                <div class="cd-label" id="lblMins">Menit</div>
+            </div>
+            <div class="cd-box">
+                <div class="cd-num" id="cdSecs">00</div>
+                <div class="cd-label" id="lblSecs">Detik</div>
+            </div>
+        </div>
+
+     <nav id="mainNav">
+            <a href="#" class="active" data-id="home">Beranda</a>
+            <a href="#" data-id="prayer">Jadwal Sholat</a>
+            <a href="#" data-id="kultum">Kultum</a>
+            <a href="#" data-id="recipe">Resep Sahur</a>
+            <a href="#" data-id="donate">Donasi</a>
+        </nav>
+</header>
