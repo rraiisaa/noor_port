@@ -5,9 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noor Port+ | Ramadhan</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/noor_port_logo_green.png" type="image/x-icon">
+    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700&family=Lato:wght@300;400&display=swap"
         rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- CSS Style -->
     <link rel="stylesheet" href="/landing_page/style.css">
 </head>
 
@@ -18,7 +25,7 @@
         <div id="particles"></div>
         <div class="horizon"></div>
 
-        <!-- LOGO + CONTROLS -->
+        <!-- Logo -->
         <div class="top-bar">
             <div class="logo-wrap">
                 <img id="logoImg" src="/assets/noor_port_logo.png" alt="Noor Port+" />
@@ -33,67 +40,53 @@
         </div>
 
         <!-- Geometric Ornament -->
+        <!-- ini dibantuin AI buat bikin ornament nya dengan sedikit modif hehe -->
         <div class="geo geo-left">
             <svg viewBox="0 0 180 600" preserveAspectRatio="none">
-                <!-- bentuk segitiga -->
-                 <!-- ini dibantuin AI buat bikin ornament nya dengan sedikit modif hehe -->
                 <path d="M0 0 L170 60 L0 120 Z" />
                 <path d="M0 150 L130 210 L0 260 Z" />
                 <path d="M0 300 L90 350 L0 400 Z" />
-
-                <!-- garis dekoratif -->
                 <line x1="0" y1="0" x2="180" y2="600" />
                 <line x1="35" y1="0" x2="35" y2="600" />
-
-                <!-- titik kecil -->
                 <circle cx="12" cy="90" r="3" />
                 <circle cx="12" cy="230" r="2" />
                 <circle cx="12" cy="360" r="3" />
             </svg>
         </div>
-        <div class="geo geo-right">
-            <!-- kosong, nanti pakai pseudo element -->
-        </div>
-        <!-- End Geometric -->
+        <div class="geo geo-right"></div>
 
         <!-- Lantern -->
         <div class="lantern-row">
-            <!-- Large -->
             <div class="lantern large">
                 <svg viewBox="0 0 28 70">
-                    <!-- ini fungsinya untuk bikin tali lampion -->
+                    <!-- Bagian Tali Atas -->
                     <line class="string" x1="14" y1="0" x2="14" y2="10" />
-                    <!-- ini tutup atas lampion -->
+                    <!-- Tutp Atas -->
                     <ellipse class="cap" cx="14" cy="13" rx="7" ry="3" />
-                    <!-- ini buat badan lampion -->
+                    <!-- Badan Lampion -->
                     <rect class="body" x="7" y="13" width="14" height="36" rx="5" />
-                    <!-- ini bagian dalam lampionya (efek shimmer) -->
+                    <!-- Bagian Dalam (Yang Bersinar) -->
                     <rect class="inner" x="10" y="16" width="8" height="30" rx="3" />
-                    <!-- ini bagian bawah lampion -->
+                    <!-- Tutup Bawah -->
                     <ellipse class="cap" cx="14" cy="49" rx="7" ry="3" />
-                    <!-- ini tali bagian bawahnya -->
+                    <!-- Hiasan yang bagian bawah -->
                     <line class="tail" x1="14" y1="52" x2="11" y2="62" />
                     <line class="tail" x1="14" y1="52" x2="17" y2="62" />
-                    <!-- ini efek glow di dalam lampion -->
+                    <!-- Efek cahaya di tengah lampion -->
                     <ellipse class="glow" cx="14" cy="28" rx="5" ry="5" />
                 </svg>
             </div>
-
-            <!-- Small -->
+            <!--  -->
             <div class="lantern small"></div>
             <div class="lantern small"></div>
-
-            <!-- Large -->
             <div class="lantern large"></div>
-
         </div>
-        <!-- End Lantern -->
 
         <!-- Ornament bar -->
         <div class="ornament-bar" style="margin-top:80px;">
             <div class="line"></div>
             <div class="diamond"></div>
-            <span style="color:var(--gold);font-size:14px;letter-spacing:3px;">✦</span>
+            <span style="color:var(--gold);font-size:14px;letter-spacing:3px;">✶</span>
             <div class="diamond"></div>
             <div class="line" style="background:linear-gradient(90deg,var(--gold),transparent)"></div>
         </div>
@@ -110,16 +103,23 @@
             </div>
         </div>
 
-        <div class="arabic-text">رَمَضَان كَرِيم</div>
-        <div class="main-title">Ramadhan</div>
-        <div class="subtitle" id="headerSubtitle">1446 H · Bulan Penuh Berkah · 2026 M</div>
+        <!-- Tulisan Arab -->
+        <div>
+            <div class="arabic-text">رَمَضَان كَرِيم</div>
+            <div class="main-title">Ramadhan</div>
+            <div class="subtitle" id="headerSubtitle">1446 H · Bulan Penuh Berkah · 2026 M</div>
+        </div>
 
-        <div class="divider">
-            <div class="line"></div><span class="orn">❖</span>
-            <div class="line r"></div>
+        <!-- Divider -->
+        <div class="divider"></div>
+         <div class="np-ornament">
+            <div class="np-line"></div>
+            <span class="np-orn-star">✦</span>
+            <div class="np-line"></div>
         </div>
 
         <!-- Countdown -->
+        <!-- Ini countdown menuju lebaran -->
         <div class="countdown">
             <div class="cd-box">
                 <div class="cd-num" id="cdDays">00</div>
@@ -169,9 +169,166 @@
         </div>
     </div>
 
-    <!-- Zikir Count -->
-    <!-- End Zikir -->
+    <!-- DZIKIR SECTION -->
+    <!-- Tambahin id di sini biar JS bisa update teksnya pas ganti bahasa -->
+    <header class="zikir-header">
+        <div class="doa-eyebrow" id="zikirEyebrow">Dzikir</div>
+        <div class="doa-title" id="zikirTitle">Hitung Dzikir</div>
+        <div class="doa-subtitle" id="zikirSubtitle">Kata-kata penuh lindungan untuk hari - hari kita.</div>
+    </header>
 
+    <main class="zikir-main">
+        <div class="zikir-grid">
+
+            <!-- data-zikir-key dipakai JS buat tau subtitle mana yang perlu ganti pas switch bahasa -->
+            <section class="zikir-card" data-zikir-key="subhanallah">
+                <h1 class="zikir-title">Subhanallah</h1>
+                <p class="zikir-subtitle">Maha Suci Allah</p>
+                <div class="zikir-target">
+                    Target: <strong class="target-display">33</strong>
+                    <div class="target-options">
+                        <button class="btn-target" data-target="33">33</button>
+                        <button class="btn-target" data-target="99">99</button>
+                        <button class="btn-target" data-target="100">100</button>
+                    </div>
+                </div>
+                <!-- Update DOM secara real-time -->
+                <div class="zikir-counter">0</div>
+                <!-- progress bar akan bertambah sesuai jumlah counter -->
+                <div class="zikir-progress-bar">
+                    <div class="zikir-progress-fill"></div>
+                </div>
+                <div class="zikir-buttons">
+                    <button class="btn-zikir btn-increment">＋</button>
+                    <button class="btn-zikir btn-reset">Reset</button>
+                </div>
+                <div class="zikir-notification"></div>
+            </section>
+
+            <section class="zikir-card" data-zikir-key="alhamdulillah">
+                <h1 class="zikir-title">Alhamdulillah</h1>
+                <p class="zikir-subtitle">Segala Puji Bagi Allah</p>
+                <div class="zikir-target">
+                    Target: <strong class="target-display">33</strong>
+                    <div class="target-options">
+                        <button class="btn-target" data-target="33">33</button>
+                        <button class="btn-target" data-target="99">99</button>
+                        <button class="btn-target" data-target="100">100</button>
+                    </div>
+                </div>
+                <div class="zikir-counter">0</div>
+                <div class="zikir-progress-bar">
+                    <div class="zikir-progress-fill"></div>
+                </div>
+                <div class="zikir-buttons">
+                    <button class="btn-zikir btn-increment">＋</button>
+                    <button class="btn-zikir btn-reset">Reset</button>
+                </div>
+                <div class="zikir-notification"></div>
+            </section>
+
+            <section class="zikir-card" data-zikir-key="allahuakbar">
+                <h1 class="zikir-title">Allahuakbar</h1>
+                <p class="zikir-subtitle">Allah Maha Besar</p>
+                <div class="zikir-target">
+                    Target: <strong class="target-display">33</strong>
+                    <div class="target-options">
+                        <button class="btn-target" data-target="33">33</button>
+                        <button class="btn-target" data-target="99">99</button>
+                        <button class="btn-target" data-target="100">100</button>
+                    </div>
+                </div>
+                <div class="zikir-counter">0</div>
+                <div class="zikir-progress-bar">
+                    <div class="zikir-progress-fill"></div>
+                </div>
+                <div class="zikir-buttons">
+                    <button class="btn-zikir btn-increment">＋</button>
+                    <button class="btn-zikir btn-reset">Reset</button>
+                </div>
+                <div class="zikir-notification"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+    <!-- Ornamen atas -->
+    <div class="np-ornament">
+        <div class="np-line"></div>
+        <span class="np-orn-star">✦</span>
+        <div class="np-line"></div>
+    </div>
+
+    <div class="footer-inner">
+
+        <!-- Logo + Subtitle -->
+        <div class="footer-brand">
+            <div class="footer-logo-wrap">
+                <img 
+                    src="/assets/noor_port_logo.png" 
+                    alt="Noor Port+" 
+                    class="footer-logo" />
+                <span class="footer-logo-name">Noor Port+</span>
+            </div>
+            <p class="footer-tagline" id="footerTagline">
+                Temani Ramadhanmu dengan doa, dzikir, dan inspirasi setiap hari.
+            </p>
+        </div>
+
+        <!-- ===== Kolom 2: Navigation ===== -->
+        <div class="footer-nav-col">
+            <h4 class="footer-col-title" id="footerNavTitle">
+                Navigasi
+            </h4>
+            <nav class="footer-nav">
+                <a href="#" id="fnHome">Beranda</a>
+                <a href="#" id="fnPrayer">Kumpulan Doa Ramadhan</a>
+                <a href="#" id="fnDzikr">Hitung Dzikir</a>
+                <a href="#" id="fnIndex1">Index</a>
+                <a href="#" id="fnIndex2">Index</a>
+            </nav>
+        </div>
+
+        <!-- Social Media Button -->
+        <div class="footer-controls-col">
+            <h4 class="footer-col-title" id="footerFollowTitle">
+                Ikuti Kami
+            </h4>
+            <div class="footer-socials">
+                <a href="#" class="footer-social-btn" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#" class="footer-social-btn" aria-label="Twitter / X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="#" class="footer-social-btn" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-line"></div>
+        <p class="footer-copy" id="footerCopy">
+            © 2026 Noor Port+. Hak Cipta Dilindungi.
+        </p>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button 
+        class="back-to-top" 
+        id="backToTop"
+        aria-label="Kembali ke atas"
+        title="Kembali ke atas"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+        ↑
+    </button>
+</footer>
+    <!-- End Footer -->
     <script src="/landing_page/script.js"></script>
 </body>
 
