@@ -1,6 +1,3 @@
-
-/* Data Doa — konten tiap kartu doa
-   Arabic disimpen sebagai string biasa biar gak ada encoding issue */
 const doas = [
     {
         title: { id: 'Doa Berbuka Puasa', en: 'Breaking Fast Prayer' },
@@ -37,8 +34,6 @@ const doas = [
     },
 ];
 
-/* rebuildCards — bangun ulang grid kartu doa
- Dipanggil tiap kali ganti bahasa atau pertama load */
 function rebuildCards() {
     const lang = currentLang;
     const t = i18n[lang];
@@ -50,14 +45,14 @@ function rebuildCards() {
         card.className = 'doa-card';
         card.onclick = () => openModal(i);
         card.innerHTML = `
-      <img class="doa-img" src="${d.img}" alt="${d.title[lang]}" loading="lazy"/>
-      <div class="doa-img-overlay"><span class="tag-gold">${t.readDoa}</span></div>
-      <div class="doa-body">
-        <span class="doa-card-tag">${t.doaEyebrow}</span>
-        <div class="doa-card-title">${d.title[lang]}</div>
-        <div class="doa-card-desc">${d.desc[lang]}</div>
-        <a href="#" class="doa-link" onclick="return false;">${t.readDoa} <span class="arrow">›</span></a>
-      </div>`;
+            <img class="doa-img" src="${d.img}" alt="${d.title[lang]}" loading="lazy"/>
+            <div class="doa-img-overlay"><span class="tag-gold">${t.readDoa}</span></div>
+            <div class="doa-body">
+                <span class="doa-card-tag">${t.doaEyebrow}</span>
+                <div class="doa-card-title">${d.title[lang]}</div>
+                <div class="doa-card-desc">${d.desc[lang]}</div>
+                <a href="#" class="doa-link" onclick="return false;">${t.readDoa} <span class="arrow">›</span></a>
+            </div>`;
         grid.appendChild(card);
     });
 
@@ -75,36 +70,37 @@ function rebuildCards() {
     }
 }
 
-/* openModal — tampilkan detail doa di popup */
 function openModal(i) {
     const d = doas[i];
     const lang = currentLang;
-    document.getElementById('mTag').textContent = i18n[lang].mTag;
-    document.getElementById('mTitle').textContent = d.title[lang];
+    document.getElementById('mTag').textContent    = i18n[lang].mTag;
+    document.getElementById('mTitle').textContent  = d.title[lang];
     document.getElementById('mArabic').textContent = d.arabic;
-    document.getElementById('mLatin').textContent = d.latin;
-    document.getElementById('mArti').textContent = d.arti[lang];
+    document.getElementById('mLatin').textContent  = d.latin;
+    document.getElementById('mArti').textContent   = d.arti[lang];
     document.getElementById('doaModal').classList.add('open');
 }
 
-function initDoaSection() {
-
-    rebuildCards();
-
-    const closeBtn = document.getElementById('modalClose');
+// ─── FIX: event delegation di document ───────────────────────────
+// Tidak perlu tunggu DOM siap — document SELALU ada saat script load
+// Bekerja meskipun doa.js dipanggil sebelum elemen modal ada di HTML
+document.addEventListener('click', function (e) {
     const modalBg = document.getElementById('doaModal');
+    if (!modalBg) return;
 
-    if (closeBtn) {
-        closeBtn.addEventListener('click', (e) => {
-            modalBg.classList.remove('open');
-        });
+    // Klik tombol ✕ (atau child-nya)
+    if (e.target.closest('#modalClose')) {
+        e.stopPropagation();
+        modalBg.classList.remove('open');
+        return;
     }
 
-    if (modalBg) {
-        modalBg.addEventListener('click', (e) => {
-            if (e.target === modalBg) {
-                modalBg.classList.remove('open');
-            }
-        });
+    // Klik backdrop (bukan isi modal)
+    if (e.target === modalBg) {
+        modalBg.classList.remove('open');
     }
+});
+
+function initDoaSection() {
+    rebuildCards();
 }

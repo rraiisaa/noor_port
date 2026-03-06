@@ -13,6 +13,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700&family=Lato:wght@300;400&display=swap"
         rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -21,9 +26,11 @@
     <!-- Global CSS -->
     <!-- <link rel="stylesheet" href="/main/style.css"> -->
     <link rel="stylesheet" href="/main/header.css">
+    
     <link rel="stylesheet" href="/main/footer.css">
     <link rel="stylesheet" href="/1st_mission/kumpulan_doa.css">
     <link rel="stylesheet" href="/2nd_mission/hitung_dzikir.css">
+    <link rel="stylesheet" href="/3rd_mission/kalkulator_zakat.css">
 </head>
 
 <body>
@@ -34,34 +41,38 @@
     <div id="header-component"></div>
     <div id="doa-component"></div>
     <div id="zikir-component"></div>
+    <div id="zakat-component"></div>
     <div id="footer-component"></div>
 
     <!-- Global Script -->
     <script src="/main/script.js"></script>
     <script src="/1st_mission/kumpulan_doa.js"></script>
     <script src="/2nd_mission/hitung_dzikir.js"></script>
+    <script src="/3rd_mission/kalkulator_zakat.js"></script>
 
     <!-- Load Components -->
-  <script>
-    async function loadComponent(id, file, callback) {
-        const res = await fetch(file);
-        const html = await res.text();
-        document.getElementById(id).innerHTML = html;
-        if (callback) callback();
-    }
+    <script>
+        async function loadComponent(id, file, callback) {
+            const res = await fetch(file);
+            const html = await res.text();
+            document.getElementById(id).innerHTML = html;
 
-    loadComponent("header-component", "/main/header.html");
-     loadComponent("doa-component", "/1st_mission/components/kumpulan_doa.html", () => {
-        rebuildCards();
-    });
+            if (callback) callback();
+        }
 
-   loadComponent("zikir-component", "/2nd_mission/components/hitung_dzikir.html")
-  .then(() => {
-     initZikirSection();
-  });
+        loadComponent("header-component", "/main/header.html");
+        loadComponent("doa-component", "/1st_mission/components/kumpulan_doa.html", () => {
+            rebuildCards();
+        });
 
-    loadComponent("footer-component", "/main/footer.html");
-</script>
+        loadComponent("zikir-component", "/2nd_mission/components/hitung_dzikir.html")
+            .then(() => {
+                initZikirSection();
+            });
+
+        loadComponent("zakat-component", "/3rd_mission/components/kalkulator_zakat.html");
+        loadComponent("footer-component", "/main/footer.html");
+    </script>
 
 </body>
 

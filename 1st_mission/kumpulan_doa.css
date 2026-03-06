@@ -1,9 +1,53 @@
-/* Section Doa */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+:root {
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --gold-glow: #FFE08A;
+    --teal: #1A6B6B;
+    --teal-light: #2DB8A8;
+
+    --bg-body: #0A0A1A;
+    --bg-header: linear-gradient(180deg, #060612 0%, #0d0d2b 40%, #0a1628 100%);
+    --bg-section: linear-gradient(180deg, #0a1628 0%, #091220 100%);
+    --bg-card: #0d1a2a;
+    --bg-modal: linear-gradient(135deg, #0d1a2a, #0a1220);
+
+    --text-main: #FDF6E3;
+    --text-muted: #fdf6e373;
+    --text-muted2: #fdf6e3a6;
+
+    --text-nav: #f0d08099;
+    --border-card: #c9a84c26;
+}
+
+[data-theme="light"] {
+    --bg-body: #f5f0e8;
+    --bg-section: linear-gradient(180deg, #f5f0e8 0%, #ede5d0 100%);
+    --bg-card: #ffffff;
+    --bg-modal: linear-gradient(135deg, #ffffff, #fdf8f0);
+
+    --text-main: #1a1208;
+    --text-muted: #1a120888;
+    --text-muted2: #1a1208bb;
+
+    --text-nav: #8b6914;
+    --border-card: #c9a84c33;
+
+    --shadow-card: 0 8px 40px #c9a84c15, 0 2px 12px #00000010;
+    --shadow-glow: 0 0 30px #c9a84c18;
+
+    --star-color: #8b6914;
+}
+
 .doa-section {
+    padding: 80px 24px;
+    overflow: hidden;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-main);
+    min-height: 100vh;
+    margin-bottom: 20px;
     position: relative;
-    z-index: 10;
-    padding: 70px 40px 80px;
-    transition: background .4s;
 }
 
 .doa-eyebrow {
@@ -20,34 +64,33 @@
     text-align: center;
     font-family: 'Cinzel Decorative', serif;
     font-size: clamp(24px, 4vw, 42px);
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 12px;
-    transition: color .4s;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg,
+            var(--gold-light) 0%,
+            var(--gold) 50%,
+            var(--teal-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .doa-subtitle {
     text-align: center;
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    font-size: 14px;
+    font-size: 0.85rem;
     color: var(--text-muted);
-    letter-spacing: 1px;
-    margin-bottom: 50px;
-    transition: color .4s;
+    letter-spacing: 0.05em;
 }
 
 .doa-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 22px;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-/* DOA Cards — animasi masuk dipindah ke CSS
-   Dulu animasi ini pake JS IntersectionObserver
-   Sekarang cukup keyframes aja, lebih bersih (Karena di guidebook ga boleh pake JS*/
 .doa-card {
     position: relative;
     border-radius: 14px;
@@ -58,7 +101,7 @@
     box-shadow: 0 4px 30px #00000033;
     opacity: 0;
     transform: translateY(24px);
-    animation: doaCardIn 0.55s ease forwards;
+    animation: doaCardIn .55s ease forwards;
     transition:
         border-color .4s,
         box-shadow .4s,
@@ -66,44 +109,20 @@
         background .4s;
 }
 
-/* Delay bertahap biar keliatan masuk satu-satu, bukan serentak */
-.doa-card:nth-child(1) { animation-delay: 0.10s; }
-.doa-card:nth-child(2) { animation-delay: 0.22s; }
-.doa-card:nth-child(3) { animation-delay: 0.34s; }
-.doa-card:nth-child(4) { animation-delay: 0.46s; }
-.doa-card:nth-child(5) { animation-delay: 0.58s; }
-.doa-card:nth-child(6) { animation-delay: 0.70s; }
+.doa-card:nth-child(1) { animation-delay: .10s; }
+.doa-card:nth-child(2) { animation-delay: .22s; }
+.doa-card:nth-child(3) { animation-delay: .34s; }
+.doa-card:nth-child(4) { animation-delay: .46s; }
+.doa-card:nth-child(5) { animation-delay: .58s; }
+.doa-card:nth-child(6) { animation-delay: .70s; }
 
 @keyframes doaCardIn {
     to { opacity: 1; transform: translateY(0); }
 }
 
-[data-theme="light"] .doa-card {
-    box-shadow: 0 4px 20px #0000001a;
-}
-
-.doa-card:hover {
-    transform: translateY(-4px);
-    border-color: #c9a84c80;
-    box-shadow: 0 12px 50px #0000004d, 0 0 30px #c9a84c26;
-}
-
-.doa-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    width: 0;
-    background: linear-gradient(90deg, var(--gold), var(--teal-light));
-    transition: width .5s ease;
-}
-
-.doa-card:hover::after { width: 100%; }
-
 .doa-img {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16/8.8;
     object-fit: cover;
     display: block;
     filter: brightness(.85) saturate(.9);
@@ -120,7 +139,7 @@
     top: 0;
     left: 0;
     right: 0;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16/9;
     background: linear-gradient(135deg, #0a162899 0%, #1a6b6b80 100%);
     opacity: 0;
     display: flex;
@@ -131,21 +150,7 @@
 
 .doa-card:hover .doa-img-overlay { opacity: 1; }
 
-.doa-img-overlay .tag-gold {
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    border: 1px solid #c9a84c80;
-    padding: 3px 10px;
-    border-radius: 20px;
-    background: #c9a84c1a;
-}
-
-.doa-body {
-    padding: 20px 22px 22px;
-    position: relative;
-}
+.doa-body { padding: 22px 22px 24px; }
 
 .doa-card-tag {
     display: block;
@@ -153,33 +158,47 @@
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 8px;
+    margin: 0 0 10px;
     transition: color .3s;
 }
 
-.doa-card:hover .doa-card-tag { color: var(--teal-light); }
-
 .doa-card-title {
-    font-family: 'Amiri', serif;
     font-size: 20px;
     font-weight: 700;
     color: var(--text-main);
-    margin-bottom: 8px;
+    margin: 0 0 10px;
     line-height: 1.3;
     transition: color .3s;
 }
-
-.doa-card:hover .doa-card-title { color: var(--gold-light); }
 
 .doa-card-desc {
     font-size: 13px;
     line-height: 1.65;
     color: var(--text-muted);
-    margin-bottom: 16px;
+    margin: 0 0 18px;
     transition: color .3s;
 }
 
-.doa-card:hover .doa-card-desc { color: var(--text-muted2); }
+.doa-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 20px 0 80px;
+}
+
+.doa-ornament span {
+    display: block;
+    height: 1px;
+    width: 60px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.doa-ornament i {
+    color: var(--gold);
+    font-style: normal;
+    font-size: 18px;
+}
 
 .doa-link {
     display: inline-flex;
@@ -190,29 +209,11 @@
     text-transform: uppercase;
     color: #c9a84cb3;
     text-decoration: none;
-    font-weight: 400;
     transition: color .3s, gap .3s;
 }
 
 .doa-link:hover { color: var(--gold-light); gap: 10px; }
 
-.doa-link .arrow {
-    display: inline-block;
-    transition: transform .3s;
-}
-
-.doa-card:hover .doa-link .arrow { transform: translateX(4px); }
-
-/* Touch state mobile */
-.doa-card.touched .doa-img        { transform: scale(1.06); filter: brightness(.5) saturate(.6); }
-.doa-card.touched .doa-img-overlay { opacity: 1; }
-.doa-card.touched .doa-card-tag   { color: var(--teal-light); }
-.doa-card.touched .doa-card-title { color: var(--gold-light); }
-.doa-card.touched .doa-card-desc  { color: var(--text-muted2); }
-.doa-card.touched::after          { width: 100%; }
-.doa-card.touched                 { border-color: #c9a84c80; }
-
-/* Modal */
 .doa-modal-bg {
     display: none;
     position: fixed;
@@ -224,8 +225,6 @@
     justify-content: center;
     padding: 20px;
 }
-
-[data-theme="light"] .doa-modal-bg { background: #1e1405b3; }
 
 .doa-modal-bg.open {
     display: flex;
@@ -245,14 +244,15 @@
     width: 100%;
     padding: 40px 36px 36px;
     position: relative;
-    box-shadow: 0 30px 80px #000000b3, 0 0 50px #c9a84c14;
+    box-shadow:
+        0 30px 80px #000000b3,
+        0 0 50px #c9a84c14;
     animation: slideUp .35s ease;
-    transition: background .4s;
 }
 
 @keyframes slideUp {
     from { transform: translateY(30px); opacity: 0; }
-    to   { transform: translateY(0); opacity: 1; }
+    to   { transform: translateY(0);    opacity: 1; }
 }
 
 .modal-close {
@@ -264,10 +264,11 @@
     cursor: pointer;
     color: #c9a84c80;
     font-size: 22px;
-    transition: color .2s;
+    /* FIX: pastikan tombol selalu di atas dan bisa diklik */
+    z-index: 10;
+    line-height: 1;
+    padding: 4px 8px;
 }
-
-.modal-close:hover { color: var(--gold-light); }
 
 .modal-tag {
     font-size: 10px;
@@ -278,7 +279,6 @@
 }
 
 .modal-title {
-    font-family: 'Amiri', serif;
     font-size: 26px;
     font-weight: 700;
     color: var(--gold-light);
@@ -313,4 +313,29 @@
     line-height: 1.8;
     border-left: 2px solid var(--gold);
     padding-left: 14px;
+}
+
+@media (max-width: 1024px) { .zikir-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px)  { .doa-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+@media (max-width: 600px) {
+    .doa-section  { padding: 48px 16px 56px; }
+    .doa-grid     { grid-template-columns: 1fr; gap: 14px; }
+    .doa-title    { font-size: clamp(20px, 6vw, 30px); }
+    .doa-subtitle { font-size: 12px; margin-bottom: 30px; }
+    .doa-img-overlay { opacity: .7; }
+    .doa-modal    { padding: 32px 20px 28px; border-radius: 14px; max-height: 90vh; overflow-y: auto; }
+    .modal-title  { font-size: 20px; }
+    .modal-arabic { font-size: 18px; padding: 12px 14px; }
+    .modal-latin  { font-size: 12px; }
+    .modal-arti   { font-size: 13px; }
+}
+@media (max-width: 480px) {
+    .doa-section    { padding: 36px 12px 48px; }
+    .doa-card-title { font-size: 18px; }
+    .doa-body       { padding: 14px 16px 16px; }
+    .doa-img        { aspect-ratio: 16 / 8; }
+}
+@media (max-width: 380px) {
+    .doa-modal    { padding: 28px 14px 22px; }
+    .modal-arabic { font-size: 16px; }
 }

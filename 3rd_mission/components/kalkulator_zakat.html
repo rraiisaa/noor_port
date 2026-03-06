@@ -1,0 +1,132 @@
+<section class="zakat-calculator" id="zakat-calculator">
+
+  <!-- Header -->
+  <header class="zakat-header">
+    <div class="zakat-eyebrow" id="zakatEyebrow">Zakat</div>
+    <h2 id="zakatTitle">Kalkulator Zakat</h2>
+    <p id="zakatSubtitle">
+      Hitung kewajiban zakat Anda dengan mudah dan akurat sesuai syariat Islam
+    </p>
+    <div class="zakat-ornament">
+      <span></span>
+      <i>✦</i>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Kalkulator Card -->
+  <main>
+    <div class="zakat-card">
+      <!-- Zakat Type Selector -->
+      <div class="zakat-field" id="field-type">
+        <label id="label_type">
+          Jenis Zakat <span class="field-required">*</span>
+        </label>
+        <div class="select-wrap">
+          <select class="zakat-select" id="zakat-type" onchange="zakatSwitchType()">
+            <option style="color: black;" value="penghasilan" id="opt_penghasilan">Zakat Penghasilan</option>
+            <option style="color: black;" value="emas" id="opt_emas">Zakat Emas</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Form: Zakat Penghasilan -->
+      <div class="form-section active" id="section-penghasilan">
+        <div class="input-grid">
+
+          <div class="zakat-field" id="field-gaji">
+            <label id="label_gaji" type="text">
+              Gaji Bulanan <span class="field-required">*</span>
+            </label>
+            <div class="input-prefix-wrap">
+              <span class="input-prefix">Rp</span>
+              <input inputmode="numeric" pattern="[0-9]*" type="number" class="zakat-input" id="input-gaji" id="ph_gaji"
+                placeholder="Masukkan gaji bulanan" min="0" inputmode="numeric">
+            </div>
+            <span class="field-error" id="err_required">Kolom ini wajib diisi</span>
+          </div>
+
+          <div class="zakat-field" id="field-lain">
+            <label id="label_lain">Penghasilan Lain</label>
+            <div class="input-prefix-wrap">
+              <span class="input-prefix">Rp</span>
+              <input inputmode="numeric" pattern="[0-9]*" type="number" class="zakat-input" id="input-lain" id="ph_lain"
+                placeholder="Opsional" min="0" inputmode="numeric">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Form: Zakat Emas -->
+      <div class="form-section" id="section-emas">
+        <div class="zakat-field" id="field-gram">
+          <label id="label_gram">
+            <!-- Input Jumlah Emas -->
+            Jumlah Emas <span class="field-required">*</span>
+          </label>
+          <div class="input-prefix-wrap">
+            <span class="input-prefix">gr</span>
+            <input inputmode="numeric" pattern="[0-9]*" type="number" class="zakat-input" id="input-gram" id="ph_gram"
+              placeholder="Masukkan berat emas (gram)" min="0" step="0.01" inputmode="decimal">
+          </div>
+          <span class="field-error" id="err_required_gram">Kolom ini wajib diisi</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="zakat-divider">
+        <span id="nisab_ref">Referensi Nisab</span>
+      </div>
+
+      <!-- Input Harga Emas Saat ini -->
+      <div class="zakat-field" id="field-goldprice">
+        <label id="label_gold_price">
+          Harga Emas per Gram <span class="field-required">*</span>
+        </label>
+        <div class="input-prefix-wrap">
+          <span class="input-prefix">Rp</span>
+          <input type="number" class="zakat-input" id="input-gold-price" id="ph_gold_price"
+            placeholder="Masukkan harga emas/gram" min="0" inputmode="numeric">
+        </div>
+        <span class="field-error" id="err_required_gold_price">Kolom ini wajib diisi</span>
+      </div>
+
+      <!-- Calculate Button -->
+      <button class="zakat-btn" id="btn-calculate" onclick="zakatCalculate()">
+        <span id="btn_calculate">✦ Hitung Zakat Saya</span>
+      </button>
+
+      <!-- Hasil Zakat yang harus Dibayar -->
+      <div class="zakat-result" id="zakat-result" role="region" aria-live="polite">
+
+        <div class="result-header">
+          <h4 id="result_title">Hasil Perhitungan</h4>
+          <span class="status-badge" id="result-status-badge"></span>
+        </div>
+
+        <div class="result-grid">
+          <div class="result-item">
+            <div class="result-label" id="result_wealth_label">
+              Total Kekayaan / Penghasilan Tahunan
+            </div>
+            <div class="result-value" id="result-wealth">Rp 0</div>
+          </div>
+          <div class="result-item highlight">
+            <div class="result-label" id="result_nisab_label">
+              Nilai Nisab (85 gram emas)
+            </div>
+            <div class="result-value" id="result-nisab">Rp 0</div>
+          </div>
+        </div>
+
+        <div class="result-zakat-amount">
+          <div class="zakat-label" id="result_zakat_label">
+            Zakat yang Wajib Dibayar
+          </div>
+          <div class="zakat-big-value" id="result-zakat-amount">Rp 0</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>

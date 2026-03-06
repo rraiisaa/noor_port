@@ -1,7 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 /* Zikir Section */
+.hitung-dzikir {
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
 .zikir-main {
     position: relative;
     z-index: 20;
+    display: flex;
+    justify-content: center;
 }
 
 .zikir-card {
@@ -15,18 +28,8 @@
     z-index: 50;
 }
 
-.zikir-header {
-    padding: 40px 5px 1px;
-    text-align: center;
-}
-
-.zikir-main {
-    display: flex;
-    justify-content: center;
-    padding: 60px 20px 100px;
-}
-
 .zikir-grid {
+    margin: 0 0 20px;
     width: 100%;
     max-width: 1200px;
     display: grid;
@@ -35,6 +38,7 @@
 }
 
 .zikir-card {
+    font-family: 'DM Sans', sans-serif;
     z-index: 5;
     background: #ffffff0d;
     border: 1px solid #d4af3740;
@@ -55,6 +59,38 @@
     box-shadow: 0 25px 70px #00000080;
 }
 
+.zikir-header {
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.zikir-header .zikir-eyebrow {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.zikir-main-title {
+     text-align: center;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(24px, 4vw, 42px);
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg,
+            var(--gold-light) 0%,
+            var(--gold) 50%,
+            var(--teal-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .zikir-title {
     font-size: 1.6rem;
     color: var(--gold-light);
@@ -65,8 +101,8 @@
 .zikir-subtitle {
     font-size: 0.85rem;
     color: var(--text-muted);
-    margin-bottom: 26px;
     letter-spacing: 0.05em;
+    padding-bottom: 15px;
 }
 
 .zikir-target {
@@ -84,6 +120,7 @@
     font-size: 1.15rem;
     display: inline-block;
     margin-left: 4px;
+    padding-bottom: 10px;
 }
 
 .target-options {
@@ -103,7 +140,10 @@
     transition: all 0.2s ease;
 }
 
-.btn-target:hover { background: #d4af374d; transform: scale(1.05); }
+.btn-target:hover {
+    background: #d4af374d;
+    transform: scale(1.05);
+}
 
 .btn-target.active {
     background: var(--gold-glow);
@@ -121,12 +161,23 @@
     transition: transform 0.15s ease;
 }
 
-.zikir-counter.pulse { animation: counterPulse 0.2s ease; }
+.zikir-counter.pulse {
+    animation: counterPulse 0.2s ease;
+}
 
 @keyframes counterPulse {
-    0%   { transform: scale(1); }
-    50%  { transform: scale(1.15); color: #d4af37; }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+        color: #d4af37;
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .zikir-progress-bar {
@@ -167,8 +218,14 @@
     box-shadow: 0 6px 20px #d4af3766;
 }
 
-.btn-increment:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 10px 28px #d4af378c; }
-.btn-increment:active { transform: scale(0.95); }
+.btn-increment:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 28px #d4af378c;
+}
+
+.btn-increment:active {
+    transform: scale(0.95);
+}
 
 .btn-reset {
     background: #ffffff14;
@@ -177,7 +234,10 @@
     padding: 14px 34px;
 }
 
-.btn-reset:hover { background: #ffffff29; transform: translateY(-2px); }
+.btn-reset:hover {
+    background: #ffffff29;
+    transform: translateY(-2px);
+}
 
 .zikir-notification {
     min-height: 30px;
@@ -188,86 +248,307 @@
     transition: opacity 0.4s ease;
 }
 
-.zikir-notification.show { opacity: 1; }
+.zikir-notification.show {
+    opacity: 1;
+}
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .zikir-grid { grid-template-columns: repeat(2, 1fr); }
+    .zikir-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
-    header { padding-bottom: 44px; }
-    .geo-left, .geo-right { width: 90px; }
-    .lantern-row { padding: 0 8px; }
-    .ornament-bar--top { margin-top: 60px; padding: 0 16px; }
-    .ornament-bar .line { max-width: 70px; }
-    .moon-wrap { margin-top: 18px; }
-    .moon, .moon-outer { width: 70px; height: 70px; }
-    .c1 { width: 11px; height: 11px; top: 14px; left: 11px; }
-    .c2 { width: 6px; height: 6px; top: 33px; left: 38px; }
-    .c3 { width: 8px; height: 8px; top: 22px; left: 43px; }
-    .moon-star { font-size: 17px; top: -14px; right: -11px; }
-    .arabic-text { font-size: clamp(20px, 6vw, 32px); letter-spacing: 2px; }
-    .main-title { font-size: clamp(28px, 9vw, 50px); }
-    .subtitle { font-size: 11px; letter-spacing: 3px; padding: 0 16px; }
-    .divider { max-width: 280px; margin-top: 14px; }
-    .countdown { gap: 10px; margin-top: 18px; }
-    .cd-box { padding: 10px 12px 8px; min-width: 52px; }
-    .cd-num { font-size: 22px; }
-    .cd-label { font-size: 8px; }
-    nav { gap: 6px; margin-top: 20px; }
-    nav a { font-size: 10px; letter-spacing: 2px; padding: 7px 13px; }
-    .zikir-grid { grid-template-columns: 1fr; }
-    .zikir-counter { font-size: 4.5rem; }
+    header {
+        padding-bottom: 44px;
+    }
+
+    .geo-left,
+    .geo-right {
+        width: 90px;
+    }
+
+    .lantern-row {
+        padding: 0 8px;
+    }
+
+    .ornament-bar--top {
+        margin-top: 60px;
+        padding: 0 16px;
+    }
+
+    .ornament-bar .line {
+        max-width: 70px;
+    }
+
+    .moon-wrap {
+        margin-top: 18px;
+    }
+
+    .moon,
+    .moon-outer {
+        width: 70px;
+        height: 70px;
+    }
+
+    .c1 {
+        width: 11px;
+        height: 11px;
+        top: 14px;
+        left: 11px;
+    }
+
+    .c2 {
+        width: 6px;
+        height: 6px;
+        top: 33px;
+        left: 38px;
+    }
+
+    .c3 {
+        width: 8px;
+        height: 8px;
+        top: 22px;
+        left: 43px;
+    }
+
+    .moon-star {
+        font-size: 17px;
+        top: -14px;
+        right: -11px;
+    }
+
+    .arabic-text {
+        font-size: clamp(20px, 6vw, 32px);
+        letter-spacing: 2px;
+    }
+
+    .main-title {
+        font-size: clamp(28px, 9vw, 50px);
+    }
+
+    .subtitle {
+        font-size: 11px;
+        letter-spacing: 3px;
+        padding: 0 16px;
+    }
+
+    .divider {
+        max-width: 280px;
+        margin-top: 14px;
+    }
+
+    .countdown {
+        gap: 10px;
+        margin-top: 18px;
+    }
+
+    .cd-box {
+        padding: 10px 12px 8px;
+        min-width: 52px;
+    }
+
+    .cd-num {
+        font-size: 22px;
+    }
+
+    .cd-label {
+        font-size: 8px;
+    }
+
+    nav {
+        gap: 6px;
+        margin-top: 20px;
+    }
+
+    nav a {
+        font-size: 10px;
+        letter-spacing: 2px;
+        padding: 7px 13px;
+    }
+
+    .zikir-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .zikir-counter {
+        font-size: 4.5rem;
+    }
 }
 
 @media (max-width: 480px) {
-    header { padding-bottom: 32px; }
-    .geo-left, .geo-right { width: 52px; opacity: .4; }
-    .lantern-row { padding: 0 2px; }
-    .ornament-bar--top { margin-top: 46px; }
-    .ornament-bar .line { max-width: 44px; }
-    .moon, .moon-outer { width: 58px; height: 58px; }
-    .moon-star { font-size: 14px; top: -11px; right: -9px; }
-    .arabic-text { font-size: 20px; letter-spacing: 1px; }
-    .main-title { font-size: clamp(24px, 10vw, 40px); }
-    .subtitle { font-size: 8.5px; letter-spacing: 2.5px; padding: 0 10px; }
-    .countdown { gap: 6px; }
-    .cd-box { padding: 8px 9px 6px; min-width: 46px; }
-    .cd-num { font-size: 18px; }
-    nav { padding: 0 10px; }
-    nav a { font-size: 9px; letter-spacing: 1.5px; padding: 6px 10px; }
-    .top-bar { padding: 12px 14px 0; }
-    .logo-wrap img { height: 34px; }
-    .lang-btn { font-size: 9px; padding: 5px 9px; }
-    .theme-btn { width: 30px; height: 30px; font-size: 13px; }
+    header {
+        padding-bottom: 32px;
+    }
+
+    .geo-left,
+    .geo-right {
+        width: 52px;
+        opacity: .4;
+    }
+
+    .lantern-row {
+        padding: 0 2px;
+    }
+
+    .ornament-bar--top {
+        margin-top: 46px;
+    }
+
+    .ornament-bar .line {
+        max-width: 44px;
+    }
+
+    .moon,
+    .moon-outer {
+        width: 58px;
+        height: 58px;
+    }
+
+    .moon-star {
+        font-size: 14px;
+        top: -11px;
+        right: -9px;
+    }
+
+    .arabic-text {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    .main-title {
+        font-size: clamp(24px, 10vw, 40px);
+    }
+
+    .subtitle {
+        font-size: 8.5px;
+        letter-spacing: 2.5px;
+        padding: 0 10px;
+    }
+
+    .countdown {
+        gap: 6px;
+    }
+
+    .cd-box {
+        padding: 8px 9px 6px;
+        min-width: 46px;
+    }
+
+    .cd-num {
+        font-size: 18px;
+    }
+
+    nav {
+        padding: 0 10px;
+    }
+
+    nav a {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+        padding: 6px 10px;
+    }
+
+    .top-bar {
+        padding: 12px 14px 0;
+    }
+
+    .logo-wrap img {
+        height: 34px;
+    }
+
+    .lang-btn {
+        font-size: 9px;
+        padding: 5px 9px;
+    }
+
+    .theme-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 900px) {
-    .doa-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .dzikir-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
 }
 
 @media (max-width: 600px) {
-    .doa-section { padding: 48px 16px 56px; }
-    .doa-grid { grid-template-columns: 1fr; gap: 14px; }
-    .doa-title { font-size: clamp(20px, 6vw, 30px); }
-    .doa-subtitle { font-size: 12px; margin-bottom: 30px; }
-    .doa-img-overlay { opacity: .7; }
-    .doa-modal { padding: 32px 20px 28px; border-radius: 14px; max-height: 90vh; overflow-y: auto; }
-    .modal-title { font-size: 20px; }
-    .modal-arabic { font-size: 18px; padding: 12px 14px; }
-    .modal-latin { font-size: 12px; }
-    .modal-arti { font-size: 13px; }
+    .zikir-section {
+        padding: 48px 16px 56px;
+    }
+
+    .zikir-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .zikir-title {
+        font-size: clamp(20px, 6vw, 30px);
+    }
+
+    .zikir-subtitle {
+        font-size: 12px;
+        margin-bottom: 30px;
+    }
+
+    .zikir-img-overlay {
+        opacity: .7;
+    }
+
+    .zikir-modal {
+        padding: 32px 20px 28px;
+        border-radius: 14px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-title {
+        font-size: 20px;
+    }
+
+    .modal-arabic {
+        font-size: 18px;
+        padding: 12px 14px;
+    }
+
+    .modal-latin {
+        font-size: 12px;
+    }
+
+    .modal-arti {
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 480px) {
-    .doa-section { padding: 36px 12px 48px; }
-    .doa-card-title { font-size: 18px; }
-    .doa-body { padding: 14px 16px 16px; }
-    .doa-img { aspect-ratio: 16 / 8; }
+    .doa-section {
+        padding: 36px 12px 48px;
+    }
+
+    .doa-card-title {
+        font-size: 18px;
+    }
+
+    .doa-body {
+        padding: 14px 16px 16px;
+    }
+
+    .doa-img {
+        aspect-ratio: 16 / 8;
+    }
 }
 
 @media (max-width: 380px) {
-    .doa-modal { padding: 28px 14px 22px; }
-    .modal-arabic { font-size: 16px; }
+    .doa-modal {
+        padding: 28px 14px 22px;
+    }
+
+    .modal-arabic {
+        font-size: 16px;
+    }
 }

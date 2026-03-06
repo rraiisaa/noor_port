@@ -1,0 +1,535 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500&display=swap');
+
+/* Css Variable */
+:root {
+  --gold: #C9A84C;
+  --gold-light: #F0D080;
+  --gold-glow: #FFE08A;
+  --teal: #1A6B6B;
+  --teal-light: #2DB8A8;
+
+  --bg-body: #0A0A1A;
+  --bg-header: linear-gradient(180deg, #060612 0%, #0d0d2b 40%, #0a1628 100%);
+  --bg-section: linear-gradient(180deg, #0a1628 0%, #091220 100%);
+  --bg-card: #0d1a2a;
+  --bg-modal: linear-gradient(135deg, #0d1a2a, #0a1220);
+  --text-main: #FDF6E3;
+  --text-muted: #fdf6e373;
+  --text-muted2: #fdf6e3a6;
+  --text-nav: #f0d08099;
+  --border-card: #c9a84c26;
+  --radius: 15px;
+  --radius-sm: 12px;
+}
+
+/* CSS Variavle (Light Mode) */
+[data-theme="light"] {
+  --bg-body: #f5f0e8;
+  --bg-section: linear-gradient(180deg, #f5f0e8 0%, #ede5d0 100%);
+  --bg-card: #ffffff;
+  --bg-modal: linear-gradient(135deg, #ffffff, #fdf8f0);
+  --surface-0: #f0ebe0;
+  --surface-1: #ffffff;
+  --surface-2: #fdf8f0;
+  --surface-3: #f8f2e6;
+  --input-bg: #fdf8f0;
+  --input-border: #c9a84c55;
+  --input-focus: #c9a84caa;
+  --text-main: #1a1208;
+  --text-muted: #1a120888;
+  --text-muted2: #1a1208bb;
+  --text-nav: #8b6914;
+  --border-card: #c9a84c33;
+  --shadow-card: 0 8px 40px #c9a84c15, 0 2px 12px #00000010;
+  --shadow-glow: 0 0 30px #c9a84c18;
+  --star-color: #8b6914;
+}
+
+.zakat-calculator {
+  padding: 80px 24px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+/* Header */
+.zakat-header {
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.zakat-header .zakat-eyebrow {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.zakat-header h2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(24px, 4vw, 42px);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--teal-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.zakat-header p {
+  color: var(--text-muted2);
+  font-size: 15px;
+  font-weight: 300;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Ornament */
+.zakat-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0 0;
+}
+
+.zakat-ornament span {
+  display: block;
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.zakat-ornament i {
+  color: var(--gold);
+  font-style: normal;
+  font-size: 18px;
+}
+
+/* Card */
+.zakat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px;
+  position: relative;
+  z-index: 2;
+  transition: var(--transition);
+}
+
+.zakat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 100%;
+}
+
+/* Form Field */
+.zakat-field {
+  margin-bottom: 24px;
+}
+
+.zakat-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted2);
+  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.zakat-field label .field-required {
+  color: var(--gold);
+  margin-left: 3px;
+}
+
+.zakat-input,
+.zakat-select {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  transition: var(--transition);
+  box-sizing: border-box;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.zakat-input:focus,
+.zakat-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px #c9a84c18, 0 0 20px #c9a84c0a;
+}
+
+.zakat-input::placeholder {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* Input with currency/unit prefix */
+.input-prefix-wrap {
+  position: relative;
+  background: linear-gradient(135deg,
+      #0a162899 0%,
+      #1a6b6b80 100%);
+  border-radius: var(--radius-sm);
+  border: solid 1px var(--input-border);
+}
+
+.input-prefix {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  user-select: none;
+}
+
+.input-prefix-wrap .zakat-input {
+  padding-left: 50px;
+}
+
+/* Custom select arrow */
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--gold);
+  pointer-events: none;
+}
+
+.zakat-select {
+  cursor: pointer;
+  padding-right: 40px;
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+}
+
+.zakat-select::after {
+  color: var(--input-focus);
+}
+
+/* Section divider */
+.zakat-divider {
+  height: 1px;
+  background: var(--border-card);
+  margin: 28px 0;
+  position: relative;
+}
+
+.zakat-divider span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-card);
+  padding: 0 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+/* Two-column input grid */
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Button Buat Hitung Zakat (Kalkulasi) */
+.zakat-btn {
+  width: 100%;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  background-size: 200% 200%;
+  border-radius: var(--radius);
+  color: #1a1000;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.zakat-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 30%, #ffffff33 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: 0.5s ease;
+}
+
+.zakat-btn:hover {
+  background-position: right center;
+  box-shadow: 0 4px 24px #c9a84c55, 0 0 40px #c9a84c22;
+  transform: translateY(-1px);
+}
+
+.zakat-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.zakat-btn:active {
+  transform: translateY(0);
+}
+
+/* Result Section */
+.zakat-result {
+  margin-top: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-card);
+  background: var(--surface-2);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.zakat-result.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.result-header {
+  padding: 16px 24px;
+  background: linear-gradient(90deg, #c9a84c12, #1a6b6b12);
+  border-bottom: 1px solid var(--border-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.result-header h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status-badge.wajib {
+  background: #1a6b6b33;
+  color: var(--teal-light);
+  border: 1px solid #2db8a833;
+}
+
+.status-badge.tidak {
+  background: #c9a84c15;
+  color: var(--gold);
+  border: 1px solid #c9a84c33;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 24px;
+  gap: 16px;
+}
+
+.result-item {
+  padding: 16px 20px;
+  background: var(--surface-1);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-card);
+  transition: var(--transition);
+}
+
+.result-item:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 16px #c9a84c10;
+}
+
+.result-item .result-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.result-item .result-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-main);
+  word-break: break-all;
+}
+
+.result-item.highlight .result-value {
+  color: var(--gold);
+}
+
+.result-zakat-amount {
+  margin: 0 24px 24px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #c9a84c18, #1a6b6b0f);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.result-zakat-amount .zakat-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.result-zakat-amount .zakat-big-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: -0.01em;
+}
+
+/* Validasi Error */
+.field-error {
+  display: none;
+  font-size: 12px;
+  color: #e07070;
+  margin-top: 6px;
+  padding-left: 4px;
+}
+
+.zakat-field.has-error .zakat-input,
+.zakat-field.has-error .zakat-select {
+  border-color: #e0707077;
+}
+
+.zakat-field.has-error .field-error {
+  display: block;
+}
+
+.form-section {
+  display: none;
+  animation: fadeInUp 0.3s ease;
+}
+
+.form-section.active {
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Setting */
+@media (max-width: 640px) {
+  .zakat-card {
+    padding: 28px 20px;
+  }
+
+  .input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-grid {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .result-zakat-amount {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 16px 16px;
+    padding: 16px;
+  }
+
+  .result-zakat-amount .zakat-big-value {
+    font-size: 26px;
+  }
+
+  .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .zakat-controls-bar {
+    margin-bottom: 32px;
+  }
+
+  .zakat-header h2 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .zakat-calculator {
+    padding: 48px 16px;
+  }
+}
