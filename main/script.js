@@ -11,14 +11,14 @@ const i18n = {
     // Section Header
     Headersubtitle: '1446 H · Bulan Penuh Berkah · 2026 M',
     cdLabels: ['Hari', 'Jam', 'Menit', 'Detik'],
-    nav: ['Beranda', 'Jadwal Sholat', 'Kultum', 'Resep Sahur', 'Donasi'],
+    nav: ['Beranda', 'Kumpulan Doa', 'Baca Dzikir', 'Hitung Zakat', 'Todo List'],
 
     // Section Doa
-doaRamadhanEyebrow: 'Doa Harian',
-  doaRamadhanTitle: 'Doa Sahur & Buka Puasa',
-  doaRamadhanSubtitle: 'Awali sahurmu dengan niat yang tulus, akhiri harimu dengan syukur yang dalam.',
+    doaRamadhanEyebrow: 'Doa Harian',
+    doaRamadhanTitle: 'Doa Sahur & Buka Puasa',
+    doaRamadhanSubtitle: 'Awali sahurmu dengan niat yang tulus, akhiri harimu dengan syukur yang dalam.',
 
-        // Section Dzikir
+    // Section Dzikir
     zikirEyebrow: 'Dzikir',
     zikirTitle: 'Hitung Dzikir',
     zikirSubtitle: 'Kata-kata penuh lindungan untuk hari - hari kita.',
@@ -29,7 +29,7 @@ doaRamadhanEyebrow: 'Doa Harian',
       allahuakbar: 'Allah Maha Besar'
     },
 
-        // Section Footer
+    // Section Footer
     footerFollowTitle: 'Ikuti Kami',
     footerNavTitle: 'Navigasi',
     fnHome: 'Beranda',
@@ -62,7 +62,7 @@ doaRamadhanEyebrow: 'Doa Harian',
     status_tidak: 'Belum Wajib',
     err_required: 'Kolom ini wajib diisi',
 
-        // Section Todo List
+    // Section Todo List
     shalatTitle: 'Shalat Wajib Hari Ini',
     shalatItems: ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya'],
     shalatStatus: ['Belum optimal', 'Cukup baik', 'MasyaAllah lengkap! 🌟'],
@@ -92,12 +92,12 @@ doaRamadhanEyebrow: 'Doa Harian',
     // Section Header
     Headersubtitle: '1446 H · Month of Blessings · 2026 M',
     cdLabels: ['Days', 'Hours', 'Minutes', 'Seconds'],
-    nav: ['Home', 'Prayer Times', 'Lecture', 'Sahur Recipes', 'Donate'],
+    nav: ['Home', 'Ramadhan Prayer', 'Dzikr Counter', 'Calculate Zakat', 'Todo List'],
 
     // Section Doa
- doaRamadhanEyebrow: 'Daily Prayers',
-  doaRamadhanTitle: 'Suhoor & Iftar Prayers',
-  doaRamadhanSubtitle: 'Begin your suhoor with sincere intention, end your day with deep gratitude.',
+    doaRamadhanEyebrow: 'Daily Prayers',
+    doaRamadhanTitle: 'Suhoor & Iftar Prayers',
+    doaRamadhanSubtitle: 'Begin your suhoor with sincere intention, end your day with deep gratitude.',
 
     // Section Dzikr
     zikirEyebrow: 'Dhikr',
@@ -163,7 +163,7 @@ doaRamadhanEyebrow: 'Doa Harian',
     footerFollowTitle: 'Follow Us',
     footerNavTitle: 'Navigation',
     fnHome: 'Home',
-    fnPrayer: 'Ramadhan Prayer Collection',
+    fnPrayer: 'Ramadhan Prayer',
     fnDzikir: 'Dhikr Counter',
     fnZakat: 'Zakat Calculator',
     fnIndex: 'Index',
@@ -172,11 +172,9 @@ doaRamadhanEyebrow: 'Doa Harian',
   }
 };
 
-
 /* STATE GLOBAL */
 let currentLang = localStorage.getItem('lang') || 'id';
 let currentTheme = localStorage.getItem('theme') || 'dark';
-
 
 /* SISTEM LISTENER BAHASA */
 // Komponen lain (misal todo.js) bisa daftar callback di sini
@@ -189,7 +187,6 @@ function notifyLangComponents() {
     if (typeof fn === 'function') fn(currentLang);
   });
 }
-
 
 /* GANTI BAHASA */
 // FIX: dulu ada 2 definisi setLang → yang kedua nimpa yang pertama
@@ -227,10 +224,10 @@ function setLang(lang) {
 
   // section doa
   // section doa ramadhan
-  setText('doaRamadhanEyebrow',  t.doaRamadhanEyebrow);
-  setText('doaRamadhanTitle',    t.doaRamadhanTitle);
+  setText('doaRamadhanEyebrow', t.doaRamadhanEyebrow);
+  setText('doaRamadhanTitle', t.doaRamadhanTitle);
   setText('doaRamadhanSubtitle', t.doaRamadhanSubtitle);
-  
+
   // section dzikir
   setText('zikirEyebrow', t.zikirEyebrow);
   setText('zikirTitle', t.zikirTitle);
@@ -260,30 +257,30 @@ function setLang(lang) {
 
   // section todo list
   // section todo list
-const setTodoText = (selector, val) => {
-  const el = document.querySelector(selector);
-  if (el && val !== undefined) el.textContent = val;
-};
+  const setTodoText = (selector, val) => {
+    const el = document.querySelector(selector);
+    if (el && val !== undefined) el.textContent = val;
+  };
 
-setTodoText('#progressLabel', t.progressLabel);
+  setTodoText('#progressLabel', t.progressLabel);
 
-setTodoText('#shalatTitle', t.shalatTitle);
-setTodoText('#quranTitle', t.quranTitle);
-setTodoText('#puasaTitle', t.puasaTitle);
-setTodoText('#dzikirTitle', t.dzikirTitle);
+  setTodoText('#shalatTitle', t.shalatTitle);
+  setTodoText('#quranTitle', t.quranTitle);
+  setTodoText('#puasaTitle', t.puasaTitle);
+  setTodoText('#dzikirTitle', t.dzikirTitle);
 
-setTodoText('#saveBtnShalat', t.saveBtn);
-setTodoText('#saveBtnQuran', t.saveBtn);
-setTodoText('#saveBtnPuasa', t.saveBtn);
-setTodoText('#saveBtnDzikir', t.saveBtn);
+  setTodoText('#saveBtnShalat', t.saveBtn);
+  setTodoText('#saveBtnQuran', t.saveBtn);
+  setTodoText('#saveBtnPuasa', t.saveBtn);
+  setTodoText('#saveBtnDzikir', t.saveBtn);
 
-const todoInput = document.getElementById('dzikirTodoInput');
-if (todoInput) todoInput.placeholder = t.todoPlaceholder;
+  const todoInput = document.getElementById('dzikirTodoInput');
+  if (todoInput) todoInput.placeholder = t.todoPlaceholder;
 
-// tabs
-document.querySelectorAll('.ramadhan-tab').forEach((tab, i) => {
-  if (t.tabs && t.tabs[i]) tab.textContent = t.tabs[i];
-});
+  // tabs
+  document.querySelectorAll('.ramadhan-tab').forEach((tab, i) => {
+    if (t.tabs && t.tabs[i]) tab.textContent = t.tabs[i];
+  });
 
   // footer
   setText('footerFollowTitle', t.footerFollowTitle);
@@ -303,7 +300,6 @@ document.querySelectorAll('.ramadhan-tab').forEach((tab, i) => {
   // Dulu baris ini ada di versi pertama tapi ke-overwrite sama versi kedua
   notifyLangComponents();
 }
-
 
 /* TOGGLE TEMA */
 // FIX: dulu ada 2 definisi toggleTheme → yang kedua ga punya localStorage
@@ -338,8 +334,7 @@ if (starsEl) {
   }
 }
 
-
-/* PARTIKEL HEADER*/
+/* PARTIKEL HEADER */
 const pEl = document.getElementById('particles');
 if (pEl) {
   for (let i = 0; i < 18; i++) {
@@ -357,7 +352,6 @@ if (pEl) {
     pEl.appendChild(p);
   }
 }
-
 
 /* HITUNG MUNDUR LEBARAN */
 function tick() {
@@ -383,7 +377,6 @@ function tick() {
 
 tick();
 setInterval(tick, 1000);
-
 
 /* SETUP AWAL */
 // FIX: dipindah ke paling bawah biar semua fungsi udah terdefinisi dulu

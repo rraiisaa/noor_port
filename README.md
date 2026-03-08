@@ -4,13 +4,13 @@ Cerita Tentang Website ini dan segala strugglenya hehe
 ## Main Promblem #1 
 Aku ga masuk leaderboard misi 1, dan ketika aku analisis kesalahan aku, aku nemuin beberapa kesalahan, diantaranya:
 1. Di misi pertama, website aku pakai js untuk bagian "kumpulan doa" padahal di ketentuannya cuman boleh pakai html dan css. 
-2. Webiste aku terlalu detail dan interaktif dan sebenernya ga masalah, tapi.. kodenya tembus 1000+ line di dalam 1 file css. dan itu yang bikin ga rapih meskipun udah dipisahin pakai notes. 
+2. Website aku detail dan interaktif dan sebenernya ga masalah, tapi.. kodenya tembus 1000+ line di dalam 1 file css. dan itu yang bikin ga rapih meskipun udah dipisahin pakai notes. 
 3. js ga punya notes per sectionnya, bikin bingung juri ataupun audies yang mau liat kodenya. 
 4. misi 1 dan 2 dijadiin 1 file yang sama. 
-5. Tombol X di Modal Doa ga bisa di klik
+5. Tombol X di modal doa ga bisa di klik
 
 ## Solving #1 
-1. hilangin kode js untuk fitur doa, ganti ke css (walaupun jadinya pasti panjang) 
+1. hilangkan kode js untuk fitur doa, ganti ke css (walaupun harus ganti layout) 
 2. breakdown keseluruhan kodenya jadi component - component file yang kecil sesuai fiturnya, nanti tinggal di satuin di file homepage. 
 3. pisahin js untuk setiap misi 
 4. karena ini konsepnya landing page, pisahin setiap component/section setiap misi, misal: misi 1 - header, kumpulan doa, doa model, dst. dan taro file landing page dibagian luar project structure (biar ga masuk ke folder misi apa apa) dan nanti tinggal panggil elemennya
@@ -58,10 +58,8 @@ biar:
 - code ga double i18n system
 - maintain lebih gampang
 
-kalau mau nambah text todo baru:
-tinggal edit di global.js bagian:
-i18n.id.todo
-i18n.en.todo
+kalau mau nambah settingan lang baru:
+tinggal edit di global.js bagian lang.
 
-jangan bikin LANG baru di todo.js lagi
+jangan bikin LANG baru di internal lagi
 nanti jadi duplicate system lagi

@@ -28,7 +28,7 @@
     --star-color: white;
 }
 
-/* Light mode — cuma ganti warna biar adem di mata
+/* Light mode — cuma ganti warna.
    UI design gak diubah sama sekali, cuma token warnanya */
 [data-theme="light"] {
     --bg-body: #F5EDD8;
@@ -45,11 +45,16 @@
     --logo-filter: invert(0) sepia(1) saturate(3) hue-rotate(5deg) brightness(.8);
 }
 
+/* Biar pas navbar di klik, dia ke scrollnya smooth */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Lato', sans-serif;
     min-height: 100vh;
     transition: background .4s;
-    background: var(--bg-body);
+    background: var(--bg-section);
 }
 
 /* bintang */
@@ -392,6 +397,55 @@ header {
 }
 
 /* Navigation */
+/* Nav default (di dalam header) */
+#mainNav {
+    /* styling nav kamu yang sudah ada */
+    transition: none;
+}
+
+/* Nav sticky — aktif lewat JS waktu header keluar viewport */
+#mainNav.nav-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    /* Background biar konten di belakangnya tidak tembus */
+    background: rgba(10, 10, 26, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+
+    /* Animasi turun dari atas */
+    animation: navSlideDown 0.3s ease forwards;
+
+    /* Reset padding/margin yang mungkin ada dari posisi aslinya */
+    margin: 0;
+    padding: 12px 24px;
+    justify-content: center;
+}
+
+@keyframes navSlideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Light mode */
+[data-theme="light"] #mainNav.nav-sticky {
+    background: rgba(245, 240, 232, 0.9);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
 nav {
     position: relative;
     z-index: 5;

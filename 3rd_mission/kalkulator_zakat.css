@@ -1,46 +1,89 @@
-/* Google Font */
+/* KALKULATOR ZAKAT — kalkulator_zakat.css
+
+   Semua warna pakai CSS variable dari :root global.
+   Variable tambahan yang tidak ada di root didefinisikan
+   di .zakat-calculator scope sendiri biar tidak polusi global.
+
+   Perubahan dari versi lama:
+   - Ganti semua warna hardcode ke variable root
+   - Tambah --radius, --radius-sm, --transition, --input-bg,
+     --input-border, --surface-1, --surface-2 sebagai local tokens
+   - Result section pakai max-height bukan opacity saja —
+     biar beneran tidak makan tempat sebelum kalkulasi dijalankan */
+
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500&display=swap');
 
+
+/* Local tokens — extend root, bukan replace */
+/* Didefinisikan di scope .zakat-calculator biar tidak bocor ke section lain */
 .zakat-calculator {
-   background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,107,107,.06) 0%, transparent 60%) !important;
-  padding: 80px 24px;
+  --radius:       16px;
+  --radius-sm:    12px;
+  --transition:   .3s ease;
+
+  /* Input background — sedikit lebih gelap dari bg-card */
+  --input-bg:     #0a162899;
+  --input-border: #c9a84c33;
+
+  /* Surface bertingkat untuk result area */
+  --surface-1:    #0d1a2ab3;
+  --surface-2:    #0a122080;
+}
+
+/* Light mode — override local tokens juga */
+[data-theme="light"] .zakat-calculator {
+  --input-bg:     #ffffffcc;
+  --input-border: #c9a84c40;
+  --surface-1:    #f5f0e899;
+  --surface-2:    #ede5d066;
+}
+
+
+/* Section wrapper*/
+.zakat-calculator {
+  background: var(--bg-section);
+  padding: 100px 24px 80px;
   position: relative;
   overflow: hidden;
   font-family: 'DM Sans', sans-serif;
   color: var(--text-main);
-  min-height: 100vh;
 }
 
-/* Header */
+/* Ambient glow — sama pola dengan section dzikir dan doa */
+.zakat-calculator::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, #c9a84c12 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, #1a6b6b0f 0%, transparent 60%);
+  pointer-events: none;
+}
+
+
+/* Header — identik dengan section lain */
 .zakat-header {
-   background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,107,107,.06) 0%, transparent 60%) !important;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   position: relative;
   z-index: 2;
 }
 
 .zakat-header .zakat-eyebrow {
-  text-align: center;
-  font-family: 'Lato', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .zakat-header h2 {
   font-family: 'Cinzel Decorative', serif;
-  font-size: clamp(24px, 4vw, 42px);
-  font-weight: 600;
-  line-height: 1.1;
+  font-size: clamp(22px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
   margin: 0 0 16px;
-  letter-spacing: -0.01em;
   background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--teal-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -48,21 +91,21 @@
 }
 
 .zakat-header p {
+  font-family: 'DM Sans', sans-serif;
   color: var(--text-muted2);
   font-size: 15px;
   font-weight: 300;
   max-width: 480px;
-  margin: 0 auto;
+  margin: 0 auto 28px;
   line-height: 1.7;
 }
 
-/* Ornament */
 .zakat-ornament {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  margin: 20px 0 0;
+  gap: 12px;
+  margin-top: 8px;
 }
 
 .zakat-ornament span {
@@ -75,23 +118,24 @@
 .zakat-ornament i {
   color: var(--gold);
   font-style: normal;
-  font-size: 18px;
+  font-size: 12px;
 }
 
-/* Card */
+
+/* Kartu kalkulator */
 .zakat-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-card);
   max-width: 720px;
   margin: 0 auto;
   padding: 48px;
   position: relative;
   z-index: 2;
-  transition: var(--transition);
+  transition: background var(--transition);
 }
 
+/* Garis aksen emas di bagian atas kartu */
 .zakat-card::before {
   content: '';
   position: absolute;
@@ -101,21 +145,21 @@
   width: 60%;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  border-radius: 100%;
 }
 
-/* Form Field */
+
+/* Form field */
 .zakat-field {
   margin-bottom: 24px;
 }
 
 .zakat-field label {
   display: block;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-muted2);
   margin-bottom: 8px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -134,8 +178,7 @@
   color: var(--text-main);
   font-family: 'DM Sans', sans-serif;
   font-size: 15px;
-  font-weight: 400;
-  transition: var(--transition);
+  transition: border-color var(--transition), box-shadow var(--transition);
   box-sizing: border-box;
   outline: none;
   appearance: none;
@@ -145,7 +188,7 @@
 .zakat-input:focus,
 .zakat-select:focus {
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px #c9a84c18, 0 0 20px #c9a84c0a;
+  box-shadow: 0 0 0 3px #c9a84c1f, 0 0 20px #c9a84c0f;
 }
 
 .zakat-input::placeholder {
@@ -153,14 +196,30 @@
   font-size: 14px;
 }
 
-/* Input with currency/unit prefix */
+
+/* Input dengan prefix mata uang / satuan */
 .input-prefix-wrap {
   position: relative;
-  background: linear-gradient(135deg,
-      #0a162899 0%,
-      #1a6b6b80 100%);
+  background: linear-gradient(135deg, #0a162899, #1a6b6b4d);
   border-radius: var(--radius-sm);
-  border: solid 1px var(--input-border);
+  border: 1px solid var(--input-border);
+}
+
+/* Kalau ada .input-prefix-wrap, hilangkan border dari input di dalamnya
+   karena border sudah ada di wrapper */
+.input-prefix-wrap .zakat-input {
+  background: transparent;
+  border: none;
+  padding-left: 50px;
+}
+
+.input-prefix-wrap .zakat-input:focus {
+  box-shadow: none;
+}
+
+.input-prefix-wrap:focus-within {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px #c9a84c1f;
 }
 
 .input-prefix {
@@ -176,11 +235,8 @@
   user-select: none;
 }
 
-.input-prefix-wrap .zakat-input {
-  padding-left: 50px;
-}
 
-/* Custom select arrow */
+/* Custom select arrow*/
 .select-wrap {
   position: relative;
 }
@@ -202,15 +258,18 @@
 .zakat-select {
   cursor: pointer;
   padding-right: 40px;
-  border-radius: var(--radius-sm);
-  color: var(--text-main);
 }
 
-.zakat-select::after {
-  color: var(--input-focus);
+
+/* Dua kolom input untuk penghasilan */
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-/* Section divider */
+
+/* Divider dengan label */
 .zakat-divider {
   height: 1px;
   background: var(--border-card);
@@ -231,45 +290,41 @@
   color: var(--text-muted);
 }
 
-/* Two-column input grid */
-.input-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
 
-/* Button Buat Hitung Zakat (Kalkulasi) */
+/* Tombol hitung*/
 .zakat-btn {
   width: 100%;
   padding: 16px 32px;
   background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
   background-size: 200% 200%;
+  border: none;
   border-radius: var(--radius);
   color: #1a1000;
   font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: var(--transition);
+  transition: background-position var(--transition), box-shadow var(--transition), transform var(--transition);
   margin-top: 8px;
   position: relative;
   overflow: hidden;
 }
 
+/* Efek shimmer saat hover */
 .zakat-btn::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, transparent 30%, #ffffff33 50%, transparent 70%);
+  background: linear-gradient(135deg, transparent 30%, #ffffff40 50%, transparent 70%);
   transform: translateX(-100%);
-  transition: 0.5s ease;
+  transition: transform .5s ease;
 }
 
 .zakat-btn:hover {
   background-position: right center;
-  box-shadow: 0 4px 24px #c9a84c55, 0 0 40px #c9a84c22;
+  box-shadow: 0 4px 24px #c9a84c66, 0 0 40px #c9a84c26;
   transform: translateY(-1px);
 }
 
@@ -281,25 +336,42 @@
   transform: translateY(0);
 }
 
-/* Result Section */
+
+/*  Result section — collapsed by default 
+   
+   Pakai max-height bukan display:none atau opacity saja.
+   Kenapa? Karena max-height bisa di-transition, jadi ada animasi
+   expand yang smooth waktu hasil kalkulasi muncul.
+   
+   Kalau pakai opacity saja, elemen tetap ada di DOM dan makan
+   tempat di halaman — jadi ada gap kosong yang aneh sebelum
+   user klik hitung. */
+
 .zakat-result {
-  margin-top: 36px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-card);
-  background: var(--surface-2);
+  max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    max-height .6s cubic-bezier(.4, 0, .2, 1),
+    opacity    .5s ease,
+    transform  .5s ease;
+  margin-top: 0;
+  border-radius: var(--radius-sm);
 }
 
+/* Saat hasil kalkulasi siap ditampilkan */
 .zakat-result.visible {
+  max-height: 600px; /* Nilai cukup besar, yang penting lebih dari tinggi kontennya */
   opacity: 1;
   transform: translateY(0);
-  pointer-events: auto;
+  margin-top: 36px;
+  border: 1px solid var(--border-card);
+  background: var(--surface-2);
 }
 
+
+/* Isi result */
 .result-header {
   padding: 16px 24px;
   background: linear-gradient(90deg, #c9a84c12, #1a6b6b12);
@@ -319,9 +391,10 @@
 }
 
 .status-badge {
-  padding: 6px 14px;
+  padding: 5px 14px;
   border-radius: 100px;
-  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -334,7 +407,7 @@
 }
 
 .status-badge.tidak {
-  background: #c9a84c15;
+  background: #c9a84c1a;
   color: var(--gold);
   border: 1px solid #c9a84c33;
 }
@@ -349,23 +422,23 @@
 .result-item {
   padding: 16px 20px;
   background: var(--surface-1);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border-card);
-  transition: var(--transition);
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .result-item:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 16px #c9a84c10;
+  border-color: #c9a84c4d;
+  box-shadow: 0 0 16px #c9a84c0f;
 }
 
 .result-item .result-label {
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 10px;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .result-item .result-value {
@@ -380,10 +453,11 @@
   color: var(--gold);
 }
 
+/* Baris bawah: total zakat yang harus dibayar */
 .result-zakat-amount {
   margin: 0 24px 24px;
   padding: 20px 24px;
-  background: linear-gradient(135deg, #c9a84c18, #1a6b6b0f);
+  background: linear-gradient(135deg, #c9a84c1a, #1a6b6b0f);
   border: 1px solid var(--gold);
   border-radius: var(--radius-sm);
   display: flex;
@@ -393,8 +467,9 @@
 }
 
 .result-zakat-amount .zakat-label {
-  font-size: 13px;
-  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--text-muted2);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -406,9 +481,11 @@
   font-weight: 700;
   color: var(--gold-light);
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
-/* Validasi Error */
+
+/* Validasi error */
 .field-error {
   display: none;
   font-size: 12px;
@@ -418,49 +495,36 @@
 }
 
 .zakat-field.has-error .zakat-input,
+.zakat-field.has-error .input-prefix-wrap,
 .zakat-field.has-error .zakat-select {
-  border-color: #e0707077;
+  border-color: #e0707080;
 }
 
 .zakat-field.has-error .field-error {
   display: block;
 }
 
+
+/* Form section */
 .form-section {
   display: none;
-  animation: fadeInUp 0.3s ease;
+  animation: fadeInUp .3s ease;
 }
 
-.form-section.active {
-  display: block;
-}
+.form-section.active { display: block; }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive Setting */
+
+/* Responsive */
 @media (max-width: 640px) {
-  .zakat-card {
-    padding: 28px 20px;
-  }
-
-  .input-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .result-grid {
-    grid-template-columns: 1fr;
-    padding: 16px;
-  }
+  .zakat-calculator { padding: 70px 16px 60px; }
+  .zakat-card { padding: 28px 20px; }
+  .input-grid { grid-template-columns: 1fr; }
+  .result-grid { grid-template-columns: 1fr; padding: 16px; }
 
   .result-zakat-amount {
     flex-direction: column;
@@ -470,27 +534,15 @@
     padding: 16px;
   }
 
-  .result-zakat-amount .zakat-big-value {
-    font-size: 26px;
-  }
+  .result-zakat-amount .zakat-big-value { font-size: 26px; }
 
   .result-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-
-  .zakat-controls-bar {
-    margin-bottom: 32px;
-  }
-
-  .zakat-header h2 {
-    font-size: 30px;
-  }
 }
 
 @media (max-width: 400px) {
-  .zakat-calculator {
-    padding: 48px 16px;
-  }
+  .zakat-card { padding: 24px 16px; }
 }

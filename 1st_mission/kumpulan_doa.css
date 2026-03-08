@@ -44,8 +44,8 @@ p.lang-id, div.lang-id { display: block; }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,107,107,.06) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 50% at 50% 0%, #c9a84c12 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, #1a6b6b0f 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -135,7 +135,7 @@ p.lang-id, div.lang-id { display: block; }
 
 .doa-column-header.sahur {
   background: linear-gradient(135deg, #1a6b6b40, #1a6b6b14);
-  border: 1px solid rgba(45,184,168,.2);
+  border: 1px solid #2db8a833;
   border-bottom: none;
 }
 
@@ -194,12 +194,12 @@ p.lang-id, div.lang-id { display: block; }
 
 /* Hover state kartu */
 .doa-card:hover {
-  background: rgba(201,168,76,.04);
+  background: #c9a84c0a;
 }
 
 /* Garis aksen kiri saat kartu terbuka */
 .doa-card[open] {
-  background: rgba(201,168,76,.03);
+  background: #c9a84c08;
 }
 
 .doa-card[open]::before {
@@ -232,7 +232,7 @@ p.lang-id, div.lang-id { display: block; }
 .doa-card-summary::-webkit-details-marker { display: none; }
 .doa-card-summary::marker { display: none; }
 
-.doa-card-summary:hover { background: rgba(201,168,76,.05); }
+.doa-card-summary:hover { background: #c9a84c0d; }
 
 .doa-card-meta {
   display: flex;
@@ -305,7 +305,7 @@ p.lang-id, div.lang-id { display: block; }
   line-height: 2;
   margin: 18px 0 12px;
   letter-spacing: 0;
-  text-shadow: 0 0 20px rgba(201,168,76,.2);
+  text-shadow: 0 0 20px #c9a84c33;
 }
 
 /* Transliterasi Latin */
@@ -325,8 +325,8 @@ p.lang-id, div.lang-id { display: block; }
   color: var(--text-muted2);
   line-height: 1.75;
   padding: 10px 14px;
-  background: rgba(201,168,76,.04);
-  border-left: 2px solid rgba(201,168,76,.25);
+  background: #c9a84c0a;
+  border-left: 2px solid #c9a84c40;
   border-radius: 0 8px 8px 0;
 }
 
@@ -347,7 +347,7 @@ p.lang-id, div.lang-id { display: block; }
 
 /* Light mode */
 [data-theme="light"] .doa-card {
-  box-shadow: var(--shadow-card, 0 2px 12px rgba(0,0,0,.06));
+  box-shadow: var(--shadow-card, 0 2px 12px #0000000f);
 }
 
 [data-theme="light"] .doa-arabic {

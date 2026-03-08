@@ -1,16 +1,14 @@
-/* ============================================================
-   HITUNG DZIKIR — hitung_dzikir.css
+/* HITUNG DZIKIR — hitung_dzikir.css
    Styling seirama dengan doa-ramadhan.css:
    - Font yang sama: Cinzel Decorative, DM Sans, Noto Naskh Arabic
    - CSS variable yang sama dari :root global
    - Header section dengan ornamen yang sama
-   - Tone warna: gold + teal, konsisten
-   ============================================================ */
+   - Tone warna: gold + teal, konsisten */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap');
 
 
-/* ── Bilingual — sama persis dengan doa-ramadhan.css ─────── */
+/* Bilingual — sama persis dengan doa-ramadhan.css */
 /* CSS ini show/hide .lang-id dan .lang-en berdasarkan data-lang di <html> */
 
 .lang-en { display: none; }
@@ -28,8 +26,7 @@ p.lang-en, div.lang-en { display: none; }
 p.lang-id, div.lang-id { display: block; }
 
 
-/* ── Section wrapper ─────────────────────────────────────── */
-
+/* Section wrapper */
 .zikir-section {
   background: var(--bg-section);
   padding: 100px 24px 80px;
@@ -45,14 +42,13 @@ p.lang-id, div.lang-id { display: block; }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(45,184,168,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 60% at 20% 90%, rgba(201,168,76,.06) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 50% at 80% 10%, #2db8a812 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 20% 90%, #c9a84c0f 0%, transparent 60%);
   pointer-events: none;
 }
 
 
-/* ── Header — identik dengan doa-section-header ─────────── */
-
+/* Header — identik dengan doa-section-header */
 .zikir-section-header {
   text-align: center;
   margin-bottom: 60px;
@@ -177,7 +173,7 @@ p.lang-id, div.lang-id { display: block; }
   direction: rtl;
   line-height: 1.8;
   margin-bottom: 8px;
-  text-shadow: 0 0 20px rgba(201,168,76,.25);
+  text-shadow: 0 0 20px #c9a84c40;
 }
 
 .zikir-title {
@@ -326,7 +322,7 @@ p.lang-id, div.lang-id { display: block; }
 
 .btn-increment:hover {
   transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 8px 24px rgba(201,168,76,.45);
+  box-shadow: 0 8px 24px #c9a84c73;
 }
 
 .btn-increment:active {

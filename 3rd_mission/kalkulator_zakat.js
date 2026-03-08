@@ -1,201 +1,156 @@
+// kalkulator_zakat.js
+//
+// Kalkulator zakat penghasilan dan zakat emas.
+// Komponen ini tidak punya state bahasa/tema sendiri —
+// semuanya diambil dari global.js (variabel i18n dan currentLang).
+// Jadi pastikan global.js di-load sebelum file ini.
+//
+// Formula yang dipakai:
+//   Nisab  = harga emas per gram × 85
+//   Zakat  = 2.5% × total harta (hanya jika total ≥ nisab)
+//   Zakat Penghasilan = (gaji + penghasilan lain) × 12 bulan
+
 (function () {
 
-  // State
-  let currentLang = 'id';   // 'id' | 'en'
-  let currentTheme = 'dark'; // 'dark' | 'light'
 
-
-  /* Theme */
-  function applyTheme() {
-    const section = document.getElementById('zakat-calculator');
-    const moonIcon = document.getElementById('theme-icon-moon');
-    const sunIcon = document.getElementById('theme-icon-sun');
-    const themeLabel = document.getElementById('theme-label');
-
-    if (currentTheme === 'light') {
-      section.setAttribute('data-theme', 'light');
-      moonIcon.style.display = 'block';
-      sunIcon.style.display = 'none';
-      themeLabel.textContent = 'Dark';
-    } else {
-      section.removeAttribute('data-theme');
-      moonIcon.style.display = 'none';
-      sunIcon.style.display = 'block';
-      themeLabel.textContent = 'Light';
+  // Ambil teks dari i18n global
+  // Kalau i18n belum tersedia (misalnya load order salah), fallback ke bahasa Indonesia
+  function t(key) {
+    if (typeof i18n !== 'undefined' && typeof currentLang !== 'undefined') {
+      return i18n[currentLang]?.[key] ?? i18n['id']?.[key] ?? '';
     }
+    return '';
   }
 
 
-  /* Switch Type Zakat (Penghasilan - Emas) */
+  // Switch jenis zakat (Penghasilan ↔ Emas) 
+  // Dipanggil dari onchange di select element
   function zakatSwitchType() {
-    const type = document.getElementById('zakat-type').value;
+    const tipe = document.getElementById('zakat-type').value;
 
-    document.getElementById('section-penghasilan')
-      .classList.toggle('active', type === 'penghasilan');
-    document.getElementById('section-emas')
-      .classList.toggle('active', type === 'emas');
+    document.getElementById('section-penghasilan').classList.toggle('active', tipe === 'penghasilan');
+    document.getElementById('section-emas').classList.toggle('active', tipe === 'emas');
 
-    // Sembunyikan hasil sebelumnya kalo formatnya ganti, biar ga bingung
-    document.getElementById('zakat-result').classList.remove('visible');
+    // Sembunyikan hasil lama biar tidak membingungkan ketika tipe diganti
+    const resultEl = document.getElementById('zakat-result');
+    if (resultEl) resultEl.classList.remove('visible');
 
     clearErrors();
   }
 
-  // Validasi Error
+
+  // Bersihkan semua error validation
   function clearErrors() {
     document.querySelectorAll('.zakat-field.has-error')
       .forEach(f => f.classList.remove('has-error'));
   }
 
-  function parseNumber(val) {
-  if (!val) return 0;
-  return parseFloat(val.replace(/\./g, '').replace(/,/g, '.')) || 0;
-}
 
-  /**
-   * Tandai sebuah field dengan class "has-error" untuk styling error (misal border merah)
-   * @param {string} fieldId
-   */
+  // Tandai field yang tidak valid 
   function markError(fieldId) {
-    document.getElementById(fieldId).classList.add('has-error');
+    const el = document.getElementById(fieldId);
+    if (el) el.classList.add('has-error');
   }
 
 
-  // Currecy Formatter (Rupiah)
+  // Format angka ke Rupiah 
   function formatRp(num) {
-    if (num === 0) return 'Rp 0';
+    if (!num || num === 0) return 'Rp 0';
     return 'Rp ' + Math.round(num).toLocaleString('id-ID');
   }
 
 
-  /* AUTO HITUNG PENGHASILAN TAHUNAN */
-
-  function updateTahunan() {
-
-    const gaji = parseFloat(document.getElementById('input-gaji').value);
-    const lain = parseFloat(document.getElementById('input-lain').value);
-
-    const totalTahunan = (gaji + lain) * 12;
-
-    const tahunanInput = document.getElementById('input-tahunan');
-
-    if (tahunanInput) {
-      tahunanInput.value = Math.round(totalTahunan);
-    }
-
-  }
-
-
-  /* KALKULATOR UTAMA
-     
-  Formula: 
-  - Nisab = harga emas × 85 gram
-  - Zakat = 2.5% × total kekayaan (jika total kekayaan ≥ nisab)
-  */
-
+  // Kalkulasi utama 
+  // Dipanggil saat tombol "Hitung Zakat" diklik
   function zakatCalculate() {
     clearErrors();
 
-    const type = document.getElementById('zakat-type').value;
+    const tipe      = document.getElementById('zakat-type').value;
     const goldPrice = parseFloat(document.getElementById('input-gold-price').value);
-    const t = i18n[currentLang];
-    let valid = true;
-    let total = 0;
+    let valid       = true;
+    let total       = 0;
 
-    // 1. Validasi harga emas
-    const gpRaw = document.getElementById('input-gold-price').value.trim();
-    if (!gpRaw || isNaN(goldPrice) || goldPrice <= 0) {
+    // Validasi harga emas — wajib diisi di semua jenis zakat
+    if (!document.getElementById('input-gold-price').value.trim() || isNaN(goldPrice) || goldPrice <= 0) {
       markError('field-goldprice');
       valid = false;
     }
 
-    // 2. Validasi input berdasarkan jenis zakat yang dipilih
-    if (type === 'penghasilan') {
+    if (tipe === 'penghasilan') {
+      const gajiVal = document.getElementById('input-gaji').value.trim();
+      const gaji    = parseFloat(gajiVal);
+      const lain    = parseFloat(document.getElementById('input-lain').value) || 0;
 
-      const gajiRaw = document.getElementById('input-gaji').value.trim();
-      const gaji = parseFloat(gajiRaw);
-
-      if (!gajiRaw || isNaN(gaji) || gaji < 0) {
+      if (!gajiVal || isNaN(gaji) || gaji < 0) {
         markError('field-gaji');
         valid = false;
       }
 
-      const lain = parseFloat(document.getElementById('input-lain').value);
+      // Zakat penghasilan dihitung dari total setahun
+      if (!isNaN(gaji)) total = (gaji + lain) * 12;
 
-      if (!isNaN(gaji)) {
-        total = (gaji + lain) * 12;
-      }
+    } else if (tipe === 'emas') {
+      const gramVal = document.getElementById('input-gram').value.trim();
+      const gram    = parseFloat(gramVal);
 
-    } else if (type === 'emas') {
-
-      const gramRaw = document.getElementById('input-gram').value.trim();
-      const gram = parseFloat(gramRaw);
-
-      if (!gramRaw || isNaN(gram) || gram <= 0) {
+      if (!gramVal || isNaN(gram) || gram <= 0) {
         markError('field-gram');
         valid = false;
       }
 
-      if (!isNaN(gram) && !isNaN(goldPrice)) {
-        total = gram * goldPrice;
-      }
-
+      // Zakat emas: konversi berat ke nilai rupiah dulu
+      if (!isNaN(gram) && !isNaN(goldPrice)) total = gram * goldPrice;
     }
 
     if (!valid) return;
 
-    // 3. Logic Zakat
-    const nisab = goldPrice * 85;
-    const isWajib = total >= nisab;
-    const zakatAmt = isWajib ? total * 0.025 : 0;
+    // Hitung zakat
+    const nisab    = goldPrice * 85;           // nisab = 85 gram emas
+    const isWajib  = total >= nisab;
+    const zakatAmt = isWajib ? total * 0.025 : 0;  // 2.5% dari total harta
 
-    // 4. Render Values Result
-    document.getElementById('result-wealth').textContent = formatRp(total);
-    document.getElementById('result-nisab').textContent = formatRp(nisab);
+    // Tampilkan hasil
+    document.getElementById('result-wealth').textContent      = formatRp(total);
+    document.getElementById('result-nisab').textContent       = formatRp(nisab);
     document.getElementById('result-zakat-amount').textContent = formatRp(zakatAmt);
 
-    const badge = document.getElementById('result-status-badge');
-    badge.textContent = isWajib ? t.status_wajib : t.status_tidak;
-    badge.className = 'status-badge ' + (isWajib ? 'wajib' : 'tidak');
+    const badge       = document.getElementById('result-status-badge');
+    badge.textContent = isWajib ? t('status_wajib') : t('status_tidak');
+    badge.className   = 'status-badge ' + (isWajib ? 'wajib' : 'tidak');
 
-    // 5. Munculkan Card Result
+    // Munculkan result section dengan animasi expand (max-height transition di CSS)
     const resultEl = document.getElementById('zakat-result');
     resultEl.classList.add('visible');
-    resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(() => {
+      resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100); // tunda sedikit biar transisi max-height selesai dulu sebelum scroll
   }
 
-  /* Event Linetener Input */
 
-  document.addEventListener("DOMContentLoaded", function () {
+  // Auto-hitung total tahunan saat input gaji berubah 
+  // Fungsi ini opsional — hanya jalan kalau ada elemen #input-tahunan di HTML
+  function updateTahunan() {
+    const gaji = parseFloat(document.getElementById('input-gaji')?.value) || 0;
+    const lain = parseFloat(document.getElementById('input-lain')?.value) || 0;
+    const tahunanEl = document.getElementById('input-tahunan');
+    if (tahunanEl) tahunanEl.value = Math.round((gaji + lain) * 12);
+  }
 
+
+  // Event listener
+  document.addEventListener('DOMContentLoaded', function () {
     const gajiInput = document.getElementById('input-gaji');
     const lainInput = document.getElementById('input-lain');
-
-    if (gajiInput) {
-      gajiInput.addEventListener('input', updateTahunan);
-    }
-
-    if (lainInput) {
-      lainInput.addEventListener('input', updateTahunan);
-    }
-
+    if (gajiInput) gajiInput.addEventListener('input', updateTahunan);
+    if (lainInput) lainInput.addEventListener('input', updateTahunan);
   });
 
-  window.zakatToggleLang = function () {
-    currentLang = (currentLang === 'id') ? 'en' : 'id';
-    applyLang();
-  };
 
-  window.zakatToggleTheme = function () {
-    currentTheme = (currentTheme === 'dark') ? 'light' : 'dark';
-    applyTheme();
-  };
+  // ── Expose ke global scope ────────────────────────────────────────────────
+  // Dua fungsi ini dipanggil dari atribut HTML (onchange, onclick)
+  // jadi harus bisa diakses dari luar IIFE ini
 
   window.zakatSwitchType = zakatSwitchType;
-  window.zakatCalculate = zakatCalculate;
-
-
-  applyLang();
-  applyTheme();
+  window.zakatCalculate  = zakatCalculate;
 
 })();
