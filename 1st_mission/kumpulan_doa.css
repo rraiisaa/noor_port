@@ -1,341 +1,369 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+/* DOA RAMADHAN — doa-ramadhan.css
 
-:root {
-    --gold: #C9A84C;
-    --gold-light: #F0D080;
-    --gold-glow: #FFE08A;
-    --teal: #1A6B6B;
-    --teal-light: #2DB8A8;
+   CARA KERJA BILINGUAL (TANPA JS):
+   Karena di misi 1 ini kita ga boleh pakai js, jadi kita akalin aja 
+   global.js set data-lang di tag <html> waktu user klik tombol bahasa.
+   CSS di sini tinggal show/hide elemen .lang-id dan .lang-en
+   berdasarkan nilai atribut itu. Zero JS di komponen ini.
 
-    --bg-body: #0A0A1A;
-    --bg-header: linear-gradient(180deg, #060612 0%, #0d0d2b 40%, #0a1628 100%);
-    --bg-section: linear-gradient(180deg, #0a1628 0%, #091220 100%);
-    --bg-card: #0d1a2a;
-    --bg-modal: linear-gradient(135deg, #0d1a2a, #0a1220);
+   Default: bahasa Indonesia tampil, English disembunyikan.
+   Waktu data-lang="en" aktif: kebalik. */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap');
 
-    --text-main: #FDF6E3;
-    --text-muted: #fdf6e373;
-    --text-muted2: #fdf6e3a6;
 
-    --text-nav: #f0d08099;
-    --border-card: #c9a84c26;
-}
+/* Bilingual: show/hide berdasarkan data-lang di <html> */
+/* Default: tampilkan Indonesia, sembunyikan English */
+.lang-en { display: none; }
+.lang-id { display: inline; }
 
-[data-theme="light"] {
-    --bg-body: #f5f0e8;
-    --bg-section: linear-gradient(180deg, #f5f0e8 0%, #ede5d0 100%);
-    --bg-card: #ffffff;
-    --bg-modal: linear-gradient(135deg, #ffffff, #fdf8f0);
+/* Waktu bahasa diganti ke English lewat global.js */
+[data-lang="en"] .lang-id { display: none; }
+[data-lang="en"] .lang-en { display: inline; }
 
-    --text-main: #1a1208;
-    --text-muted: #1a120888;
-    --text-muted2: #1a1208bb;
+/* Khusus elemen block (p, div) — pakai block bukan inline */
+[data-lang="en"] p.lang-id,
+[data-lang="en"] div.lang-id { display: none; }
+[data-lang="en"] p.lang-en,
+[data-lang="en"] div.lang-en { display: block; }
 
-    --text-nav: #8b6914;
-    --border-card: #c9a84c33;
+p.lang-en, div.lang-en { display: none; }
+p.lang-id, div.lang-id { display: block; }
 
-    --shadow-card: 0 8px 40px #c9a84c15, 0 2px 12px #00000010;
-    --shadow-glow: 0 0 30px #c9a84c18;
 
-    --star-color: #8b6914;
-}
-
+/* Section wrapper*/
 .doa-section {
-    padding: 80px 24px;
-    overflow: hidden;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text-main);
-    min-height: 100vh;
-    margin-bottom: 20px;
-    position: relative;
+  background: var(--bg-section);
+  padding: 100px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow vibes */
+.doa-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,107,107,.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+
+/* Header section*/
+.doa-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
 }
 
 .doa-eyebrow {
-    text-align: center;
-    font-family: 'Lato', sans-serif;
-    font-size: 11px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
 }
 
-.doa-title {
-    text-align: center;
-    font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(24px, 4vw, 42px);
-    font-weight: 600;
-    line-height: 1.1;
-    margin: 0 0 18px;
-    letter-spacing: -0.01em;
-    background: linear-gradient(135deg,
-            var(--gold-light) 0%,
-            var(--gold) 50%,
-            var(--teal-light) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.doa-section-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(22px, 4vw, 40px);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--teal-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin-bottom: 16px;
 }
 
-.doa-subtitle {
-    text-align: center;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-}
-
-.doa-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.doa-card {
-    position: relative;
-    border-radius: 14px;
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--bg-card);
-    border: 1px solid var(--border-card);
-    box-shadow: 0 4px 30px #00000033;
-    opacity: 0;
-    transform: translateY(24px);
-    animation: doaCardIn .55s ease forwards;
-    transition:
-        border-color .4s,
-        box-shadow .4s,
-        transform .4s,
-        background .4s;
-}
-
-.doa-card:nth-child(1) { animation-delay: .10s; }
-.doa-card:nth-child(2) { animation-delay: .22s; }
-.doa-card:nth-child(3) { animation-delay: .34s; }
-.doa-card:nth-child(4) { animation-delay: .46s; }
-.doa-card:nth-child(5) { animation-delay: .58s; }
-.doa-card:nth-child(6) { animation-delay: .70s; }
-
-@keyframes doaCardIn {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.doa-img {
-    width: 100%;
-    aspect-ratio: 16/8.8;
-    object-fit: cover;
-    display: block;
-    filter: brightness(.85) saturate(.9);
-    transition: transform .5s ease, filter .5s ease;
-}
-
-.doa-card:hover .doa-img {
-    transform: scale(1.06);
-    filter: brightness(.5) saturate(.6);
-}
-
-.doa-img-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #0a162899 0%, #1a6b6b80 100%);
-    opacity: 0;
-    display: flex;
-    align-items: flex-end;
-    padding: 16px;
-    transition: opacity .45s ease;
-}
-
-.doa-card:hover .doa-img-overlay { opacity: 1; }
-
-.doa-body { padding: 22px 22px 24px; }
-
-.doa-card-tag {
-    display: block;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin: 0 0 10px;
-    transition: color .3s;
-}
-
-.doa-card-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-main);
-    margin: 0 0 10px;
-    line-height: 1.3;
-    transition: color .3s;
-}
-
-.doa-card-desc {
-    font-size: 13px;
-    line-height: 1.65;
-    color: var(--text-muted);
-    margin: 0 0 18px;
-    transition: color .3s;
+.doa-section-subtitle {
+  color: var(--text-muted2);
+  font-size: 15px;
+  font-weight: 300;
+  max-width: 500px;
+  margin: 0 auto 28px;
+  line-height: 1.7;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .doa-ornament {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin: 20px 0 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
 }
 
 .doa-ornament span {
-    display: block;
-    height: 1px;
-    width: 60px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
 .doa-ornament i {
-    color: var(--gold);
-    font-style: normal;
-    font-size: 18px;
+  font-style: normal;
+  color: var(--gold);
+  font-size: 12px;
 }
 
-.doa-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #c9a84cb3;
-    text-decoration: none;
-    transition: color .3s, gap .3s;
+
+/* Grid dua kolom */
+.doa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto 48px;
 }
 
-.doa-link:hover { color: var(--gold-light); gap: 10px; }
-
-.doa-modal-bg {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    background: #060612d9;
-    backdrop-filter: blur(6px);
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+@media (max-width: 768px) {
+  .doa-grid { grid-template-columns: 1fr; gap: 40px; }
 }
 
-.doa-modal-bg.open {
-    display: flex;
-    animation: fadeIn .3s ease;
+
+/* Header tiap kolom */
+.doa-column-header {
+  text-align: center;
+  padding: 28px 20px 24px;
+  border-radius: 16px 16px 0 0;
+  margin-bottom: 0;
+  position: relative;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+.doa-column-header.sahur {
+  background: linear-gradient(135deg, #1a6b6b40, #1a6b6b14);
+  border: 1px solid rgba(45,184,168,.2);
+  border-bottom: none;
 }
 
-.doa-modal {
-    background: var(--bg-modal);
-    border: 1px solid #c9a84c59;
-    border-radius: 18px;
-    max-width: 560px;
-    width: 100%;
-    padding: 40px 36px 36px;
-    position: relative;
-    box-shadow:
-        0 30px 80px #000000b3,
-        0 0 50px #c9a84c14;
-    animation: slideUp .35s ease;
+.doa-column-header.iftar {
+  background: linear-gradient(135deg, #c9a84c2e, #c9a84c0f);
+  border: 1px solid #c9a84c33;
+  border-bottom: none;
 }
 
-@keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to   { transform: translateY(0);    opacity: 1; }
+.doa-column-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 12px #c9a84c66);
 }
 
-.modal-close {
-    position: absolute;
-    top: 16px;
-    right: 18px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #c9a84c80;
-    font-size: 22px;
-    /* FIX: pastikan tombol selalu di atas dan bisa diklik */
-    z-index: 10;
-    line-height: 1;
-    padding: 4px 8px;
+.doa-column-header h3 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin-bottom: 6px;
 }
 
-.modal-tag {
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--teal-light);
-    margin-bottom: 10px;
+.doa-column-header p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.modal-title {
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--gold-light);
-    margin-bottom: 6px;
+
+/* Kartu doa (pakai <details> buat expand/collapse CSS-only) */
+.doa-card {
+  background: var(--bg-card);
+  border-left: 1px solid var(--border-card);
+  border-right: 1px solid var(--border-card);
+  border-bottom: 1px solid var(--border-card);
+  transition: background .3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.modal-arabic {
-    font-family: 'Amiri', serif;
-    font-size: 22px;
-    color: var(--gold);
-    text-align: right;
-    direction: rtl;
-    line-height: 2;
-    background: #c9a84c0f;
-    border: 1px solid #c9a84c26;
-    border-radius: 10px;
-    padding: 16px 20px;
-    margin: 16px 0;
+/* Kartu pertama setelah header kolom — sambung dengan header */
+.doa-column-header.sahur + .doa-card {
+  border-top: none;
+}
+.doa-column-header.iftar + .doa-card {
+  border-top: none;
 }
 
-.modal-latin {
-    font-style: italic;
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-    line-height: 1.7;
+/* Kartu terakhir — bulatkan sudut bawah */
+.doa-card:last-child {
+  border-radius: 0 0 14px 14px;
 }
 
-.modal-arti {
-    font-size: 14px;
-    color: var(--text-muted2);
-    line-height: 1.8;
-    border-left: 2px solid var(--gold);
-    padding-left: 14px;
+/* Hover state kartu */
+.doa-card:hover {
+  background: rgba(201,168,76,.04);
 }
 
-@media (max-width: 1024px) { .zikir-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 900px)  { .doa-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
-@media (max-width: 600px) {
-    .doa-section  { padding: 48px 16px 56px; }
-    .doa-grid     { grid-template-columns: 1fr; gap: 14px; }
-    .doa-title    { font-size: clamp(20px, 6vw, 30px); }
-    .doa-subtitle { font-size: 12px; margin-bottom: 30px; }
-    .doa-img-overlay { opacity: .7; }
-    .doa-modal    { padding: 32px 20px 28px; border-radius: 14px; max-height: 90vh; overflow-y: auto; }
-    .modal-title  { font-size: 20px; }
-    .modal-arabic { font-size: 18px; padding: 12px 14px; }
-    .modal-latin  { font-size: 12px; }
-    .modal-arti   { font-size: 13px; }
+/* Garis aksen kiri saat kartu terbuka */
+.doa-card[open] {
+  background: rgba(201,168,76,.03);
 }
+
+.doa-card[open]::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold), var(--teal-light));
+  border-radius: 0 2px 2px 0;
+}
+
+
+/* Summary (bagian yang diklik) */
+.doa-card-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  outline: none;
+  transition: background .2s ease;
+}
+
+/* Buang marker default browser */
+.doa-card-summary::-webkit-details-marker { display: none; }
+.doa-card-summary::marker { display: none; }
+
+.doa-card-summary:hover { background: rgba(201,168,76,.05); }
+
+.doa-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.doa-card-meta h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.doa-tag {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+}
+
+.sahur-tag {
+  background: #2db8a81f;
+  color: var(--teal-light);
+  border: 1px solid #2db8a840;
+}
+
+.iftar-tag {
+  background: #c9a84c1f;
+  color: var(--gold);
+  border: 1px solid #c9a84c40;
+}
+
+/* Ikon chevron — rotate saat terbuka */
+.doa-chevron {
+  font-size: 12px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform .3s ease, color .2s ease;
+  display: inline-block;
+}
+
+.doa-card[open] .doa-chevron {
+  transform: rotate(90deg);
+  color: var(--gold);
+}
+
+
+/* Body kartu (isi doa) */
+.doa-card-body {
+  padding: 0 20px 20px 20px;
+  border-top: 1px solid var(--border-card);
+}
+
+/* Teks Arab — paling besar, rata kanan */
+.doa-arabic {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(22px, 3.5vw, 30px);
+  font-weight: 500;
+  color: var(--gold-light);
+  text-align: right;
+  direction: rtl;
+  line-height: 2;
+  margin: 18px 0 12px;
+  letter-spacing: 0;
+  text-shadow: 0 0 20px rgba(201,168,76,.2);
+}
+
+/* Transliterasi Latin */
+.doa-latin {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--teal-light);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+/* Terjemahan */
+.doa-translation {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  color: var(--text-muted2);
+  line-height: 1.75;
+  padding: 10px 14px;
+  background: rgba(201,168,76,.04);
+  border-left: 2px solid rgba(201,168,76,.25);
+  border-radius: 0 8px 8px 0;
+}
+
+
+/* Notes */
+.doa-footer-note {
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-card);
+}
+
+
+/* Light mode */
+[data-theme="light"] .doa-card {
+  box-shadow: var(--shadow-card, 0 2px 12px rgba(0,0,0,.06));
+}
+
+[data-theme="light"] .doa-arabic {
+  text-shadow: none;
+}
+
+[data-theme="light"] .doa-card[open]::before {
+  background: linear-gradient(180deg, var(--gold), var(--teal));
+}
+
+
+/* Responsive fine-tuning */
 @media (max-width: 480px) {
-    .doa-section    { padding: 36px 12px 48px; }
-    .doa-card-title { font-size: 18px; }
-    .doa-body       { padding: 14px 16px 16px; }
-    .doa-img        { aspect-ratio: 16 / 8; }
-}
-@media (max-width: 380px) {
-    .doa-modal    { padding: 28px 14px 22px; }
-    .modal-arabic { font-size: 16px; }
+  .doa-section { padding: 70px 16px 60px; }
+  .doa-card-summary { padding: 14px 16px; }
+  .doa-card-body { padding: 0 16px 18px; }
+  .doa-card-meta { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .doa-arabic { font-size: 20px; }
 }

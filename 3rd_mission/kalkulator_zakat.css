@@ -1,52 +1,10 @@
 /* Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500&display=swap');
 
-/* Css Variable */
-:root {
-  --gold: #C9A84C;
-  --gold-light: #F0D080;
-  --gold-glow: #FFE08A;
-  --teal: #1A6B6B;
-  --teal-light: #2DB8A8;
-
-  --bg-body: #0A0A1A;
-  --bg-header: linear-gradient(180deg, #060612 0%, #0d0d2b 40%, #0a1628 100%);
-  --bg-section: linear-gradient(180deg, #0a1628 0%, #091220 100%);
-  --bg-card: #0d1a2a;
-  --bg-modal: linear-gradient(135deg, #0d1a2a, #0a1220);
-  --text-main: #FDF6E3;
-  --text-muted: #fdf6e373;
-  --text-muted2: #fdf6e3a6;
-  --text-nav: #f0d08099;
-  --border-card: #c9a84c26;
-  --radius: 15px;
-  --radius-sm: 12px;
-}
-
-/* CSS Variavle (Light Mode) */
-[data-theme="light"] {
-  --bg-body: #f5f0e8;
-  --bg-section: linear-gradient(180deg, #f5f0e8 0%, #ede5d0 100%);
-  --bg-card: #ffffff;
-  --bg-modal: linear-gradient(135deg, #ffffff, #fdf8f0);
-  --surface-0: #f0ebe0;
-  --surface-1: #ffffff;
-  --surface-2: #fdf8f0;
-  --surface-3: #f8f2e6;
-  --input-bg: #fdf8f0;
-  --input-border: #c9a84c55;
-  --input-focus: #c9a84caa;
-  --text-main: #1a1208;
-  --text-muted: #1a120888;
-  --text-muted2: #1a1208bb;
-  --text-nav: #8b6914;
-  --border-card: #c9a84c33;
-  --shadow-card: 0 8px 40px #c9a84c15, 0 2px 12px #00000010;
-  --shadow-glow: 0 0 30px #c9a84c18;
-  --star-color: #8b6914;
-}
-
 .zakat-calculator {
+   background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,107,107,.06) 0%, transparent 60%) !important;
   padding: 80px 24px;
   position: relative;
   overflow: hidden;
@@ -57,6 +15,9 @@
 
 /* Header */
 .zakat-header {
+   background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,107,107,.06) 0%, transparent 60%) !important;
   text-align: center;
   margin-bottom: 20px;
   position: relative;

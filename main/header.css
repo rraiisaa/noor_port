@@ -55,6 +55,10 @@ body {
 /* bintang */
 .stars-layer {
     position: fixed;
+     background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,107,107,.06) 0%, transparent 60%) !important;
+    position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
@@ -272,7 +276,7 @@ header {
     position: relative;
     z-index: 5;
     margin-top: 6px;
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel', serif;
     font-size: clamp(36px, 7vw, 80px);
     font-weight: 700;
     background: linear-gradient(180deg, var(--gold-glow) 0%, var(--gold) 50%, #8B6914 100%);

@@ -26,11 +26,11 @@
     <!-- Global CSS -->
     <!-- <link rel="stylesheet" href="/main/style.css"> -->
     <link rel="stylesheet" href="/main/header.css">
-    
     <link rel="stylesheet" href="/main/footer.css">
     <link rel="stylesheet" href="/1st_mission/kumpulan_doa.css">
     <link rel="stylesheet" href="/2nd_mission/hitung_dzikir.css">
     <link rel="stylesheet" href="/3rd_mission/kalkulator_zakat.css">
+    <link rel="stylesheet" href="/4rd_mission/todo-list.css">
 </head>
 
 <body>
@@ -42,13 +42,14 @@
     <div id="doa-component"></div>
     <div id="zikir-component"></div>
     <div id="zakat-component"></div>
+    <div id="todo-component"></div>
     <div id="footer-component"></div>
 
     <!-- Global Script -->
     <script src="/main/script.js"></script>
-    <script src="/1st_mission/kumpulan_doa.js"></script>
     <script src="/2nd_mission/hitung_dzikir.js"></script>
     <script src="/3rd_mission/kalkulator_zakat.js"></script>
+    <script src="/4rd_mission/todo-list.js"></script>
 
     <!-- Load Components -->
     <script>
@@ -71,6 +72,9 @@
             });
 
         loadComponent("zakat-component", "/3rd_mission/components/kalkulator_zakat.html");
+        loadComponent("todo-component", "/4rd_mission/component/todo-list.html", () => {
+    initRamadhanTodo();
+});
         loadComponent("footer-component", "/main/footer.html");
     </script>
 

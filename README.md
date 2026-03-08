@@ -41,7 +41,27 @@ walaupun pusing karena harus pisahin filenya satu - satu, tapi aku seneng jadiny
 ## Main Promblem #1 
 1. Hasil Zakat yang harus dibayarkan ga akurat
 2. wrapper buat select zakat ga bisa switch color, karena ngikutin settingan theme. 
+3. Language Todo-List List ga aktif, karena state nya numpuk di todo.js dan script js (global)
 
 ## How i solve
 1. Gernyata ada kesalahan di rumusnya (typo) yang harusnya pakai tanda * untuk bagi harga emas dengan 85 malah pakai ^ (sampe mau juling mata, gara gara nyari errornya) & ga boleh pakai titik.
 2. akhirnya di akalin nambahin inline css di html nya
+3. Masukin semua data language ke global js. biar arahnya jelas dan testruktur. jadi sekarang website cuma punya 1 source i18n. dan hapus lang di local js todo dan ganti T() biar baca dari i18n global aja.
+
+todo.js sekarang cuma "consume" text dari:
+i18n[currentLang].todo
+
+#### 🤔 Why?:
+kenapa gini?
+biar:
+- language switch global langsung affect semua page
+- code ga double i18n system
+- maintain lebih gampang
+
+kalau mau nambah text todo baru:
+tinggal edit di global.js bagian:
+i18n.id.todo
+i18n.en.todo
+
+jangan bikin LANG baru di todo.js lagi
+nanti jadi duplicate system lagi

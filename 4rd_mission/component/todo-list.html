@@ -1,0 +1,125 @@
+<section class="ramadhan-checker" id="ramadhanChecker">
+
+  <!-- Header -->
+  <div class="todolist-header">
+    <div class="todolist-eyebrow" id="todolistEyebrow">To do list</div>
+    <h2 class="todolist-title" id="todolistTitle">Ramadhan To-Do List</h2>
+    <p class="todolist-subtitle" id="todolistSubtitle">Pantau dan tingkatkan konsistensi ibadah selama bulan Ramadhan</p>
+
+    <div class="zakat-ornament">
+      <span></span>
+      <i>✦</i>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- Progress Harian -->
+  <div class="ramadhan-progress-card">
+    <div class="ramadhan-progress-top">
+      <span class="ramadhan-progress-label">Progress Hari Ini</span>
+      <span class="ramadhan-progress-pct" id="ramadhanTotalPct">0%</span>
+    </div>
+    <div class="ramadhan-progress-track">
+      <div class="ramadhan-progress-fill" id="ramadhanTotalBar" style="width:0%"></div>
+    </div>
+    <p class="ramadhan-progress-msg" id="ramadhanProgressMsg"></p>
+  </div>
+
+  <!-- Tab Nav -->
+  <div class="ramadhan-tabs">
+    <button class="ramadhan-tab active" data-tab="shalat">🕌 Shalat</button>
+    <button class="ramadhan-tab" data-tab="quran">📖 Qur'an</button>
+    <button class="ramadhan-tab" data-tab="puasa">🌙 Puasa</button>
+    <button class="ramadhan-tab" data-tab="dzikir">📿 Dzikir</button>
+  </div>
+
+  <!-- Panels -->
+  <div class="ramadhan-panels">
+
+    <!-- Tab 1: Shalat -->
+    <div class="ramadhan-panel active" id="panel-shalat">
+      <div class="ramadhan-panel-header">
+        <h3>Shalat Wajib Hari Ini</h3>
+        <span class="ramadhan-badge" id="shalatStatus"></span>
+      </div>
+      <div class="ramadhan-progress-mini">
+        <div class="ramadhan-progress-track">
+          <div class="ramadhan-progress-fill" id="shalatBar" style="width:0%"></div>
+        </div>
+        <span id="shalatPct">0%</span>
+      </div>
+      <div class="ramadhan-checklist" id="shalatList"></div>
+      <button class="ramadhan-save-btn" data-save="shalat">💾 Simpan Progress</button>
+    </div>
+
+    <!-- Tab 2: Qur'an -->
+    <div class="ramadhan-panel" id="panel-quran">
+      <div class="ramadhan-panel-header">
+        <h3 id="quranPanelTitle">Baca Qur'an</h3>
+        <span class="ramadhan-badge" id="quranStatus"></span>
+      </div>
+      <div class="ramadhan-progress-mini">
+        <div class="ramadhan-progress-track">
+          <div class="ramadhan-progress-fill" id="quranBar" style="width:0%"></div>
+        </div>
+        <span id="quranPct">0%</span>
+      </div>
+      <div class="ramadhan-input-group">
+        <label id="lblTargetHalaman">Target Halaman</label>
+        <input type="number" id="quranTarget" min="1" placeholder="20" class="ramadhan-input">
+      </div>
+      <div class="ramadhan-input-group">
+        <label id="lblHalamanDibaca">Halaman Dibaca</label>
+        <input type="number" id="quranRead" min="0" placeholder="0" class="ramadhan-input">
+      </div>
+      <label class="ramadhan-check-item">
+        <input type="checkbox" id="quranDone">
+        <span class="ramadhan-check-box"></span>
+        <span class="ramadhan-check-text" id="lblMarkDone">Tandai target selesai ✓</span>
+      </label>
+      <button class="ramadhan-save-btn" data-save="quran">💾 Simpan Progress</button>
+    </div>
+
+    <!-- Tab 3: Puasa -->
+    <div class="ramadhan-panel" id="panel-puasa">
+      <div class="ramadhan-panel-header">
+        <h3 id="puasaPanelTitle">Puasa Ramadhan</h3>
+        <span class="ramadhan-badge" id="puasaStatus"></span>
+      </div>
+      <div class="ramadhan-progress-mini">
+        <div class="ramadhan-progress-track">
+          <div class="ramadhan-progress-fill" id="puasaBar" style="width:0%"></div>
+        </div>
+        <span id="puasaPct">0%</span>
+      </div>
+      <label class="ramadhan-check-item ramadhan-today-fast">
+        <input type="checkbox" id="puasaToday">
+        <span class="ramadhan-check-box"></span>
+        <span class="ramadhan-check-text" id="lblPuasaToday">Saya sudah puasa hari ini ✓</span>
+      </label>
+      <div class="ramadhan-calendar" id="puasaCalendar"></div>
+      <button class="ramadhan-save-btn" data-save="puasa">💾 Simpan Progress</button>
+    </div>
+
+    <!-- Tab 4: Dzikir (Custom To-Do) -->
+    <div class="ramadhan-panel" id="panel-dzikir">
+      <div class="ramadhan-panel-header">
+        <h3 id="dzikirPanelTitle">To-Do Dzikir</h3>
+        <span class="ramadhan-badge" id="dzikirStatus"></span>
+      </div>
+      <div class="ramadhan-progress-mini">
+        <div class="ramadhan-progress-track">
+          <div class="ramadhan-progress-fill" id="dzikirBar" style="width:0%"></div>
+        </div>
+        <span id="dzikirPct">0%</span>
+      </div>
+      <div class="ramadhan-todo-add">
+        <input type="text" id="dzikirTodoInput" class="ramadhan-input ramadhan-todo-input" placeholder="Tambah dzikir / ibadah...">
+        <button class="ramadhan-todo-add-btn" id="dzikirTodoAddBtn" type="button">＋</button>
+      </div>
+      <div class="ramadhan-checklist" id="dzikirList"></div>
+      <button class="ramadhan-save-btn" data-save="dzikir">💾 Simpan Progress</button>
+    </div>
+
+  </div>
+</section>

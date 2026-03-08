@@ -1,0 +1,531 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500&display=swap');
+
+/* Reset & Scope */
+.ramadhan-checker *,
+.ramadhan-checker *::before,
+.ramadhan-checker *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.ramadhan-checker {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-body);
+  color: var(--text-muted);
+  padding: 72px 20px 80px;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* Ambient glow */
+.ramadhan-checker::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Header */
+.todolist-header {
+  text-align: center;
+  margin-bottom: 42px;
+  position: relative;
+}
+
+.todolist-header .todolist-eyebrow {
+  margin-top: 25px;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.todolist-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(24px, 4vw, 42px);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--teal-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.todolist-subtitle {
+  color: var(--text-muted2);
+  font-size: 15px;
+  font-weight: 300;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+/* Card */
+.ramadhan-progress-card {
+  background: var(--bg-card);
+  border: 1px solid #c9a84c2e;
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  max-width: 700px;
+  margin: 80px auto 28px;
+  box-shadow: 0 8px 40px #00000040, 0 0 0 1px var(--border-card);
+  transition: background var(--transition);
+}
+
+.ramadhan-progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.ramadhan-progress-label {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ramadhan-progress-pct {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.ramadhan-progress-track {
+  height: 8px;
+  background: var(--border-card);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.ramadhan-progress-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--teal-light), var(--gold));
+  transition: width .8s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0 0 12px #c9a84c59;
+}
+
+.ramadhan-progress-msg {
+  font-size: 13px;
+  color: var(--teal-light);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* Tabs */
+.ramadhan-tabs {
+  font-family: "DM Sand", 'sans-serif';
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  max-width: 700px;
+  margin: 0 auto 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 5px;
+  flex-wrap: wrap;
+}
+
+.ramadhan-tab {
+  flex: 1;
+  min-width: 80px;
+  padding: 10px 8px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.ramadhan-tab:hover {
+  color: var(--gold);
+}
+
+.ramadhan-tab.active {
+  background: linear-gradient(135deg, var(--border-card), var(--teal));
+  color: var(--gold-light);
+  box-shadow: 0 2px 12px var(--border-card);
+}
+
+/* Panels */
+.ramadhan-panels {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.ramadhan-panel {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius);
+  padding: 28px;
+  animation: ramadhan-panelIn .35s ease;
+  transition: background var(--transition);
+}
+
+.ramadhan-panel.active {
+  display: block;
+}
+
+@keyframes ramadhan-panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ramadhan-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.ramadhan-panel-header h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+
+.ramadhan-badge {
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #2db8a81f;
+  color: var(--teal-light);
+  border: 1px solid var(--teal);
+  transition: all var(--transition);
+}
+
+/* Mini Progress */
+.ramadhan-progress-mini {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.ramadhan-progress-mini .ramadhan-progress-track {
+  flex: 1;
+}
+
+.ramadhan-progress-mini span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  min-width: 36px;
+  text-align: right;
+}
+
+/* Checklist */
+.ramadhan-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.ramadhan-check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-size: 14px;
+  color: var(--text-main);
+  user-select: none;
+}
+
+.ramadhan-check-item:hover {
+  border-color: var(--border-card);
+  background: #c9a84c0d;
+}
+
+.ramadhan-check-item input[type="checkbox"] {
+  display: none;
+}
+
+.ramadhan-check-box {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  font-size: 13px;
+}
+
+.ramadhan-check-item input:checked~.ramadhan-check-box {
+  background: linear-gradient(135deg, var(--teal), var(--teal-light));
+  border-color: var(--teal-light);
+  color: var(--text-muted2);
+}
+
+.ramadhan-check-item input:checked~.ramadhan-check-box::after {
+  content: '✓';
+}
+
+/* ── FIX: Pakai .ramadhan-check-text bukan span:last-child ── */
+/* span:last-child ga works di dzikir karena ada <button> setelahnya */
+.ramadhan-check-item input:checked~.ramadhan-check-text {
+  color: var(--teal-light);
+  text-decoration: line-through;
+  text-decoration-color: var(--teal);
+}
+
+/* Input Groups */
+.ramadhan-input-group {
+  margin-bottom: 14px;
+}
+
+.ramadhan-input-group label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.ramadhan-input {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-mainext);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  transition: border-color var(--transition);
+  outline: none;
+}
+
+.ramadhan-input:focus {
+  border-color: var(--gold);
+}
+
+.ramadhan-input::placeholder {
+  color: var(--muted);
+}
+
+/* Today fast */
+.ramadhan-today-fast {
+  margin-bottom: 20px;
+  border: 1px solid #c9a84c40 !important;
+}
+
+/* Puasa Calendar */
+.ramadhan-calendar {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.ramadhan-cal-day {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all var(--transition);
+  color: var(--muted);
+}
+
+.ramadhan-cal-day:hover {
+  border-color: var(--border-card);
+  color: var(--gold);
+}
+
+.ramadhan-cal-day.done {
+  background: linear-gradient(135deg, var(--teal), var(--teal));
+  border-color: var(--teal-light);
+  color: var(--teal-light);
+  font-size: 16px;
+}
+
+/* To-Do Add Row */
+.ramadhan-todo-add {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.ramadhan-todo-input {
+  flex: 1;
+  margin: 0 !important;
+}
+
+.ramadhan-todo-add-btn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--border-card);
+  background: linear-gradient(135deg, var(--border-card), var(--teal));
+  color: var(--gold-light);
+  font-size: 22px;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ramadhan-todo-add-btn:hover {
+  background: linear-gradient(135deg, var(--border-card), var(--teal));
+  box-shadow: 0 2px 12px #c9a84c26;
+  transform: scale(1.05);
+}
+
+/* To-Do Delete Button */
+.ramadhan-todo-del {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #fdf6e340;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  transition: color var(--transition);
+  flex-shrink: 0;
+}
+
+.ramadhan-todo-del:hover {
+  color: #e05a5a;
+}
+
+/* Empty State */
+.ramadhan-todo-empty {
+  text-align: center;
+  padding: 24px 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* Save Button */
+.ramadhan-save-btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 10px;
+  border: 1px solid var(--border-card);
+  background: linear-gradient(135deg, var(--border-card), var(--teal));
+  color: var(--gold-light);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-top: 4px;
+}
+
+.ramadhan-save-btn:hover {
+  background: linear-gradient(135deg, var(--border-card), var(--teal));
+  box-shadow: 0 4px 20px #c9a84c26;
+  transform: translateY(-1px);
+}
+
+.ramadhan-save-btn:active {
+  transform: translateY(0);
+}
+
+/* Toast */
+.ramadhan-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 24px;
+  background: #0d1a2a;
+  border: 1px solid var(--teal);
+  color: var(--teal-light);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 8px 30px #00000066;
+  z-index: 9999;
+  animation: ramadhan-toastIn .3s ease;
+  pointer-events: none;
+}
+
+@keyframes ramadhan-toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*  Responsiv  */
+@media (max-width: 600px) {
+  .ramadhan-checker {
+    padding: 48px 14px 60px;
+  }
+
+  .ramadhan-panel {
+    padding: 20px 16px;
+  }
+
+  .ramadhan-calendar {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .ramadhan-tabs {
+    gap: 2px;
+    padding: 4px;
+  }
+
+  .ramadhan-tab {
+    font-size: 11px;
+    padding: 9px 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  .ramadhan-calendar {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

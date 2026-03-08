@@ -1,13 +1,24 @@
+//  GLOBAL.JS — Noor Port+ Ramadhan
+//  CATATAN PENTING:
+//  → setLang dan toggleTheme cuma boleh ada SATU definisi
+//  → Dulu ada duplikat — yang kedua nimpa yang pertama
+//    dan yang kedua ga punya localStorage + notifyLangComponents
+//  → Udah difix semua di sini
+
+/* DATA BAHASA GLOBAL */
 const i18n = {
   id: {
+    // Section Header
     Headersubtitle: '1446 H · Bulan Penuh Berkah · 2026 M',
     cdLabels: ['Hari', 'Jam', 'Menit', 'Detik'],
     nav: ['Beranda', 'Jadwal Sholat', 'Kultum', 'Resep Sahur', 'Donasi'],
-    doaEyebrow: 'Doa',
-    doaTitle: 'Kumpulan Doa Ramadhan',
-    doaSubtitle: 'Kata-kata penuh cahaya untuk setiap momen di bulan suci.',
-    readDoa: 'Baca Doa',
-    mTag: 'Doa',
+
+    // Section Doa
+doaRamadhanEyebrow: 'Doa Harian',
+  doaRamadhanTitle: 'Doa Sahur & Buka Puasa',
+  doaRamadhanSubtitle: 'Awali sahurmu dengan niat yang tulus, akhiri harimu dengan syukur yang dalam.',
+
+        // Section Dzikir
     zikirEyebrow: 'Dzikir',
     zikirTitle: 'Hitung Dzikir',
     zikirSubtitle: 'Kata-kata penuh lindungan untuk hari - hari kita.',
@@ -15,21 +26,24 @@ const i18n = {
     zikirSubs: {
       subhanallah: 'Maha Suci Allah',
       alhamdulillah: 'Segala Puji Bagi Allah',
-      allahuakbar: 'Allah Maha Besar',
+      allahuakbar: 'Allah Maha Besar'
     },
+
+        // Section Footer
     footerFollowTitle: 'Ikuti Kami',
     footerNavTitle: 'Navigasi',
     fnHome: 'Beranda',
     fnPrayer: 'Kumpulan Doa Ramadhan',
     fnDzikir: 'Baca Dzikir',
     fnZakat: 'Hitung Zakat',
-    fnIndex: 'Index',
+    fnIndex: 'Todo List',
+
+    // Section Zakat
     title: 'Kalkulator Zakat',
     subtitle: 'Hitung kewajiban zakat Anda dengan mudah dan akurat sesuai syariat Islam',
     type_label: 'Jenis Zakat',
     opt_penghasilan: 'Zakat Penghasilan',
     opt_emas: 'Zakat Emas',
-    label_type: 'Gaji Bulanan',
     label_gaji: 'Gaji Bulanan',
     label_lain: 'Penghasilan Lain',
     label_gram: 'Jumlah Emas',
@@ -47,18 +61,45 @@ const i18n = {
     status_wajib: 'Wajib Zakat',
     status_tidak: 'Belum Wajib',
     err_required: 'Kolom ini wajib diisi',
+
+        // Section Todo List
+    shalatTitle: 'Shalat Wajib Hari Ini',
+    shalatItems: ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya'],
+    shalatStatus: ['Belum optimal', 'Cukup baik', 'MasyaAllah lengkap! 🌟'],
+    quranTitle: "Baca Qur'an",
+    quranStatus: ['Masih bisa ditambah', 'Hampir selesai', 'Target tercapai 🎉'],
+    targetLabel: 'Target Halaman',
+    readLabel: 'Halaman Dibaca',
+    markDone: 'Tandai target selesai ✓',
+    puasaTitle: 'Puasa Ramadhan',
+    puasaStatus: ['Awal Ramadhan, semangat!', 'Pertahankan konsistensi!', 'Menuju kemenangan! 🏆'],
+    puasaTodayLabel: 'Saya sudah puasa hari ini ✓',
+    dzikirTitle: 'To-Do Dzikir',
+    dzikirEmpty: 'Belum ada to-do. Tambahkan ibadah di atas ✨',
+    dzikirStatus: ['Belum ada to-do', 'Alhamdulillah teruskan', 'Hati semakin tenang 🌿'],
+    progressLabel: 'Progress Hari Ini',
+    progressMsgs: ['Mulai perlahan, Ramadhan masih panjang 🌙', 'Bagus! Tingkatkan lagi ✨', 'MasyaAllah luar biasa! 🌟'],
+    saved: '✓ Progress tersimpan!',
+    saveBtn: '💾 Simpan Progress',
+    todoPlaceholder: 'Tambah dzikir / ibadah...',
+    tabs: ['🕌 Shalat', "📖 Qur'an", '🌙 Puasa', '📿 Dzikir'],
+
     footerCopy: '© 2026 Noor Port+. Hak Cipta Dilindungi.',
     footerTagline: 'Temani Ramadhanmu dengan doa, dzikir, dan inspirasi setiap hari'
   },
+
   en: {
+    // Section Header
     Headersubtitle: '1446 H · Month of Blessings · 2026 M',
     cdLabels: ['Days', 'Hours', 'Minutes', 'Seconds'],
     nav: ['Home', 'Prayer Times', 'Lecture', 'Sahur Recipes', 'Donate'],
-    doaEyebrow: 'Prayer',
-    doaTitle: 'Ramadhan Prayer Collection',
-    doaSubtitle: 'Words of light for every moment in this sacred month.',
-    readDoa: 'Read Prayer',
-    mTag: 'Prayer',
+
+    // Section Doa
+ doaRamadhanEyebrow: 'Daily Prayers',
+  doaRamadhanTitle: 'Suhoor & Iftar Prayers',
+  doaRamadhanSubtitle: 'Begin your suhoor with sincere intention, end your day with deep gratitude.',
+
+    // Section Dzikr
     zikirEyebrow: 'Dhikr',
     zikirTitle: 'Dhikr Counter',
     zikirSubtitle: 'Words of protection for our daily lives.',
@@ -66,15 +107,10 @@ const i18n = {
     zikirSubs: {
       subhanallah: 'Glory be to Allah',
       alhamdulillah: 'All Praise be to Allah',
-      allahuakbar: 'Allah is the Greatest',
+      allahuakbar: 'Allah is the Greatest'
     },
-    footerFollowTitle: 'Follow Us',
-    footerNavTitle: 'Navigation',
-    fnHome: 'Home',
-    fnPrayer: 'Ramadhan Prayer Collection',
-    fnDzikir: 'Dhikr Counter',
-    fnZakat: 'Zakat Calculator',
-    fnIndex: 'Index',
+
+    // Section Zakat
     title: 'Zakat Calculator',
     subtitle: 'Calculate your zakat obligation easily and accurately according to Islamic law',
     type_label: 'Zakat Type',
@@ -97,116 +133,192 @@ const i18n = {
     status_wajib: 'Zakat Obligatory',
     status_tidak: 'Not Yet Obligatory',
     err_required: 'This field is required',
+
+    // Section Todo List
+    shalatTitle: "Today's obligatory prayers",
+    todolistEyebrow: 'To do list',
+    todolistTitle: 'Ramadhan To do list',
+    todolistSubtitle: 'Monitor and improve the consistency of worship during Ramadan',
+    shalatItems: ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'],
+    shalatStatus: ['Not optimal', 'Doing well', 'MashaAllah, complete! 🌟'],
+    quranTitle: 'Quran Reading',
+    quranStatus: ['Still room to add', 'Almost there', 'Target reached 🎉'],
+    targetLabel: 'Target Pages',
+    readLabel: 'Pages Read',
+    markDone: 'Mark target as done ✓',
+    puasaTitle: 'Ramadhan Fasting',
+    puasaStatus: ['Early Ramadhan, keep going!', 'Stay consistent!', 'Towards victory! 🏆'],
+    puasaTodayLabel: 'I fasted today ✓',
+    dzikirTitle: 'Dhikr To-Do',
+    dzikirEmpty: 'No to-do yet. Add your ibadah above ✨',
+    dzikirStatus: ['No to-do yet', 'Alhamdulillah, continue', 'Heart at peace 🌿'],
+    progressLabel: "Today's Progress",
+    progressMsgs: ['Start slow, Ramadhan is long 🌙', 'Great! Keep it up ✨', 'MashaAllah amazing! 🌟'],
+    saved: '✓ Progress saved!',
+    saveBtn: '💾 Save Progress',
+    todoPlaceholder: 'Add dhikr / ibadah...',
+    tabs: ['🕌 Prayers', '📖 Quran', '🌙 Fasting', '📿 Dhikr'],
+
+    // Section Footer
+    footerFollowTitle: 'Follow Us',
+    footerNavTitle: 'Navigation',
+    fnHome: 'Home',
+    fnPrayer: 'Ramadhan Prayer Collection',
+    fnDzikir: 'Dhikr Counter',
+    fnZakat: 'Zakat Calculator',
+    fnIndex: 'Index',
     footerCopy: '© 2026 Noor Port+. All rights reserved.',
     footerTagline: 'Accompany your Ramadhan with daily prayers, dhikr, and inspiration'
   }
 };
 
-/* State aktif */
-let currentLang = 'id';
-let currentTheme = 'dark';
 
-/* setLang — ganti bahasa semua teks sekaligus
-   Termasuk header dzikir + subtitle tiap card dzikir */
+/* STATE GLOBAL */
+let currentLang = localStorage.getItem('lang') || 'id';
+let currentTheme = localStorage.getItem('theme') || 'dark';
+
+
+/* SISTEM LISTENER BAHASA */
+// Komponen lain (misal todo.js) bisa daftar callback di sini
+// biar otomatis dipanggil pas bahasa diganti
+// Cara daftar: window.languageListeners.push(fn)
+window.languageListeners = [];
+
+function notifyLangComponents() {
+  window.languageListeners.forEach(fn => {
+    if (typeof fn === 'function') fn(currentLang);
+  });
+}
+
+
+/* GANTI BAHASA */
+// FIX: dulu ada 2 definisi setLang → yang kedua nimpa yang pertama
+// Sekarang cuma ada SATU, lengkap dengan localStorage + notifyLangComponents
 function setLang(lang) {
   currentLang = lang;
+  localStorage.setItem('lang', lang); // FIX: simpan ke localStorage biar ga hilang pas refresh
   document.documentElement.setAttribute('data-lang', lang);
+
   const t = i18n[lang];
 
-  document.querySelectorAll('.lang-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.lang === lang);
+  // toggle tombol bahasa aktif
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 
-  const safeSet = (id, value) => {
+  const setText = (id, val) => {
     const el = document.getElementById(id);
-    if (el) el.textContent = value;
+    if (el && val !== undefined) el.textContent = val;
   };
 
-  safeSet('headerSubtitle', t.Headersubtitle);
-  safeSet('lblDays', t.cdLabels[0]);
-  safeSet('lblHours', t.cdLabels[1]);
-  safeSet('lblMins', t.cdLabels[2]);
-  safeSet('lblSecs', t.cdLabels[3]);
+  // header
+  setText('headerSubtitle', t.Headersubtitle);
 
+  // countdown
+  setText('lblDays', t.cdLabels[0]);
+  setText('lblHours', t.cdLabels[1]);
+  setText('lblMins', t.cdLabels[2]);
+  setText('lblSecs', t.cdLabels[3]);
+
+  // navigasi
   document.querySelectorAll('#mainNav a').forEach((a, i) => {
     if (t.nav[i]) a.textContent = t.nav[i];
   });
 
-  // Header Doa
-  safeSet('doaEyebrow', t.doaEyebrow);
-  safeSet('doaTitle', t.doaTitle);
-  safeSet('doaSubtitle', t.doaSubtitle);
-
-  // Header Dzikir
-  safeSet('zikirEyebrow', t.zikirEyebrow);
-  safeSet('zikirTitle', t.zikirTitle);
-  safeSet('zikirSubtitle', t.zikirSubtitle);
-
+  // section doa
+  // section doa ramadhan
+  setText('doaRamadhanEyebrow',  t.doaRamadhanEyebrow);
+  setText('doaRamadhanTitle',    t.doaRamadhanTitle);
+  setText('doaRamadhanSubtitle', t.doaRamadhanSubtitle);
+  
+  // section dzikir
+  setText('zikirEyebrow', t.zikirEyebrow);
+  setText('zikirTitle', t.zikirTitle);
+  setText('zikirSubtitle', t.zikirSubtitle);
   document.querySelectorAll('.zikir-card').forEach(card => {
     const key = card.dataset.zikirKey;
     const sub = card.querySelector('.zikir-subtitle');
-    if (key && sub && t.zikirSubs[key]) {
-      sub.textContent = t.zikirSubs[key];
-    }
+    if (key && sub && t.zikirSubs[key]) sub.textContent = t.zikirSubs[key];
   });
 
-  // Footer
-  safeSet('footerFollowTitle', t.footerFollowTitle);
-  safeSet('footerNavTitle', t.footerNavTitle);
-  safeSet('fnHome', t.fnHome);
-  safeSet('fnPrayer', t.fnPrayer);
-  safeSet('fnDzikir', t.fnDzikir);
-  safeSet('fnZakat', t.fnZakat);
-  safeSet('fnIndex', t.fnIndex);
-  safeSet('footerCopy', t.footerCopy);
-  safeSet('footerTagline', t.footerTagline);
+  // section zakat
+  setText('zakatTitle', t.title);
+  setText('zakatSubtitle', t.subtitle);
+  setText('zakatTypeLabel', t.type_label);
+  setText('optPenghasilan', t.opt_penghasilan);
+  setText('optEmas', t.opt_emas);
+  setText('labelGaji', t.label_gaji);
+  setText('labelLain', t.label_lain);
+  setText('labelGram', t.label_gram);
+  setText('labelGoldPrice', t.label_gold_price);
+  setText('nisabRef', t.nisab_ref);
+  setText('btnCalculate', t.btn_calculate);
+  setText('resultTitle', t.result_title);
+  setText('resultWealth', t.result_wealth);
+  setText('resultNisab', t.result_nisab);
+  setText('resultZakatLabel', t.result_zakat_label);
 
-  // rebuild doa cards
-  if (typeof rebuildCards === 'function') {
-    rebuildCards();
-  }
+  // section todo list
+  // section todo list
+const setTodoText = (selector, val) => {
+  const el = document.querySelector(selector);
+  if (el && val !== undefined) el.textContent = val;
+};
 
-  // Zakat header
-  safeSet('zakatTitle', t.title);
-  safeSet('zakatSubtitle', t.subtitle);
-  safeSet('zakatTypeLabel', t.type_label);
-  safeSet('optPenghasilan', t.opt_penghasilan);
-  safeSet('optEmas', t.opt_emas);
-  safeSet('labelGaji', t.label_gaji);
-  safeSet('labelLain', t.label_lain);
-  safeSet('labelGram', t.label_gram);
-  safeSet('labelGoldPrice', t.label_gold_price);
-  safeSet('nisabRef', t.nisab_ref);
-  safeSet('phGaji', t.ph_gaji);
-  safeSet('phLain', t.ph_lain);
-  safeSet('phGram', t.ph_gram);
-  safeSet('phGoldPrice', t.ph_gold_price);
-  safeSet('btnCalculate', t.btn_calculate);
-  safeSet('resultTitle', t.result_title);
-  safeSet('resultWealth', t.result_wealth);
-  safeSet('resultNisab', t.result_nisab);
-  safeSet('resultZakatLabel', t.result_zakat_label);
-  safeSet('resultZakatAmount', t.result_zakat_amount);
-  safeSet('resultStatusBadge', t.result_status_badge);
-  
-  // translate semua text dengan data-i18n
-  document.querySelectorAll('[id]').forEach(el => {
-    const key = el.id;
-    if (t[key]) el.textContent = t[key];
-  });
+setTodoText('#progressLabel', t.progressLabel);
 
+setTodoText('#shalatTitle', t.shalatTitle);
+setTodoText('#quranTitle', t.quranTitle);
+setTodoText('#puasaTitle', t.puasaTitle);
+setTodoText('#dzikirTitle', t.dzikirTitle);
+
+setTodoText('#saveBtnShalat', t.saveBtn);
+setTodoText('#saveBtnQuran', t.saveBtn);
+setTodoText('#saveBtnPuasa', t.saveBtn);
+setTodoText('#saveBtnDzikir', t.saveBtn);
+
+const todoInput = document.getElementById('dzikirTodoInput');
+if (todoInput) todoInput.placeholder = t.todoPlaceholder;
+
+// tabs
+document.querySelectorAll('.ramadhan-tab').forEach((tab, i) => {
+  if (t.tabs && t.tabs[i]) tab.textContent = t.tabs[i];
+});
+
+  // footer
+  setText('footerFollowTitle', t.footerFollowTitle);
+  setText('footerNavTitle', t.footerNavTitle);
+  setText('fnHome', t.fnHome);
+  setText('fnPrayer', t.fnPrayer);
+  setText('fnDzikir', t.fnDzikir);
+  setText('fnZakat', t.fnZakat);
+  setText('fnIndex', t.fnIndex);
+  setText('footerCopy', t.footerCopy);
+  setText('footerTagline', t.footerTagline);
+
+  // rebuild doa cards kalau ada
+  if (typeof rebuildCards === 'function') rebuildCards();
+
+  // FIX: notify semua komponen yang subscribe (termasuk todo.js)
+  // Dulu baris ini ada di versi pertama tapi ke-overwrite sama versi kedua
+  notifyLangComponents();
 }
 
-/* toggleTheme — ganti dark/light mode
-   Ikon bulan/matahari ikut berubah sesuai tema */
+
+/* TOGGLE TEMA */
+// FIX: dulu ada 2 definisi toggleTheme → yang kedua ga punya localStorage
+// Sekarang cuma ada SATU, dengan localStorage biar tema tersimpan
+
 function toggleTheme() {
   currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', currentTheme); // FIX: simpan ke localStorage
   document.documentElement.setAttribute('data-theme', currentTheme);
   const btn = document.getElementById('themeBtn');
   if (btn) btn.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
 }
 
-/* Stars — bintang acak di background*/
+
+/* BACKGROUND BINTANG */
 const starsEl = document.getElementById('starsLayer');
 if (starsEl) {
   for (let i = 0; i < 120; i++) {
@@ -226,7 +338,8 @@ if (starsEl) {
   }
 }
 
-/* Particles — efek partikel naik di header */
+
+/* PARTIKEL HEADER*/
 const pEl = document.getElementById('particles');
 if (pEl) {
   for (let i = 0; i < 18; i++) {
@@ -245,7 +358,8 @@ if (pEl) {
   }
 }
 
-/* Countdown — hitung mundur ke Lebaran */
+
+/* HITUNG MUNDUR LEBARAN */
 function tick() {
   const target = new Date('2026-03-20T00:00:00');
   const now = new Date();
@@ -256,16 +370,23 @@ function tick() {
   const m = Math.floor((diff % 3600000) / 60000);
   const s = Math.floor((diff % 60000) / 1000);
 
-  const safeSet = (id, val) => {
+  const set = (id, val) => {
     const el = document.getElementById(id);
     if (el) el.textContent = String(val).padStart(2, '0');
   };
 
-  safeSet('cdDays', d);
-  safeSet('cdHours', h);
-  safeSet('cdMins', m);
-  safeSet('cdSecs', s);
+  set('cdDays', d);
+  set('cdHours', h);
+  set('cdMins', m);
+  set('cdSecs', s);
 }
 
 tick();
 setInterval(tick, 1000);
+
+
+/* SETUP AWAL */
+// FIX: dipindah ke paling bawah biar semua fungsi udah terdefinisi dulu
+// sebelum dijalankan. Dulu ini ada di tengah-tengah file.
+document.documentElement.setAttribute('data-theme', currentTheme);
+document.documentElement.setAttribute('data-lang', currentLang);

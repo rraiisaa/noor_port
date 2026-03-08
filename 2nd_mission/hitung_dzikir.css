@@ -1,554 +1,392 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+/* ============================================================
+   HITUNG DZIKIR — hitung_dzikir.css
+   Styling seirama dengan doa-ramadhan.css:
+   - Font yang sama: Cinzel Decorative, DM Sans, Noto Naskh Arabic
+   - CSS variable yang sama dari :root global
+   - Header section dengan ornamen yang sama
+   - Tone warna: gold + teal, konsisten
+   ============================================================ */
 
-/* Zikir Section */
-.hitung-dzikir {
-    padding: 80px 24px;
-    position: relative;
-    overflow: hidden;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text-main);
-    min-height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap');
+
+
+/* ── Bilingual — sama persis dengan doa-ramadhan.css ─────── */
+/* CSS ini show/hide .lang-id dan .lang-en berdasarkan data-lang di <html> */
+
+.lang-en { display: none; }
+.lang-id { display: inline; }
+
+[data-lang="en"] .lang-id { display: none; }
+[data-lang="en"] .lang-en { display: inline; }
+
+[data-lang="en"] p.lang-id,
+[data-lang="en"] div.lang-id { display: none; }
+[data-lang="en"] p.lang-en,
+[data-lang="en"] div.lang-en { display: block; }
+
+p.lang-en, div.lang-en { display: none; }
+p.lang-id, div.lang-id { display: block; }
+
+
+/* ── Section wrapper ─────────────────────────────────────── */
+
+.zikir-section {
+  background: var(--bg-section);
+  padding: 100px 24px 80px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-main);
 }
 
-.zikir-main {
-    position: relative;
-    z-index: 20;
-    display: flex;
-    justify-content: center;
+/* Ambient glow — mirip doa-section, tapi posisi glow beda */
+.zikir-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(45,184,168,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 20% 90%, rgba(201,168,76,.06) 0%, transparent 60%);
+  pointer-events: none;
 }
 
-.zikir-card {
-    position: relative;
-    z-index: 30;
+
+/* ── Header — identik dengan doa-section-header ─────────── */
+
+.zikir-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
 }
 
-.zikir-buttons button,
-.target-options button {
-    position: relative;
-    z-index: 50;
+.zikir-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
 }
+
+.zikir-section-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(22px, 4vw, 40px);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--teal-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.zikir-section-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-muted2);
+  font-size: 15px;
+  font-weight: 300;
+  max-width: 500px;
+  margin: 0 auto 28px;
+  line-height: 1.7;
+}
+
+/* Ornamen garis + bintang — sama persis dengan doa */
+.zikir-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.zikir-ornament span {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.zikir-ornament i {
+  font-style: normal;
+  color: var(--gold);
+  font-size: 12px;
+}
+
+
+/* ── Grid tiga kolom ─────────────────────────────────────── */
 
 .zikir-grid {
-    margin: 0 0 20px;
-    width: 100%;
-    max-width: 1200px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-}
-
-.zikir-card {
-    font-family: 'DM Sans', sans-serif;
-    z-index: 5;
-    background: #ffffff0d;
-    border: 1px solid #d4af3740;
-    border-radius: 28px;
-    padding: 42px 36px;
-    text-align: center;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 20px 60px #00000066;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 520px;
-    transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.zikir-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 70px #00000080;
-}
-
-.zikir-header {
-  text-align: center;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 2;
-}
-
-.zikir-header .zikir-eyebrow {
-    text-align: center;
-    font-family: 'Lato', sans-serif;
-    font-size: 11px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
-}
-
-.zikir-main-title {
-     text-align: center;
-    font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(24px, 4vw, 42px);
-    font-weight: 600;
-    line-height: 1.1;
-    margin: 0 0 18px;
-    letter-spacing: -0.01em;
-    background: linear-gradient(135deg,
-            var(--gold-light) 0%,
-            var(--gold) 50%,
-            var(--teal-light) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.zikir-title {
-    font-size: 1.6rem;
-    color: var(--gold-light);
-    text-shadow: 0 0 20px #c9a84ccc, 0 0 60px #c9a84c4d;
-    margin-bottom: 6px;
-}
-
-.zikir-subtitle {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    padding-bottom: 15px;
-}
-
-.zikir-target {
-    font-size: 0.95rem;
-    color: #f5e6c8cc;
-    margin-bottom: 18px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.zikir-target strong {
-    color: var(--gold-light);
-    font-size: 1.15rem;
-    display: inline-block;
-    margin-left: 4px;
-    padding-bottom: 10px;
-}
-
-.target-options {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-
-.btn-target {
-    background: var(--bg-card);
-    border: 1px solid #d4af3766;
-    color: var(--gold-glow);
-    border-radius: 20px;
-    padding: 4px 14px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.btn-target:hover {
-    background: #d4af374d;
-    transform: scale(1.05);
-}
-
-.btn-target.active {
-    background: var(--gold-glow);
-    color: var(--bg-card);
-    font-weight: 700;
-}
-
-.zikir-counter {
-    font-size: 5.5rem;
-    font-weight: 800;
-    color: #f5e6c8;
-    line-height: 1;
-    margin: 25px 0 20px;
-    text-shadow: 0 0 20px #c9a84ccc, 0 0 60px #c9a84c4d;
-    transition: transform 0.15s ease;
-}
-
-.zikir-counter.pulse {
-    animation: counterPulse 0.2s ease;
-}
-
-@keyframes counterPulse {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.15);
-        color: #d4af37;
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-.zikir-progress-bar {
-    background: #ffffff14;
-    border-radius: 10px;
-    height: 6px;
-    margin-bottom: 30px;
-    overflow: hidden;
-}
-
-.zikir-progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #d4af37, #f5c842);
-    border-radius: 10px;
-    transition: width 0.3s ease;
-}
-
-.zikir-buttons {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-}
-
-.btn-zikir {
-    border: none;
-    border-radius: 50px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.btn-increment {
-    background: linear-gradient(135deg, var(--gold-light), var(--gold));
-    color: #1a1a2e;
-    font-size: 1.5rem;
-    padding: 4px 40px;
-    box-shadow: 0 6px 20px #d4af3766;
-}
-
-.btn-increment:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 10px 28px #d4af378c;
-}
-
-.btn-increment:active {
-    transform: scale(0.95);
-}
-
-.btn-reset {
-    background: #ffffff14;
-    color: #f5e6c8;
-    border: 1px solid #ffffff33;
-    padding: 14px 34px;
-}
-
-.btn-reset:hover {
-    background: #ffffff29;
-    transform: translateY(-2px);
-}
-
-.zikir-notification {
-    min-height: 30px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #d4af37;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.zikir-notification.show {
-    opacity: 1;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .zikir-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    header {
-        padding-bottom: 44px;
-    }
-
-    .geo-left,
-    .geo-right {
-        width: 90px;
-    }
-
-    .lantern-row {
-        padding: 0 8px;
-    }
-
-    .ornament-bar--top {
-        margin-top: 60px;
-        padding: 0 16px;
-    }
-
-    .ornament-bar .line {
-        max-width: 70px;
-    }
-
-    .moon-wrap {
-        margin-top: 18px;
-    }
-
-    .moon,
-    .moon-outer {
-        width: 70px;
-        height: 70px;
-    }
-
-    .c1 {
-        width: 11px;
-        height: 11px;
-        top: 14px;
-        left: 11px;
-    }
-
-    .c2 {
-        width: 6px;
-        height: 6px;
-        top: 33px;
-        left: 38px;
-    }
-
-    .c3 {
-        width: 8px;
-        height: 8px;
-        top: 22px;
-        left: 43px;
-    }
-
-    .moon-star {
-        font-size: 17px;
-        top: -14px;
-        right: -11px;
-    }
-
-    .arabic-text {
-        font-size: clamp(20px, 6vw, 32px);
-        letter-spacing: 2px;
-    }
-
-    .main-title {
-        font-size: clamp(28px, 9vw, 50px);
-    }
-
-    .subtitle {
-        font-size: 11px;
-        letter-spacing: 3px;
-        padding: 0 16px;
-    }
-
-    .divider {
-        max-width: 280px;
-        margin-top: 14px;
-    }
-
-    .countdown {
-        gap: 10px;
-        margin-top: 18px;
-    }
-
-    .cd-box {
-        padding: 10px 12px 8px;
-        min-width: 52px;
-    }
-
-    .cd-num {
-        font-size: 22px;
-    }
-
-    .cd-label {
-        font-size: 8px;
-    }
-
-    nav {
-        gap: 6px;
-        margin-top: 20px;
-    }
-
-    nav a {
-        font-size: 10px;
-        letter-spacing: 2px;
-        padding: 7px 13px;
-    }
-
-    .zikir-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .zikir-counter {
-        font-size: 4.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    header {
-        padding-bottom: 32px;
-    }
-
-    .geo-left,
-    .geo-right {
-        width: 52px;
-        opacity: .4;
-    }
-
-    .lantern-row {
-        padding: 0 2px;
-    }
-
-    .ornament-bar--top {
-        margin-top: 46px;
-    }
-
-    .ornament-bar .line {
-        max-width: 44px;
-    }
-
-    .moon,
-    .moon-outer {
-        width: 58px;
-        height: 58px;
-    }
-
-    .moon-star {
-        font-size: 14px;
-        top: -11px;
-        right: -9px;
-    }
-
-    .arabic-text {
-        font-size: 20px;
-        letter-spacing: 1px;
-    }
-
-    .main-title {
-        font-size: clamp(24px, 10vw, 40px);
-    }
-
-    .subtitle {
-        font-size: 8.5px;
-        letter-spacing: 2.5px;
-        padding: 0 10px;
-    }
-
-    .countdown {
-        gap: 6px;
-    }
-
-    .cd-box {
-        padding: 8px 9px 6px;
-        min-width: 46px;
-    }
-
-    .cd-num {
-        font-size: 18px;
-    }
-
-    nav {
-        padding: 0 10px;
-    }
-
-    nav a {
-        font-size: 9px;
-        letter-spacing: 1.5px;
-        padding: 6px 10px;
-    }
-
-    .top-bar {
-        padding: 12px 14px 0;
-    }
-
-    .logo-wrap img {
-        height: 34px;
-    }
-
-    .lang-btn {
-        font-size: 9px;
-        padding: 5px 9px;
-    }
-
-    .theme-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 13px;
-    }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 @media (max-width: 900px) {
-    .dzikir-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
+  .zikir-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 600px) {
-    .zikir-section {
-        padding: 48px 16px 56px;
-    }
-
-    .zikir-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-    }
-
-    .zikir-title {
-        font-size: clamp(20px, 6vw, 30px);
-    }
-
-    .zikir-subtitle {
-        font-size: 12px;
-        margin-bottom: 30px;
-    }
-
-    .zikir-img-overlay {
-        opacity: .7;
-    }
-
-    .zikir-modal {
-        padding: 32px 20px 28px;
-        border-radius: 14px;
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-
-    .modal-title {
-        font-size: 20px;
-    }
-
-    .modal-arabic {
-        font-size: 18px;
-        padding: 12px 14px;
-    }
-
-    .modal-latin {
-        font-size: 12px;
-    }
-
-    .modal-arti {
-        font-size: 13px;
-    }
+@media (max-width: 580px) {
+  .zikir-grid { grid-template-columns: 1fr; }
 }
 
+
+/* Kartu dzikir*/
+.zikir-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  padding: 32px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+/* Subtle glow di pojok atas kiri tiap kartu */
+.zikir-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, #c9a84c14 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.zikir-card:hover {
+  transform: translateY(-6px);
+  border-color: #c9a84c4d;
+  box-shadow: 0 20px 50px #0000004d, 0 0 0 1px #c9a84c1a;
+}
+
+
+/* Bagian atas kartu: badge Arab + judul + subtitle */
+.zikir-card-top { text-align: center; }
+
+/* Badge teks Arab — sama gayanya dengan .doa-arabic tapi lebih kecil */
+.zikir-arabic-badge {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(22px, 3.5vw, 30px);
+  font-weight: 500;
+  color: var(--gold-light);
+  direction: rtl;
+  line-height: 1.8;
+  margin-bottom: 8px;
+  text-shadow: 0 0 20px rgba(201,168,76,.25);
+}
+
+.zikir-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold-glow), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+/* Subtitle di kartu — styling sama dengan subtitle section doa */
+.zikir-card .zikir-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+/* Counter + progress bar*/
+.zikir-counter-wrap { text-align: center; }
+
+.zikir-counter {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(56px, 8vw, 80px);
+  font-weight: 800;
+  color: var(--gold-light);
+  line-height: 1;
+  margin-bottom: 16px;
+  text-shadow: 0 0 30px #c9a84c59;
+  transition: transform .15s ease;
+  display: block;
+}
+
+.zikir-counter.pulse {
+  animation: zikirPulse .25s ease;
+}
+
+@keyframes zikirPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.zikir-progress-bar {
+  height: 4px;
+  background: var(--border-card);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.zikir-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--teal-light), var(--gold));
+  border-radius: 100px;
+  transition: width .4s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0 0 8px #c9a84c66;
+}
+
+
+/* Target selector */
+.zikir-target {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.zikir-target strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin: 0 2px;
+}
+
+.target-options {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-target {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid #c9a84c4d;
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.btn-target:hover {
+  background: #c9a84c1a;
+  border-color: var(--gold);
+}
+
+.btn-target.active {
+  background: #c9a84c26;
+  border-color: var(--gold);
+  color: var(--gold-light);
+  box-shadow: 0 0 10px #c9a84c26;
+}
+
+
+/* Tombol tambah & reset */
+.zikir-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn-zikir {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all .2s ease;
+  outline: none;
+}
+
+.btn-increment {
+  font-size: 22px;
+  padding: 10px 44px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: #0d1a2a;
+  box-shadow: 0 4px 16px #c9a84c59;
+  letter-spacing: 0;
+}
+
+.btn-increment:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(201,168,76,.45);
+}
+
+.btn-increment:active {
+  transform: scale(.96);
+}
+
+/* Tombol reset — sama gayanya dengan tombol sekunder di section doa */
+.btn-reset {
+  font-size: 13px;
+  padding: 12px 22px;
+  background: transparent;
+  border: 1px solid var(--border-card);
+  color: var(--text-muted2);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.btn-reset:hover {
+  background: #c9a84c0f;
+  border-color: #c9a84c4d;
+  color: var(--gold);
+}
+
+
+/* Notifikasi target tercapai */
+.zikir-notification {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal-light);
+  text-align: center;
+  min-height: 24px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.zikir-notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Light Mode */
+[data-theme="light"] .zikir-card {
+  box-shadow: var(--shadow-card, 0 4px 20px hsla(0, 0%, 0%, 0.06));
+}
+
+[data-theme="light"] .zikir-arabic-badge {
+  text-shadow: none;
+}
+
+[data-theme="light"] .zikir-counter {
+  text-shadow: none;
+}
+
+
+/* Responsive Setting */
 @media (max-width: 480px) {
-    .doa-section {
-        padding: 36px 12px 48px;
-    }
-
-    .doa-card-title {
-        font-size: 18px;
-    }
-
-    .doa-body {
-        padding: 14px 16px 16px;
-    }
-
-    .doa-img {
-        aspect-ratio: 16 / 8;
-    }
-}
-
-@media (max-width: 380px) {
-    .doa-modal {
-        padding: 28px 14px 22px;
-    }
-
-    .modal-arabic {
-        font-size: 16px;
-    }
+  .zikir-section { padding: 70px 16px 60px; }
+  .zikir-card { padding: 24px 20px 20px; }
+  .btn-increment { padding: 10px 36px; }
 }
