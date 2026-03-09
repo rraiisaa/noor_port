@@ -1,0 +1,110 @@
+<!-- JADWAL IMSAKIYAH — jadwal_imsakiyah.html
+
+     Komponen jadwal waktu sholat bulanan.
+     Data diambil real-time dari api.myquran.com/v2/sholat.
+
+     Dua endpoint yang dipakai:
+       /sholat/kota/semua              → populate dropdown kota
+       /sholat/jadwal/{id}/{y}/{m}     → data jadwal bulanan
+
+     Bilingual: .lang-id / .lang-en dikontrol CSS dari data-lang di <html>
+     yang diset global.js. Teks dinamis (nama bulan, badge hari ini)
+     diupdate JS lewat MutationObserver + window.languageListeners. -->
+
+<section class="imsak-section" id="imsakiyahSection">
+
+  <!-- Header section -->
+  <div class="imsak-header">
+    <div class="imsak-eyebrow">
+      <span class="lang-id">Waktu Sholat</span>
+      <span class="lang-en">Prayer Times</span>
+    </div>
+    <h2 class="imsak-title">
+      <span class="lang-id">Jadwal Imsakiyah</span>
+      <span class="lang-en">Prayer Timetable</span>
+    </h2>
+    <p class="imsak-subtitle">
+      <span class="lang-id">Waktu sholat akurat seluruh Indonesia · Data resmi Kemenag</span>
+      <span class="lang-en">Accurate prayer times across Indonesia · Official Kemenag data</span>
+    </p>
+    <div class="imsak-ornament"><span></span><i>✦</i><span></span></div>
+  </div>
+
+  <!-- Baris kontrol: pilih kota + navigasi bulan -->
+  <div class="imsak-controls">
+
+    <!-- Dropdown kota — di-populate JS dari /kota/semua -->
+    <div class="imsak-city-wrap">
+      <div class="imsak-city-skeleton" id="citySkeleton"></div>
+      <select class="imsak-kota-select" id="kotaSelect" style="display:none"></select>
+    </div>
+
+    <!-- Navigator bulan prev/next -->
+    <div class="imsak-month-nav">
+      <button class="imsak-month-btn" id="btnPrevMonth" aria-label="Bulan sebelumnya">&#8249;</button>
+      <span class="imsak-month-label">
+        <span id="monthName">—</span> <span id="monthYear">—</span>
+      </span>
+      <button class="imsak-month-btn" id="btnNextMonth" aria-label="Bulan berikutnya">&#8250;</button>
+    </div>
+
+  </div>
+
+  <!-- Kartu hari ini — hero visual dengan 6 pill waktu sholat -->
+  <!-- Hanya muncul kalau bulan yang ditampilkan = bulan sekarang -->
+  <div class="imsak-today-card" id="todayCard" style="display:none">
+
+    <div class="imsak-today-meta">
+      <div class="imsak-today-badge">
+        <span class="lang-id">Hari Ini</span>
+        <span class="lang-en">Today</span>
+      </div>
+      <div class="imsak-today-date" id="todayDate">—</div>
+      <div class="imsak-today-city" id="todayCity">—</div>
+    </div>
+
+    <!-- 6 kartu waktu sholat — pill yang aktif otomatis di-highlight JS -->
+    <div class="imsak-times-grid" id="timesGrid">
+      <!-- diisi JS -->
+    </div>
+
+  </div>
+
+  <!-- Loading state -->
+  <div class="imsak-loading" id="loadingState">
+    <div class="imsak-spinner"></div>
+    <p class="lang-id">Memuat jadwal...</p>
+    <p class="lang-en">Loading schedule...</p>
+  </div>
+
+  <!-- Error state -->
+  <div class="imsak-error" id="errorState" style="display:none">
+    <span class="imsak-error-icon">⚠</span>
+    <p class="lang-id">Gagal memuat data. Periksa koneksi kamu.</p>
+    <p class="lang-en">Failed to load. Check your connection.</p>
+    <button class="imsak-retry-btn" id="retryBtn">
+      <span class="lang-id">Coba Lagi</span>
+      <span class="lang-en">Retry</span>
+    </button>
+  </div>
+
+  <!-- Tabel jadwal bulanan -->
+  <div class="imsak-table-wrap" id="tableWrap" style="display:none">
+    <table class="imsak-table">
+      <thead>
+        <tr>
+          <th><span class="lang-id">Tanggal</span><span class="lang-en">Date</span></th>
+          <th>Imsak</th>
+          <th><span class="lang-id">Subuh</span><span class="lang-en">Fajr</span></th>
+          <th><span class="lang-id">Dzuhur</span><span class="lang-en">Dhuhr</span></th>
+          <th><span class="lang-id">Ashar</span><span class="lang-en">Asr</span></th>
+          <th><span class="lang-id">Maghrib</span><span class="lang-en">Maghrib</span></th>
+          <th><span class="lang-id">Isya</span><span class="lang-en">Isha</span></th>
+        </tr>
+      </thead>
+      <tbody id="jadwalBody">
+      </tbody>
+    </table>
+  </div>
+
+</section>

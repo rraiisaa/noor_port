@@ -338,7 +338,6 @@
     // Cara 1: MutationObserver ngintip data-lang di <html>
     // Cara 2: Daftar ke window.languageListeners (sistem global.js)
     // Keduanya dipasang biar aman di semua kondisi
-
     new MutationObserver(() => {
       updateTexts();
       buildShalatList();

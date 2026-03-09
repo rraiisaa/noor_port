@@ -105,7 +105,7 @@
     padding-left: 15px;
 }
 
-/* ---- Kolom 3: Sosmed + Kontrol ---- */
+/* Kolom 3: Sosmed + Kontrol */
 .footer-socials {
     display: flex;
     gap: 10px;
@@ -147,7 +147,7 @@
     gap: 10px;
 }
 
-/* ---- Garis bawah + copyright ---- */
+/* Garis bawah + copyright */
 .footer-bottom {
     max-width: 1100px;
     margin: 0 auto;
@@ -171,7 +171,7 @@
     transition: color .4s;
 }
 
-/* ---- Back to Top button ---- */
+/* Back to Top button */
 .back-to-top {
     position: fixed;
     bottom: 28px;
@@ -207,7 +207,7 @@
     transform: translateY(-3px);
 }
 
-/* ---- Responsive footer ---- */
+/* Responsive */
 @media (max-width: 900px) {
     .footer-inner {
         grid-template-columns: 1fr 1fr;
@@ -225,7 +225,7 @@
 }
 
 @media (max-width: 600px) {
-    .footer-ornament { padding: 0 20px; }
+    .footer-ornament { padding: 0 10px; }
 
     .footer-inner {
         grid-template-columns: 1fr;
@@ -238,6 +238,7 @@
     }
 
     .footer-nav {
+        justify-content: start;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 8px 18px;

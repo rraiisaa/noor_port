@@ -1,6 +1,6 @@
 Cerita Tentang Website ini dan segala strugglenya hehe
 
-# **PROBLEM MISI 1 & 2 AND SOLVE **
+# PROBLEM MISI 1 & 2 AND SOLVE
 ## Main Promblem #1 
 Aku ga masuk leaderboard misi 1, dan ketika aku analisis kesalahan aku, aku nemuin beberapa kesalahan, diantaranya:
 1. Di misi pertama, website aku pakai js untuk bagian "kumpulan doa" padahal di ketentuannya cuman boleh pakai html dan css. 
@@ -37,7 +37,7 @@ Dan memanggilnya setelah component selesai dimuat:
 
 walaupun pusing karena harus pisahin filenya satu - satu, tapi aku seneng jadinya gampang untuk di maintance dan ga pusing kalo mislanya ada debug. :D 
 
-# **PROBLEM MISI 3 AND SOLVE **
+# PROBLEM MISI 3 & 4 AND SOLVE 
 ## Main Promblem #1 
 1. Hasil Zakat yang harus dibayarkan ga akurat
 2. wrapper buat select zakat ga bisa switch color, karena ngikutin settingan theme. 
@@ -63,3 +63,33 @@ tinggal edit di global.js bagian lang.
 
 jangan bikin LANG baru di internal lagi
 nanti jadi duplicate system lagi
+
+# PROBLEM MISI 5 & 6 AND SOLVE 
+
+ini bukan problem ataupun solving error. tapi ini adalah jawaban dari pertanyaanku.
+#### ❓Catatan dari Pertanyaanku :
+
+1. 🗣️ : _"Bukannya API itu butuh private key dan token ya? kok ini bisa diakses tanpa private key ataupun token?_
+
+💡 : API itu ada 2 macam. Ada yang **private dan ada yang public.**
+**A.** API yang aku kenal kenal (butuh key/token)
+Ini API yang dibuat oleh perusahaan dengan model bisnis atau kebutuhan kontrol. Contohnya Google Maps, OpenAI, Stripe, Twilio. Mereka wajibkan key karena beberapa alasan:
+
+Rate limiting — biar tahu siapa yang pakai berapa banyak, kalau kebanyakan bisa diblokir atau ditagih
+Monetisasi — usage diitung, nanti kena bayar sesuai pemakaian
+Keamanan data — data sensitif, harus tahu siapa yang akses
+Akuntabilitas — kalau ada abuse, tahu harus blokir siapa
+
+Jadi key/token itu bukan karena "API-nya dibuat sendiri" — tapi karena si penyedia API memilih untuk mengontrol akses.
+
+**B.** API myquran.com (public/open API)
+ini API yang memang sengaja dibuat gratis dan terbuka untuk umum oleh developernya. Niatnya memang untuk kemaslahatan — supaya developer Muslim Indonesia bisa pakai data sholat, Al-Quran, dll tanpa ribet.
+Karakteristiknya:
+
+Tidak ada key, langsung hit endpoint-nya
+Data yang disajikan bersifat publik (jadwal sholat, konten Al-Quran — bukan data pribadi)
+Tidak ada transaksi uang yang terlibat
+Developernya menanggung biaya server sendiri atau dari donasi
+
+Contoh lain API publik seperti ini: API cuaca BMKG, data gempa USGS, jadwal KRL, nilai tukar Bank Indonesia — semuanya bisa langsung dipakai tanpa key karena datanya memang untuk publik.
+

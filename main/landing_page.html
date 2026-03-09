@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="/2nd_mission/hitung_dzikir.css">
     <link rel="stylesheet" href="/3rd_mission/kalkulator_zakat.css">
     <link rel="stylesheet" href="/4rd_mission/todo-list.css">
+    <link rel="stylesheet" href="/5th_mission/jadwal_imsakiyah.css">
 </head>
 
 <body>
@@ -43,6 +44,7 @@
     <div id="zikir-component"></div>
     <div id="zakat-component"></div>
     <div id="todo-component"></div>
+    <div id="imsakiyah-component"></div>
     <div id="footer-component"></div>
 
     <!-- Global Script -->
@@ -50,6 +52,7 @@
     <script src="/2nd_mission/hitung_dzikir.js"></script>
     <script src="/3rd_mission/kalkulator_zakat.js"></script>
     <script src="/4rd_mission/todo-list.js"></script>
+    <script src="/5th_mission/jadwal_imsakiyah.js"></script>
 
     <!-- Load Components -->
     <script>
@@ -70,6 +73,9 @@
             loadComponent("zikir-component", "/2nd_mission/components/hitung_dzikir.html", () => initZikirSection()),
             loadComponent("zakat-component", "/3rd_mission/components/kalkulator_zakat.html"),
             loadComponent("todo-component", "/4rd_mission/component/todo-list.html", () => initRamadhanTodo()),
+            loadComponent("imsakiyah-component", "/5th_mission/component/jadwal_imsakiyah.html", () => {
+                initImsakiyah();
+            }),
             loadComponent("footer-component", "/main/footer.html"),
         ]).then(() => {
 
@@ -93,8 +99,9 @@
             const sections = {
                 'doaRamadhan': 'prayer',
                 'zikirSection': 'dzikr',
-                'zakat-calculator': 'zakat',
+                'zakatCalculator': 'zakat',
                 'ramadhanChecker': 'todolist',
+                'imsakiyahSection': 'imsakiyah',
             };
 
             const observer = new IntersectionObserver((entries) => {

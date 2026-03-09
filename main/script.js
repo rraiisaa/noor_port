@@ -11,7 +11,7 @@ const i18n = {
     // Section Header
     Headersubtitle: '1446 H · Bulan Penuh Berkah · 2026 M',
     cdLabels: ['Hari', 'Jam', 'Menit', 'Detik'],
-    nav: ['Beranda', 'Kumpulan Doa', 'Baca Dzikir', 'Hitung Zakat', 'Todo List'],
+    nav: ['Beranda', 'Kumpulan Doa', 'Baca Dzikir', 'Hitung Zakat', 'Todo List', 'Jadwal Shalat'],
 
     // Section Doa
     doaRamadhanEyebrow: 'Doa Harian',
@@ -36,7 +36,10 @@ const i18n = {
     fnPrayer: 'Kumpulan Doa Ramadhan',
     fnDzikir: 'Baca Dzikir',
     fnZakat: 'Hitung Zakat',
-    fnIndex: 'Todo List',
+    fnTodolist: 'Todo List',
+    fnImsakiyah: 'Jadwal Shalat',
+    footerCopy: '© 2026 Noor Port+. Hak Cipta Dilindungi.',
+    footerTagline: 'Temani Ramadhanmu dengan doa, dzikir, dan inspirasi setiap hari',
 
     // Section Zakat
     title: 'Kalkulator Zakat',
@@ -84,15 +87,18 @@ const i18n = {
     todoPlaceholder: 'Tambah dzikir / ibadah...',
     tabs: ['🕌 Shalat', "📖 Qur'an", '🌙 Puasa', '📿 Dzikir'],
 
-    footerCopy: '© 2026 Noor Port+. Hak Cipta Dilindungi.',
-    footerTagline: 'Temani Ramadhanmu dengan doa, dzikir, dan inspirasi setiap hari'
+    // Section Jadwal Imsakiyah
+    todayLabel: 'Hari Ini',
+    imsakiyahEyebrow: 'Jadwal Ramadhan',
+    imsakiyahTitle: 'Jadwal Imsakiyah',
+    imsakiyahSubtitle: 'Jadwal waktu sholat dan imsak seluruh Indonesia, data resmi Kemenag.',
   },
 
   en: {
     // Section Header
     Headersubtitle: '1446 H · Month of Blessings · 2026 M',
     cdLabels: ['Days', 'Hours', 'Minutes', 'Seconds'],
-    nav: ['Home', 'Ramadhan Prayer', 'Dzikr Counter', 'Calculate Zakat', 'Todo List'],
+    nav: ['Home', 'Ramadhan Prayer', 'Dzikr Counter', 'Calculate Zakat', 'Todo List', 'Prayer Schedule'],
 
     // Section Doa
     doaRamadhanEyebrow: 'Daily Prayers',
@@ -166,9 +172,16 @@ const i18n = {
     fnPrayer: 'Ramadhan Prayer',
     fnDzikir: 'Dhikr Counter',
     fnZakat: 'Zakat Calculator',
-    fnIndex: 'Index',
+    fnTodolist: 'Todo List',
+    fnImsakiyah: 'Prayer Schedule',
     footerCopy: '© 2026 Noor Port+. All rights reserved.',
-    footerTagline: 'Accompany your Ramadhan with daily prayers, dhikr, and inspiration'
+    footerTagline: 'Accompany your Ramadhan with daily prayers, dhikr, and inspiration',
+
+    // Section Jadwal Imsakiyah
+    todayLabel: 'Today',
+    imsakiyahEyebrow: 'Ramadhan Schedule',
+    imsakiyahTitle: 'Prayer Timetable',
+    imsakiyahSubtitle: 'Prayer and suhoor times for all of Indonesia, from official Kemenag data.',
   }
 };
 
@@ -256,23 +269,22 @@ function setLang(lang) {
   setText('resultZakatLabel', t.result_zakat_label);
 
   // section todo list
-  // section todo list
   const setTodoText = (selector, val) => {
     const el = document.querySelector(selector);
     if (el && val !== undefined) el.textContent = val;
   };
 
-  setTodoText('#progressLabel', t.progressLabel);
+  setTodoText('progressLabel', t.progressLabel);
 
-  setTodoText('#shalatTitle', t.shalatTitle);
-  setTodoText('#quranTitle', t.quranTitle);
-  setTodoText('#puasaTitle', t.puasaTitle);
-  setTodoText('#dzikirTitle', t.dzikirTitle);
+  setTodoText('shalatTitle', t.shalatTitle);
+  setTodoText('quranTitle', t.quranTitle);
+  setTodoText('puasaTitle', t.puasaTitle);
+  setTodoText('dzikirTitle', t.dzikirTitle);
 
-  setTodoText('#saveBtnShalat', t.saveBtn);
-  setTodoText('#saveBtnQuran', t.saveBtn);
-  setTodoText('#saveBtnPuasa', t.saveBtn);
-  setTodoText('#saveBtnDzikir', t.saveBtn);
+  setTodoText('saveBtnShalat', t.saveBtn);
+  setTodoText('saveBtnQuran', t.saveBtn);
+  setTodoText('saveBtnPuasa', t.saveBtn);
+  setTodoText('saveBtnDzikir', t.saveBtn);
 
   const todoInput = document.getElementById('dzikirTodoInput');
   if (todoInput) todoInput.placeholder = t.todoPlaceholder;
