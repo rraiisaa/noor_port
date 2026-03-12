@@ -1,7 +1,35 @@
+# Noor Port+ Guideline
+### Features:
+1. **Header** — Countdown (Menuju Lebaran), Navbar, Theme, Switch Language
+2. **Doa Ramadhan** (Sahur & Buka)
+3. **Hitung Dzikir** (Alhamdulillah, Subhanallah, Allahuakbar)
+   - Bisa set target (33, 99, 100)
+   - Notifikasi jika target tercapai
+   - Reeet dzikir
+4. **Kalkulator Zakat**
+   - Bisa Pilih Zakat (Penghasilan atau Emas)
+   - Input Gaji Bulanan, Penghasilan lain & Harga Emas Saat ini
+   - Jika Gaji Bulanan: Menghitung Gaji Bulanan x 12. Harga Emas Saat ini x 85gr (untuk nisab)
+   - Jika Emas: Masukkan jumlah emas. Harga Emas Saat ini x 85gr (untuk nisab)
+   - Status: Jika melebihi total nisab maka diperbolehkan untuk berzakat jika tidak akan muncul tulisan "Belum Wajib"
+5. **Ramadhan Todo List**
+   - Progress Bar
+   - Tracker Shalat 5 Waktu
+   - Tracker untuk Target Membaca Al-Qur'an Perhasrinya
+   - Tracker Total Puasa Selama 1 bulan
+   - Tracker Dzikir yang bisa ditambahkan sendiri
+   - Status Progress Bar secara Keseluruhan dan Progress Bar per section
+6. **Jadwal Imsakiyah**
+   - Jadwal Imsak Per-Daerah
+   - Lihat Jadwal Shalat 5 Waktu Lengkap
+   - Atur Kota dan Bulan
+   - Highlight Jadwal Hari ini
+
+
 Cerita Tentang Website ini dan segala strugglenya hehe
 
-# PROBLEM MISI 1 & 2 AND SOLVE
-## Main Promblem #1 
+## PROBLEM MISI 1 & 2 AND SOLVE
+### Main Promblem #1 
 Aku ga masuk leaderboard misi 1, dan ketika aku analisis kesalahan aku, aku nemuin beberapa kesalahan, diantaranya:
 1. Di misi pertama, website aku pakai js untuk bagian "kumpulan doa" padahal di ketentuannya cuman boleh pakai html dan css. 
 2. Website aku detail dan interaktif dan sebenernya ga masalah, tapi.. kodenya tembus 1000+ line di dalam 1 file css. dan itu yang bikin ga rapih meskipun udah dipisahin pakai notes. 
@@ -9,7 +37,7 @@ Aku ga masuk leaderboard misi 1, dan ketika aku analisis kesalahan aku, aku nemu
 4. misi 1 dan 2 dijadiin 1 file yang sama. 
 5. Tombol X di modal doa ga bisa di klik
 
-## Solving #1 
+### Solving #1 
 1. hilangkan kode js untuk fitur doa, ganti ke css (walaupun harus ganti layout) 
 2. breakdown keseluruhan kodenya jadi component - component file yang kecil sesuai fiturnya, nanti tinggal di satuin di file homepage. 
 3. pisahin js untuk setiap misi 
@@ -37,13 +65,13 @@ Dan memanggilnya setelah component selesai dimuat:
 
 walaupun pusing karena harus pisahin filenya satu - satu, tapi aku seneng jadinya gampang untuk di maintance dan ga pusing kalo mislanya ada debug. :D 
 
-# PROBLEM MISI 3 & 4 AND SOLVE 
-## Main Promblem #1 
+## PROBLEM MISI 3 & 4 AND SOLVE 
+### Main Promblem #1 
 1. Hasil Zakat yang harus dibayarkan ga akurat
 2. wrapper buat select zakat ga bisa switch color, karena ngikutin settingan theme. 
 3. Language Todo-List List ga aktif, karena state nya numpuk di todo.js dan script js (global)
 
-## How i solve
+### How i solve
 1. Gernyata ada kesalahan di rumusnya (typo) yang harusnya pakai tanda * untuk bagi harga emas dengan 85 malah pakai ^ (sampe mau juling mata, gara gara nyari errornya) & ga boleh pakai titik.
 2. akhirnya di akalin nambahin inline css di html nya
 3. Masukin semua data language ke global js. biar arahnya jelas dan testruktur. jadi sekarang website cuma punya 1 source i18n. dan hapus lang di local js todo dan ganti T() biar baca dari i18n global aja.
@@ -64,7 +92,7 @@ tinggal edit di global.js bagian lang.
 jangan bikin LANG baru di internal lagi
 nanti jadi duplicate system lagi
 
-# PROBLEM MISI 5 & 6 AND SOLVE 
+## PROBLEM MISI 5 & 6 AND SOLVE 
 
 ini bukan problem ataupun solving error. tapi ini adalah jawaban dari pertanyaanku.
 #### ❓Catatan dari Pertanyaanku :
@@ -92,4 +120,5 @@ Tidak ada transaksi uang yang terlibat
 Developernya menanggung biaya server sendiri atau dari donasi
 
 Contoh lain API publik seperti ini: API cuaca BMKG, data gempa USGS, jadwal KRL, nilai tukar Bank Indonesia — semuanya bisa langsung dipakai tanpa key karena datanya memang untuk publik.
+
 
