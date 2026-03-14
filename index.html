@@ -24,13 +24,12 @@
 
     <!-- Global CSS -->
     <!-- <link rel="stylesheet" href="/main/style.css"> -->
-    <link rel="stylesheet" href="/main/header.css">
-    <link rel="stylesheet" href="/main/footer.css">
-    <link rel="stylesheet" href="/1st_mission/kumpulan_doa.css">
-    <link rel="stylesheet" href="/2nd_mission/hitung_dzikir.css">
-    <link rel="stylesheet" href="/3rd_mission/kalkulator_zakat.css">
-    <link rel="stylesheet" href="/4rd_mission/todo-list.css">
-    <link rel="stylesheet" href="/5th_mission/jadwal_imsakiyah.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="1st_mission/kumpulan_doa.css">
+    <link rel="stylesheet" href="2nd_mission/hitung_dzikir.css">
+    <link rel="stylesheet" href="3rd_mission/kalkulator_zakat.css">
+    <link rel="stylesheet" href="4rd_mission/todo-list.css">
+    <link rel="stylesheet" href="5th_mission/jadwal_imsakiyah.css">
 </head>
 
 <body>
@@ -42,7 +41,7 @@
         <!-- Top Bar -->
         <div class="top-bar">
             <div class="logo-wrap">
-                <img id="logoImg" src="/assets/noor_port_logo.png" alt="Noor Port+">
+                <img id="logoImg" src="assets/noor_port_logo.png" alt="Noor Port+">
             </div>
 
             <div class="controls">
@@ -139,7 +138,7 @@
             <!-- Brand -->
             <div class="footer-brand">
                 <div class="footer-logo-wrap">
-                    <img src="/assets/noor_port_logo.png" alt="Noor Port+" class="footer-logo">
+                    <img src="assets/noor_port_logo.png" alt="Noor Port+" class="footer-logo">
                     <span class="footer-logo-name">Noor Port+</span>
                 </div>
                 <p class="footer-tagline" id="footerTagline">
@@ -182,11 +181,11 @@
     <!-- End Footer -->
 
     <!-- Global Script -->
-    <script src="/main/script.js"></script>
-    <script src="/2nd_mission/hitung_dzikir.js"></script>
-    <script src="/3rd_mission/kalkulator_zakat.js"></script>
-    <script src="/4rd_mission/todo-list.js"></script>
-    <script src="/5th_mission/jadwal_imsakiyah.js"></script>
+    <script src="script.js"></script>
+    <script src="2nd_mission/hitung_dzikir.js"></script>
+    <script src="3rd_mission/kalkulator_zakat.js"></script>
+    <script src="4rd_mission/todo-list.js"></script>
+    <script src="5th_mission/jadwal_imsakiyah.js"></script>
 
     <!-- Load Components -->
     <script>
@@ -202,11 +201,11 @@
         // Semua loadComponent dijalankan paralel,
         // Promise.all nunggu semuanya selesai baru scroll ke hash
         Promise.all([
-            loadComponent("doa-component", "/1st_mission/components/kumpulan_doa.html", () => rebuildCards()),
-            loadComponent("zikir-component", "/2nd_mission/components/hitung_dzikir.html", () => initZikirSection()),
-            loadComponent("zakat-component", "/3rd_mission/components/kalkulator_zakat.html"),
-            loadComponent("todo-component", "/4rd_mission/component/todo-list.html", () => initRamadhanTodo()),
-            loadComponent("imsakiyah-component", "/5th_mission/component/jadwal_imsakiyah.html", () => {
+            loadComponent("doa-component", "1st_mission/components/kumpulan_doa.html", () => rebuildCards()),
+            loadComponent("zikir-component", "2nd_mission/components/hitung_dzikir.html", () => initZikirSection()),
+            loadComponent("zakat-component", "3rd_mission/components/kalkulator_zakat.html"),
+            loadComponent("todo-component", "4rd_mission/component/todo-list.html", () => initRamadhanTodo()),
+            loadComponent("imsakiyah-component", "5th_mission/component/jadwal_imsakiyah.html", () => {
                 initImsakiyah();
             }),
         ]).then(() => {
